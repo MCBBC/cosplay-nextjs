@@ -1,6 +1,6 @@
-import TitleHeader from "@/app/ui/mainLayout/title-header";
-import SideNav from "@/app/ui/mainLayout/side-nav";
-import RightContainer from "@/app/ui/mainLayout/right-container";
+import TitleHeader from "@/app/ui/main-layout/title-header";
+import SideNav from "@/app/ui/main-layout/side-nav";
+import RightContainer from "@/app/ui/main-layout/right-container";
 
 export default function Layout({
   children,

@@ -21,7 +21,7 @@ export default function NavLinks() {
             href={link.href}
             key={link.name}
             className="flex w-full justify-start items-center">
-            <LinkIcon className="h-6 w-6" />
+            <LinkIcon className="h-6 w-6 shrink-0" />
             <h2 className="px-4 text-lg font-semibold tracking-tight">
               {link.name}
             </h2>
