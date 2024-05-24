@@ -2,13 +2,15 @@
 import Link from "next/link";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
-import { useFormStatus } from "react-dom";
+import { useFormStatus, useFormState } from "react-dom";
 import { Button } from "../button";
+import { authenticate } from "@/app/lib/actions";
 
 export default function LoginForm() {
   let [hidePasswordState, setPasswordState] = useState(true);
+  const [errorMessage, dispatch] = useFormState(authenticate, undefined);
   return (
-    <form className="space-y-6">
+    <form className="space-y-6" action={dispatch}>
       <div className="space-y-2">
         <label
           htmlFor="email"
@@ -41,8 +43,10 @@ export default function LoginForm() {
         <div className="relative px-px">
           <input
             type={hidePasswordState ? "password" : "text"}
-            name=""
-            id=""
+            name="password"
+            id="password"
+            required
+            minLength={6}
             className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
           />
           <button
