@@ -1,7 +1,12 @@
+"use client";
 import Link from "next/link";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
+import { useFormStatus } from "react-dom";
+import { Button } from "../button";
 
 export default function LoginForm() {
+  let [hidePasswordState, setPasswordState] = useState(true);
   return (
     <form className="space-y-6">
       <div className="space-y-2">
@@ -35,21 +40,29 @@ export default function LoginForm() {
         </label>
         <div className="relative px-px">
           <input
-            type="password"
+            type={hidePasswordState ? "password" : "text"}
             name=""
             id=""
             className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
           />
           <button
             type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
-            <EyeIcon width={20} height={20} />
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+            onClick={() => setPasswordState(!hidePasswordState)}>
+            {hidePasswordState ? (
+              <EyeSlashIcon width={20} height={20} />
+            ) : (
+              <EyeIcon width={20} height={20} />
+            )}
           </button>
         </div>
       </div>
-      <div className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 w-full">
-        登录
-      </div>
+      <LoginButton />
     </form>
   );
+}
+
+function LoginButton() {
+  const { pending } = useFormStatus();
+  return <Button aria-disabled={pending}>登录</Button>;
 }

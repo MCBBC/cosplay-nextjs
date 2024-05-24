@@ -1,3 +1,3 @@
 export default function Page() {
-  return <>主页</>;
+  return <>注册页面</>;
 }
