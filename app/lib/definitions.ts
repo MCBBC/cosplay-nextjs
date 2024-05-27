@@ -7,3 +7,16 @@ export type User = {
   updated_at: string;
   user_role: string;
 };
+
+export type Cosplay = {
+  id: number;
+  title: string;
+  cos_name: string;
+  cos_id: number;
+  cover?: string;
+  content?: string;
+  tag_id?: number;
+  onload?: boolean;
+  creation_date?: string;
+  view_count?: number;
+};

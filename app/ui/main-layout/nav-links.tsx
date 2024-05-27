@@ -8,8 +8,8 @@ import {
 export default function NavLinks() {
   const links = [
     { name: "Home", icon: HomeIcon, href: "/front/" },
-    { name: "Cosplays", icon: CameraIcon, href: "/front/cosplays/1" },
-    { name: "Cosers", icon: UserCircleIcon, href: "/front/cosers/1" },
+    { name: "Cosplays", icon: CameraIcon, href: "/front/cosplays" },
+    { name: "Cosers", icon: UserCircleIcon, href: "/front/cosers" },
   ];
 
   return (

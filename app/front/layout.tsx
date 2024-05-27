@@ -8,7 +8,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex h-full">
+    <main className="flex h-screen">
       <SideNav></SideNav>
       <RightContainer>
         <TitleHeader></TitleHeader>
