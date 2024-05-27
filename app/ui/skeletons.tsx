@@ -2,9 +2,9 @@ import { Avatar } from "@nextui-org/react";
 const shimmer =
   "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent";
 
-export function ImageItem({ index }: { index: number }) {
+export function ImageItem() {
   return (
-    <div className={`${shimmer} space-y-3 relative`} key={index}>
+    <div className={`${shimmer} space-y-3 relative`}>
       <div className="space-y-3">
         <div className="overflow-hidden rounded-md relative">
           <div className="h-332 w-249 object-cover transition-all hover:scale-105 aspect-[3/4]"></div>
@@ -28,7 +28,7 @@ export function CosplayListSkeleton() {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
       {Array(30).map((_item, index) => (
-        <ImageItem index={index} />
+        <ImageItem key={index} />
       ))}
     </div>
   );
