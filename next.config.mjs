@@ -10,6 +10,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       { hostname: "i1.wp.com" },
+      { hostname: "i0.buondua.com" },
       { hostname: "pan.micromatrix.org" },
     ],
   },
