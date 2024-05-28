@@ -15,7 +15,7 @@ const post_views = [];
 ## 参数
 
 ```json
-AUTH_SECRET="" // 随机的
+AUTH_SECRET="" // 随机的密钥
 
 IMG_REMOTW_URL="acom,b.com,c.org"
 

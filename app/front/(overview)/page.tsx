@@ -1,5 +1,7 @@
 import { CosplayList } from "@/app/ui/cosplay/cosplay-list";
+import { CosplayListSkeleton } from "@/app/ui/skeletons/image_group";
 import { BellIcon } from "@heroicons/react/24/outline";
+import { Suspense } from "react";
 export default async function Page() {
   const currentPage = 1;
   return (
@@ -9,7 +11,9 @@ export default async function Page() {
         <BellIcon className="w-4 h-4" />
         <p>项目还未完工,有些许BUG</p>
       </div>
-      <CosplayList query={""} currentPage={currentPage}></CosplayList>
+      <Suspense fallback={<CosplayListSkeleton />}>
+        <CosplayList query={""} currentPage={currentPage}></CosplayList>
+      </Suspense>
     </div>
   );
 }
