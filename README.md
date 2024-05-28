@@ -11,3 +11,20 @@ const tags = [];
 const posts = [];
 const post_views = [];
 ```
+
+## 参数
+
+```json
+AUTH_SECRET="" // 随机的
+
+IMG_REMOTW_URL="acom,b.com,c.org"
+
+POSTGRES_URL=""
+POSTGRES_PRISMA_URL=""
+POSTGRES_URL_NO_SSL=""
+POSTGRES_URL_NON_POOLING=""
+POSTGRES_USER="default"
+POSTGRES_HOST=""
+POSTGRES_PASSWORD=""
+POSTGRES_DATABASE=""
+```

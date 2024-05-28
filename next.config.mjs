@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+const remoteImgUrls = (process.env.IMG_REMOTW_URL ?? "")
+  .split(",")
+  .map((item) => ({ hostname: item }));
 const nextConfig = {
   redirects: () => [
     {
@@ -8,11 +11,7 @@ const nextConfig = {
     },
   ],
   images: {
-    remotePatterns: [
-      { hostname: "i1.wp.com" },
-      { hostname: "i0.buondua.com" },
-      { hostname: "pan.micromatrix.org" },
-    ],
+    remotePatterns: [...remoteImgUrls],
   },
 };
 

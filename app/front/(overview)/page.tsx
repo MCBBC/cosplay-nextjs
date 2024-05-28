@@ -1,7 +1,6 @@
 import { CosplayList } from "@/app/ui/cosplay/cosplay-list";
 import { BellIcon } from "@heroicons/react/24/outline";
 export default async function Page() {
-  const query = "";
   const currentPage = 1;
   return (
     <div className="w-full px-8">
