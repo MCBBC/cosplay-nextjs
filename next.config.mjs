@@ -8,8 +8,6 @@ const nextConfig = {
     },
   ],
   images: {
-    // loader: "imgix",
-    // path: "",
     remotePatterns: [
       { hostname: "i1.wp.com" },
       { hostname: "pan.micromatrix.org" },

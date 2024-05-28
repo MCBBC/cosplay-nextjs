@@ -45,6 +45,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
               alt="封面"
               width={229}
               height={332}
+              lazyBoundary=""
               className="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]"
               unoptimized></Image>
           </Suspense>
