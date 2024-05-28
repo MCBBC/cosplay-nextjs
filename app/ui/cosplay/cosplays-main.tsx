@@ -1,10 +1,6 @@
 "use client";
-import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/breadcrumbs";
-import {
-  Pagination,
-  PaginationItem,
-  PaginationCursor,
-} from "@nextui-org/pagination";
+import { Breadcrumbs, BreadcrumbItem, Pagination } from "@nextui-org/react";
+
 import CosplayList from "./cosplay-list";
 
 export default function CosplayMain() {

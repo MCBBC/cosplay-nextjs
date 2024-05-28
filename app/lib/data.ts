@@ -22,6 +22,6 @@ export async function fetchCosplay(query: string, currentPage: number) {
     return data.rows;
   } catch (error) {
     console.log("数据库错误", error);
-    throw new Error("获取数据错误");
+    throw new Error(`获取数据错误${error}`);
   }
 }

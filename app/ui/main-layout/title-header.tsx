@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Favicon from "@/public/images/favicon.ico";
-import { Divider } from "@nextui-org/divider";
+import { Divider } from "@nextui-org/react";
 
 export default function TitleHeader() {
   return (
