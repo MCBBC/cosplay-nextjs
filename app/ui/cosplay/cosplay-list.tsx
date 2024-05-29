@@ -5,7 +5,7 @@ import { Avatar } from "@nextui-org/react";
 import { Suspense } from "react";
 import {
   CosPlayItemSkeleton,
-  ImageItemSkeleton,
+  CosplayCoverSkeleton,
 } from "../skeletons/image_group";
 import { Cosplay } from "@/app/lib/definitions";
 import { CosplayCover } from "./cosplay-cover";
@@ -32,8 +32,6 @@ export async function CosplayList({
   );
 }
 
-
-
 export function CosplayItem({ item }: { item: Cosplay }) {
   return (
     <div className="space-y-3 relative">
@@ -42,7 +40,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
         className="space-y-3"
         target="_blank">
         <div className="overflow-hidden rounded-md relative">
-          <Suspense fallback={<ImageItemSkeleton />}>
+          <Suspense fallback={<CosplayCoverSkeleton />}>
             <CosplayCover src={item.cover} />
           </Suspense>
         </div>
