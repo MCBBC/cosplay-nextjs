@@ -1,6 +1,6 @@
 import { fetchCosplay } from "@/app/lib/data";
 import Link from "next/link";
-import Image from "next/image";
+
 import { Avatar } from "@nextui-org/react";
 import { Suspense } from "react";
 import {
@@ -8,6 +8,7 @@ import {
   ImageItemSkeleton,
 } from "../skeletons/image_group";
 import { Cosplay } from "@/app/lib/definitions";
+import { CosplayCover } from "./cosplay-cover";
 
 export async function CosplayList({
   query,
@@ -31,6 +32,8 @@ export async function CosplayList({
   );
 }
 
+
+
 export function CosplayItem({ item }: { item: Cosplay }) {
   return (
     <div className="space-y-3 relative">
@@ -40,14 +43,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
         target="_blank">
         <div className="overflow-hidden rounded-md relative">
           <Suspense fallback={<ImageItemSkeleton />}>
-            <Image
-              src={item.cover || ""}
-              alt="封面"
-              width={229}
-              height={332}
-              lazyBoundary=""
-              className="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]"
-              unoptimized></Image>
+            <CosplayCover src={item.cover} />
           </Suspense>
         </div>
         <div className="space-y-1 text-md">

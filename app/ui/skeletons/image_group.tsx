@@ -1,6 +1,6 @@
 import { Avatar, Skeleton } from "@nextui-org/react";
 
-export function ImageItemSkeleton() {
+export function CosplayCoverSkeleton() {
   return (
     <Skeleton>
       <div className="aspect-[3/4]"></div>
@@ -37,7 +37,7 @@ export function CosPlayItemSkeleton() {
     <div className="space-y-3 relative">
       <div className="space-y-3">
         <div className="overflow-hidden rounded-md relative">
-          <ImageItemSkeleton></ImageItemSkeleton>
+          <CosplayCoverSkeleton></CosplayCoverSkeleton>
         </div>
         <div className="space-y-1 text-md">
           <TitleSkeleton></TitleSkeleton>
