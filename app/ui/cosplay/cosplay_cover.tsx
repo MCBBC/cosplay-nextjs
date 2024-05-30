@@ -12,10 +12,10 @@ export function CosplayCover({ src }: { src: string | undefined }) {
       <Image
         src={src || ""}
         alt="封面"
-        width={229}
-        height={332}
+        // width={249}
+        // height={332}
         onLoad={() => setLoadingFlag(false)}
-        className={`object-cover transition-all hover:scale-105 aspect-[3/4] ${
+        className={`object-cover transition-all  hover:scale-105 aspect-[3/4] ${
           loadingFlag ? "invisible w-0 h-0" : "h-auto w-auto"
         }`}></Image>
     </>

@@ -15,7 +15,7 @@ export async function fetchCosplay(query: string, currentPage: number) {
         posts.creation_date
         from posts
         join tags on posts.tag_id=tags.id
-        order by posts.creation_date desc
+        order by posts.creation_date desc, posts.id desc
         limit ${ITEMS_PRE_PAGE} offset ${offset}
         `;
 

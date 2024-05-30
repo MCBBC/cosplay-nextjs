@@ -10,16 +10,16 @@ export function ImageShow({ src }: { src: string }) {
   return (
     <a
       data-fancybox="gallery"
-      className="overflow-hidden rounded-md cursor-zoom-in"
+      className="overflow-hidden rounded-md cursor-zoom-in "
       href={src}>
       {loadingFlag ? <CosplayImageSkeleton /> : null}
       <Image
         alt="图片"
         src={src}
-        width={249}
-        height={332}
+        // width={249}
+        // height={332}
         onLoad={() => setLoadingFlag(false)}
-        className={`object-cover aspect-[3/4] ${
+        className={`object-cover aspect-[3/4]  ${
           loadingFlag ? "invisible w-0 h-0" : "h-auto w-auto"
         }`}
       />
