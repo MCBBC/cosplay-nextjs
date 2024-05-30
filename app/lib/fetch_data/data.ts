@@ -9,12 +9,12 @@ export async function fetchCosplay(query: string, currentPage: number) {
   try {
     const data = await sql<Cosplay>`select posts.id,
         posts.title,
-        tags.id as cos_id,
-        tags.name as cos_name,
+        cosers.id as cos_id,
+        cosers.name as cos_name,
         posts.cover,
         posts.creation_date
         from posts
-        join tags on posts.tag_id=tags.id
+        join cosers on posts.coser_id=cosers.id
         order by posts.creation_date desc, posts.id desc
         limit ${ITEMS_PRE_PAGE} offset ${offset}
         `;

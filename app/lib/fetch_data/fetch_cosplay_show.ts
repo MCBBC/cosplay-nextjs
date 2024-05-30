@@ -23,6 +23,23 @@ export async function fetchCosplayShowById(cosplayShowId: string | number) {
     return data.rows[0];
   } catch (error) {
     console.log("数据库错误", error);
-    throw new Error(`获取数据错误${error}`);
+    throw new Error(`获取数据错误`);
+  }
+}
+
+export async function fetchGuessYouLike() {
+  noStore();
+  try {
+    const data = await sql<Cosplay>`select 
+    posts.id,
+    posts.title,
+    posts.content,
+    posts.cover,
+    posts.creation_date,
+    posts.view_count 
+    from posts`
+  } catch (error) {
+    console.log("数据库错误", error);
+    throw new Error(`获取数据错误`);
   }
 }

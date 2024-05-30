@@ -2,7 +2,7 @@ const { db } = require("@vercel/postgres");
 const bcrypt = require("bcrypt");
 const {
   users,
-  tags,
+  cosers,
   posts,
   post_views,
 } = require("../app/lib/placeholder-data");
@@ -48,7 +48,7 @@ async function seedTags(client) {
   try {
     await client.sql`create extension if not exists "uuid-ossp"`;
     const createTable = await client.sql`
-            create table if not exists tags(
+            create table if not exists cosers(
                 id BIGSERIAL PRIMARY KEY,
                 name varchar(255) not null,
                 slug varchar(255) not null,
@@ -57,11 +57,11 @@ async function seedTags(client) {
             )
             `;
 
-    console.log("created tags table");
+    console.log("created cosers table");
     const insertedTags = await Promise.all(
-      tags.map(async (tag) => {
+      cosers.map(async (tag) => {
         return client.sql`
-            insert into tags (id,name,slug,post_count)
+            insert into cosers (id,name,slug,post_count)
             values (${tag.id}, ${tag.name}, ${tag.slug}, ${tag.post_count})
             ON CONFLICT (id) DO NOTHING;
             `;
@@ -70,9 +70,9 @@ async function seedTags(client) {
 
     console.log(`Seeded ${insertedTags.length} tag`);
 
-    return { createTable, tags: insertedTags };
+    return { createTable, cosers: insertedTags };
   } catch (error) {
-    console.log("Error seeding tags", error);
+    console.log("Error seeding cosers", error);
     throw error;
   }
 }
@@ -84,12 +84,12 @@ async function seedPosts(client) {
             create table if not exists posts(
                 id BIGSERIAL PRIMARY KEY,
                 title varchar(255) not null,
-                tag_id int,
+                coser_id int,
                 content text not null,
                 cover varchar,
                 creation_date date DEFAULT CURRENT_DATE,
                 view_count int4 DEFAULT 0,
-                CONSTRAINT tag_id_fkey FOREIGN KEY (tag_id) REFERENCES public.tags(id)
+                CONSTRAINT tag_id_fkey FOREIGN KEY (coser_id) REFERENCES public.cosers(id)
             )
             `;
 
@@ -97,8 +97,8 @@ async function seedPosts(client) {
     const insertedPosts = await Promise.all(
       posts.map(async (_post) => {
         return client.sql`
-            insert into posts (id,title,tag_id,content,cover,creation_date,view_count)
-            values (${_post.id}, ${_post.title}, ${_post.tag_id}, ${_post.content}, ${_post.cover}, ${_post.creation_date}, ${_post.view_count})
+            insert into posts (id,title,coser_id,content,cover,creation_date,view_count)
+            values (${_post.id}, ${_post.title}, ${_post.coser_id}, ${_post.content}, ${_post.cover}, ${_post.creation_date}, ${_post.view_count})
             ON CONFLICT (id) DO NOTHING;
             `;
       })
