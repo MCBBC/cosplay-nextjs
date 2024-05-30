@@ -2,7 +2,10 @@
 
 import { Image, Button } from "@nextui-org/react";
 import { useEffect, useMemo, useState } from "react";
-import { CosplayImageSkeleton } from "../skeletons/cosplay_show_skeleton";
+import {
+  CosplayImageListSkeleton,
+  CosplayImageSkeleton,
+} from "../skeletons/cosplay_show_skeleton";
 import Fancybox from "./fancybox";
 
 export function ImageShow({ src }: { src: string }) {
@@ -65,17 +68,21 @@ export function ImageListWrapper({
 
   return (
     <>
-      <Fancybox
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full"
-        options={{
-          Carousel: {
-            infinite: false,
-          },
-        }}>
-        {loadedImages.map((item, index) => (
-          <ImageShow src={item} key={index} />
-        ))}
-      </Fancybox>
+      {loadedImages.length === 0 ? (
+        <CosplayImageListSkeleton />
+      ) : (
+        <Fancybox
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full"
+          options={{
+            Carousel: {
+              infinite: false,
+            },
+          }}>
+          {loadedImages.map((item, index) => (
+            <ImageShow src={item} key={index} />
+          ))}
+        </Fancybox>
+      )}
 
       <Button
         className="mt-4"

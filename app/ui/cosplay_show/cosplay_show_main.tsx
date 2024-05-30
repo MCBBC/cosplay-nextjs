@@ -108,7 +108,6 @@ export async function CosplayShowContainer({
   const data = await fetchCosplayShowById(cosplayId);
   const toDate = new Date(data?.creation_date!.toString() || "2024/05/20");
   const date = new DateFormatter("local").format(toDate);
-
   return (
     <>
       <Suspense fallback={<CosplayTitleSkeleton />}>

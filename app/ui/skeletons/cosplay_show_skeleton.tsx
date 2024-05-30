@@ -25,6 +25,18 @@ export function CosplayImageSkeleton() {
   );
 }
 
+export function CosplayImageListSkeleton() {
+  return (
+    <>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full">
+        {Array.from({ length: 12 }, (item, index) => (
+          <CosplayImageSkeleton key={index} />
+        ))}
+      </div>
+    </>
+  );
+}
+
 export function CosplayContainerSkeleton() {
   return (
     <div className="flex flex-col items-center">
