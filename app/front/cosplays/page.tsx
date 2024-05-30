@@ -1,4 +1,4 @@
-import CosplayMain from "@/app/ui/cosplay/cosplays-main";
+import CosplayMain from "@/app/ui/cosplay/cosplays_main";
 
 export default function Page({
   searchParams,
@@ -15,9 +15,5 @@ export default function Page({
   const query = searchParams?.query || "";
   const currentPage = searchParams?.page || 1;
 
-  return (
-    <div className="w-full px-8">
-      <CosplayMain></CosplayMain>
-    </div>
-  );
+  return (<CosplayMain></CosplayMain>)
 }

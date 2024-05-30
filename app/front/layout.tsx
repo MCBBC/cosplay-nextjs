@@ -1,6 +1,6 @@
-import TitleHeader from "@/app/ui/main-layout/title-header";
-import SideNav from "@/app/ui/main-layout/side-nav";
-import RightContainer from "@/app/ui/main-layout/right-container";
+import TitleHeader from "@/app/ui/main_layout/title_header";
+import SideNav from "@/app/ui/main_layout/side_nav";
+import RightContainer from "@/app/ui/main_layout/right_container";
 
 export default function Layout({
   children,
@@ -12,7 +12,7 @@ export default function Layout({
       <SideNav></SideNav>
       <RightContainer>
         <TitleHeader></TitleHeader>
-        {children}
+        <div className="w-full px-8">{children}</div>
       </RightContainer>
     </main>
   );

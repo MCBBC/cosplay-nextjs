@@ -1,4 +1,4 @@
-import { fetchCosplay } from "@/app/lib/data";
+import { fetchCosplay } from "@/app/lib/fetch_data/data";
 import Link from "next/link";
 
 import { Avatar } from "@nextui-org/react";
@@ -6,9 +6,9 @@ import { Suspense } from "react";
 import {
   CosPlayItemSkeleton,
   CosplayCoverSkeleton,
-} from "../skeletons/image_group";
+} from "../skeletons/image_group_skeleton";
 import { Cosplay } from "@/app/lib/definitions";
-import { CosplayCover } from "./cosplay-cover";
+import { CosplayCover } from "./cosplay_cover";
 
 export async function CosplayList({
   query,
@@ -36,7 +36,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
   return (
     <div className="space-y-3 relative">
       <Link
-        href={`front/cosplay?id=${item.id}`}
+        href={`front/cosplays/${item.id}?name=${item.cos_name}`}
         className="space-y-3"
         target="_blank">
         <div className="overflow-hidden rounded-md relative">

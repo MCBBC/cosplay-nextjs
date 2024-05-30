@@ -1,4 +1,4 @@
-import NavLinks from "@/app/ui/main-layout/nav-links";
+import NavLinks from "@/app/ui/main_layout/nav_links";
 import Link from "next/link";
 import { Divider } from "@nextui-org/react";
 export default function SideNav() {

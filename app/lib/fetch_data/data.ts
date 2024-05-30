@@ -1,6 +1,6 @@
 import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
-import { Cosplay } from "./definitions";
+import { Cosplay } from "../definitions";
 
 const ITEMS_PRE_PAGE = 30;
 export async function fetchCosplay(query: string, currentPage: number) {

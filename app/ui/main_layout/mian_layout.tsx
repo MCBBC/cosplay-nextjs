@@ -1,5 +1,5 @@
-import RightContainer from "./right-container";
-import SideNav from "./side-nav";
+import RightContainer from "./right_container";
+import SideNav from "./side_nav";
 
 export default function MainLayout({
   children,
