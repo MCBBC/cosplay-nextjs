@@ -47,7 +47,7 @@ export function PopularRecommendSkeleton() {
         <p className="text-sm text-muted-foreground">热门推荐</p>
         <div className="flex flex-col mt-5 space-y-6">
           {Array.from({ length: 6 }, (item, index) => (
-            <div className="flex">
+            <div className="flex" key={index}>
               <div className="relative w-28 h-20"></div>
               <div className="flex flex-col justify-between my-1 ml-2">
                 <small className="text-sm font-medium line-clamp-2">
