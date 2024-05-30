@@ -7,6 +7,13 @@ export function CosplayCoverSkeleton() {
     </Skeleton>
   );
 }
+export function CosplayFlatCoverSkeleton() {
+  return (
+    <Skeleton>
+      <div className="object-cover rounded-md"></div>
+    </Skeleton>
+  );
+}
 
 export function TitleSkeleton() {
   return (

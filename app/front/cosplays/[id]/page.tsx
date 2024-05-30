@@ -6,6 +6,7 @@ export default function Page({
 }: {
   searchParams?: {
     name: string;
+    coserId: string;
   };
   params?: {
     id: string;
@@ -13,5 +14,12 @@ export default function Page({
 }) {
   const cosplayName = searchParams?.name || "";
   const cosplayId = params?.id || "0";
-  return <CosplayShowMain cosplayId={cosplayId} cosplayName={cosplayName} />;
+  const coserId = searchParams?.coserId || "0";
+  return (
+    <CosplayShowMain
+      cosplayId={cosplayId}
+      cosplayName={cosplayName}
+      coserId={coserId}
+    />
+  );
 }

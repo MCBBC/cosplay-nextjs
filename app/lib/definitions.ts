@@ -15,7 +15,6 @@ export type Cosplay = {
   cos_id: number;
   cover?: string;
   content?: string;
-  tag_id?: number;
   onload?: boolean;
   creation_date?: string;
   view_count?: number;

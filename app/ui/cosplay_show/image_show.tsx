@@ -19,15 +19,13 @@ export function ImageShow({ src }: { src: string }) {
       <Image
         alt="图片"
         src={src}
-        // width={249}
-        // height={332}
         onLoad={() => setLoadingFlag(false)}
         className={`object-cover aspect-[3/4]  ${
           loadingFlag ? "invisible w-0 h-0" : "h-auto w-auto"
         }`}
       />
     </a>
-  );
+  )
 }
 
 export function ImageListWrapper({

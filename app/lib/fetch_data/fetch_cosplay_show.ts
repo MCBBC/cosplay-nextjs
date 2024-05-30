@@ -27,7 +27,7 @@ export async function fetchCosplayShowById(cosplayShowId: string | number) {
   }
 }
 
-export async function fetchGuessYouLike() {
+export async function fetchGuessYouLike(coserId: string | number) {
   noStore();
   try {
     const data = await sql<Cosplay>`select 
@@ -37,7 +37,14 @@ export async function fetchGuessYouLike() {
     posts.cover,
     posts.creation_date,
     posts.view_count 
-    from posts`
+    from posts
+    where posts.coser_id = ${coserId}
+    order by random()
+    limit 6`;
+    if (data.rows.length === 0) {
+      return null;
+    }
+    return data.rows;
   } catch (error) {
     console.log("数据库错误", error);
     throw new Error(`获取数据错误`);

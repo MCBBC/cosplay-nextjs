@@ -36,7 +36,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
   return (
     <div className="space-y-3 relative">
       <Link
-        href={`front/cosplays/${item.id}?name=${item.cos_name}`}
+        href={`front/cosplays/${item.id}?name=${item.cos_name}&coserId=${item.cos_id}`}
         className="space-y-3"
         target="_blank">
         <div className="overflow-hidden rounded-md relative">

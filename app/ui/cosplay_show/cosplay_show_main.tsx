@@ -7,10 +7,16 @@ import { Suspense } from "react";
 import {
   CosplayContainerSkeleton,
   CosplayTitleSkeleton,
+  GuessYouLikeSkeleton,
 } from "@/app/ui/skeletons/cosplay_show_skeleton";
-import { fetchCosplayShowById } from "@/app/lib/fetch_data/fetch_cosplay_show";
+import {
+  fetchCosplayShowById,
+  fetchGuessYouLike,
+} from "@/app/lib/fetch_data/fetch_cosplay_show";
 import { DateFormatter } from "@internationalized/date";
 import { ImageListWrapper } from "./image_show";
+import { Cosplay } from "@/app/lib/definitions";
+import { CosplayFlatCover } from "../cosplay/cosplay_cover";
 
 export function CosplayShowTitle({ title }: { title: string }) {
   return (
@@ -21,31 +27,38 @@ export function CosplayShowTitle({ title }: { title: string }) {
     </div>
   );
 }
-export function GuessLikeItem() {
+export function GuessLikeItem({ cosplay }: { cosplay: Cosplay }) {
+  const toDate = new Date(cosplay?.creation_date!.toString() || "2024/05/20");
+  const date = new DateFormatter("local").format(toDate);
   return (
     <Link href="/">
       <div className="relative w-full h-32 xl:h-36 2xl:h-32">
-        <Image alt="cover" loading="lazy" decoding="async" src=""></Image>
+        <CosplayFlatCover src={cosplay.cover} />
       </div>
       <small className="mt-2 h-10 text-sm font-medium line-clamp-2">
-        绮太郎Vocaloid初音未来
+        {cosplay.title}
       </small>
       <div className="flex justify-between mt-2">
-        <small className="text-sm text-muted-foreground">4/27/2022</small>
+        <small className="text-sm text-muted-foreground">{date}</small>
         <small className="flex items-center text-sm text-muted-foreground">
           <EyeIcon className="h-4 w-4 mr-[2px]" />
-          &nbsp;170
+          &nbsp;{cosplay.view_count}
         </small>
       </div>
     </Link>
   );
 }
-export function GuessYouLike() {
+export async function GuessYouLike({ coserId }: { coserId: string }) {
+  const data = await fetchGuessYouLike(coserId);
   return (
     <>
       <p className="text-sm text-muted-foreground">猜你喜欢</p>
       <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-6 gap-5 mt-5">
-        <GuessLikeItem />
+        <Suspense fallback={<GuessYouLikeSkeleton />}>
+          {data?.map((item, index) => (
+            <GuessLikeItem cosplay={item} key={index} />
+          ))}
+        </Suspense>
       </div>
     </>
   );
@@ -130,9 +143,11 @@ export async function CosplayShowContainer({
 export async function CosplayShowMain({
   cosplayId,
   cosplayName,
+  coserId,
 }: {
   cosplayId: string;
   cosplayName: string;
+  coserId: string;
 }) {
   const breads = [
     { path: "/front", name: "首页" },
@@ -147,7 +162,7 @@ export async function CosplayShowMain({
         <div className="w-full">
           <CosplayShowContainer cosplayId={cosplayId} />
           <div className="mt-6">
-            <GuessYouLike />
+            <GuessYouLike coserId={coserId} />
           </div>
         </div>
         <div className="ml-0 md:ml-8 mt-6 md:mt-0 min-w-64 max-w-64">
