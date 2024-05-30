@@ -20,7 +20,7 @@ export function CosplayInfoSkeleton() {
 export function CosplayImageSkeleton() {
   return (
     <Skeleton>
-      <div className="aspect-[3/4]"></div>
+      <div className="aspect-[3/4]" style={{ maxWidth: "249px" }}></div>
     </Skeleton>
   );
 }

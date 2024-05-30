@@ -1,9 +1,9 @@
-import { Avatar, Skeleton } from "@nextui-org/react";
+import { Avatar, Skeleton, Image } from "@nextui-org/react";
 
 export function CosplayCoverSkeleton() {
   return (
     <Skeleton>
-      <div className="aspect-[3/4]"></div>
+      <div className="aspect-[3/4]" style={{ maxWidth: "229px" }}></div>
     </Skeleton>
   );
 }
