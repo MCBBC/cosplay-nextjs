@@ -30,12 +30,8 @@ export function ImageShow({ src }: { src: string }) {
 export function ImageListWrapper({
   markdownContent,
 }: {
-  markdownContent: string | string[] | undefined;
+  markdownContent: string | string[];
 }) {
-  if (typeof markdownContent === "undefined") {
-    return;
-  }
-
   const imageSrcs: string[] = useMemo(() => {
     const tempImageSrcs: string[] = [];
     if (Object.prototype.toString.call(markdownContent) === "[object Array]") {

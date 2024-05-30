@@ -117,7 +117,11 @@ export async function CosplayShowContainer({
       <CosplayInfo date={date} viewCount={data?.view_count || 0} />
       <Suspense fallback={<CosplayContainerSkeleton />}>
         <div className="flex flex-col items-center">
-          <ImageListWrapper markdownContent={data?.content} />
+          <ImageListWrapper
+            markdownContent={
+              data?.content || Array.from({ length: 12 }, (item) => "")
+            }
+          />
         </div>
       </Suspense>
     </>
