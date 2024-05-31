@@ -19,3 +19,10 @@ export type Cosplay = {
   creation_date?: string;
   view_count?: number;
 };
+
+export type Coser = {
+  id: number;
+  name: string;
+  post_count?: number;
+  description?: string;
+};

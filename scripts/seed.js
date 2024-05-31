@@ -44,7 +44,7 @@ async function seedUsers(client) {
   }
 }
 
-async function seedTags(client) {
+async function seedCosers(client) {
   try {
     await client.sql`create extension if not exists "uuid-ossp"`;
     const createTable = await client.sql`
@@ -54,11 +54,12 @@ async function seedTags(client) {
                 slug varchar(255) not null,
                 description text,
                 post_count int not null default 0
-            )
+            );
+            create index if not exists idx_cosers_name on cosers(name);
             `;
 
     console.log("created cosers table");
-    const insertedTags = await Promise.all(
+    const insertedCosers = await Promise.all(
       cosers.map(async (tag) => {
         return client.sql`
             insert into cosers (id,name,slug,post_count)
@@ -68,9 +69,9 @@ async function seedTags(client) {
       })
     );
 
-    console.log(`Seeded ${insertedTags.length} tag`);
+    console.log(`Seeded ${insertedCosers.length} tag`);
 
-    return { createTable, cosers: insertedTags };
+    return { createTable, cosers: insertedCosers };
   } catch (error) {
     console.log("Error seeding cosers", error);
     throw error;
@@ -151,7 +152,7 @@ async function main() {
   const client = await db.connect();
 
   await seedUsers(client);
-  await seedTags(client);
+  await seedCosers(client);
   await seedPosts(client);
   await seedPostViews(client);
 

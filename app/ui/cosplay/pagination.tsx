@@ -9,7 +9,6 @@ export function CustomPagination({ totalPages }: { totalPages: number }) {
 
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
-    console.log("page", pageNumber);
 
     params.set("page", pageNumber.toString());
     replace(`${pathname}?${params.toString()}`);
@@ -19,7 +18,7 @@ export function CustomPagination({ totalPages }: { totalPages: number }) {
     <Pagination
       showControls
       total={totalPages}
-      initialPage={currentPage}
+      page={currentPage}
       className="mx-auto flex w-full justify-center my-6"
       onChange={(page: number) => createPageURL(page)}
     />
