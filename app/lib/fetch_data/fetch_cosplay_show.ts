@@ -52,8 +52,11 @@ export async function fetchGuessYouLike(
     posts.title,
     posts.cover,
     posts.creation_date,
-    posts.view_count 
+    posts.view_count,
+    cosers.id as cos_id,
+    cosers.name as cos_name 
     from posts
+    join cosers on posts.coser_id = cosers.id
     where posts.coser_id = ${coserId}
     limit 5`;
     return data.rows;
@@ -84,9 +87,12 @@ export async function fetchPopularRecommend(): Promise<Cosplay[]> {
       posts.id,
       posts.title,
       posts.cover,
-      posts.creation_date
+      posts.creation_date,
+      cosers.id as cos_id,
+      cosers.name as cos_name
     from posts
     join recent_views on posts.id = recent_views.post_id
+    join cosers on cosers.id = posts.coser_id
     order by
       recent_views.view_count desc
     limit 8

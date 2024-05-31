@@ -31,7 +31,7 @@ export function CosplayFlatCover({ src }: { src: string | undefined }) {
       <Image
         src={src || ""}
         alt="封面"
-        classNames={{ wrapper: "h-full w-full !max-w-full" }}
+        classNames={{ wrapper: "h-full w-full !max-w-full bg-gray-300" }}
         onLoad={() => setLoadingFlag(false)}
         className={`object-cover rounded-md ${
           loadingFlag ? "invisible w-0 h-0" : "h-full w-full"
