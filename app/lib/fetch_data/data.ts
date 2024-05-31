@@ -14,7 +14,7 @@ export async function fetchCosplay(query: string, currentPage: number) {
         posts.cover,
         posts.creation_date
         from posts
-        join cosers on posts.coser_id=cosers.id
+        join cosers on posts.coser_id = cosers.id
         order by posts.creation_date desc, posts.id desc
         limit ${ITEMS_PRE_PAGE} offset ${offset}
         `;

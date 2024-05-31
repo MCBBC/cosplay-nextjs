@@ -12,6 +12,7 @@ import {
 import {
   fetchCosplayShowById,
   fetchGuessYouLike,
+  fetchPopularRecommend,
 } from "@/app/lib/fetch_data/fetch_cosplay_show";
 import { DateFormatter } from "@internationalized/date";
 import { ImageListWrapper } from "./image_show";
@@ -82,32 +83,43 @@ export async function CosplayInfo({
   );
 }
 
-export function PopularItem() {
+export function PopularItem({ recommend }: { recommend: Cosplay }) {
+  const toDate = new Date(recommend?.creation_date!.toString() || "2024/05/20");
+  const date = new DateFormatter("local").format(toDate);
+
   return (
     <Link
       href=""
       className="transition-all hover:scale-105 flex"
       target="_blank">
       <Image
-        src=""
-        className="relative w-28 h-20"
+        src={recommend.cover}
+        classNames={{
+          wrapper: "shrink-0 bg-gray-300",
+        }}
+        className="relative w-28 h-20 object-cover"
         alt="cover"
         loading="lazy"
         decoding="async"></Image>
       <div className="flex flex-col justify-between my-1 ml-2">
-        <small className="text-sm font-medium line-clamp-2">title</small>
-        <p className="text-sm text-muted-foreground">2024/06/12</p>
+        <small className="text-sm font-medium line-clamp-2">
+          {recommend.title}
+        </small>
+        <p className="text-sm text-muted-foreground">{date}</p>
       </div>
     </Link>
   );
 }
 
-export function PopularRecommend() {
+export async function PopularRecommend() {
+  const data = await fetchPopularRecommend();
   return (
     <div className="ml-0 md:ml-8 mt-6 md:mt-0 min-w-64 max-w-64">
       <p className="text-sm text-muted-foreground">热门推荐</p>
       <div className="flex flex-col mt-5 space-y-6">
-        <PopularItem />
+        {data.map((item, index) => (
+          <PopularItem recommend={item} key={index} />
+        ))}
       </div>
     </div>
   );

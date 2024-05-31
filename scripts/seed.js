@@ -90,7 +90,9 @@ async function seedPosts(client) {
                 creation_date date DEFAULT CURRENT_DATE,
                 view_count int4 DEFAULT 0,
                 CONSTRAINT tag_id_fkey FOREIGN KEY (coser_id) REFERENCES public.cosers(id)
-            )
+            );
+            CREATE INDEX IF NOT EXISTS idx_posts_coser_id ON posts(coser_id);
+            CREATE INDEX IF NOT EXISTS idx_posts_creation_date_id ON posts(creation_date DESC, id DESC);
             `;
 
     console.log("created posts table");
@@ -122,7 +124,8 @@ async function seedPostViews(client) {
                 user_id int,
                 ip varchar(255),
                 created_at timestamptz not null default CURRENT_TIMESTAMP
-            )
+            );
+            CREATE INDEX IF NOT EXISTS idx_post_views_post_id_created_at ON post_views(post_id, created_at); 
             `;
 
     console.log("created posts table");

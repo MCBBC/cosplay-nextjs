@@ -52,6 +52,20 @@ export function CosplayContainerSkeleton() {
   );
 }
 
+export function PopularRecommendItemSkeleton() {
+  return (
+    <>
+      <div className="flex" key={index}>
+        <div className="relative w-28 h-20"></div>
+        <div className="flex flex-col justify-between my-1 ml-2">
+          <small className="text-sm font-medium line-clamp-2">title</small>
+          <p className="text-sm text-muted-foreground">2024/06/12</p>
+        </div>
+      </div>
+    </>
+  );
+}
+
 export function PopularRecommendSkeleton() {
   return (
     <Skeleton>
@@ -59,15 +73,7 @@ export function PopularRecommendSkeleton() {
         <p className="text-sm text-muted-foreground">热门推荐</p>
         <div className="flex flex-col mt-5 space-y-6">
           {Array.from({ length: 6 }, (item, index) => (
-            <div className="flex" key={index}>
-              <div className="relative w-28 h-20"></div>
-              <div className="flex flex-col justify-between my-1 ml-2">
-                <small className="text-sm font-medium line-clamp-2">
-                  title
-                </small>
-                <p className="text-sm text-muted-foreground">2024/06/12</p>
-              </div>
-            </div>
+            <PopularRecommendItemSkeleton />
           ))}
         </div>
       </div>
@@ -80,7 +86,7 @@ export function GuessYouLikeSkeleton() {
     <>
       <p className="text-sm text-muted-foreground">猜你喜欢</p>
       <div className="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-6 gap-5 mt-5">
-        {Array.from({ length: 6 }, (item, index) => (
+        {Array.from({ length: 5 }, (item, index) => (
           <Skeleton key={index}>
             <div className="w-full h-32 xl:h-36 2xl:h-32"></div>
           </Skeleton>
