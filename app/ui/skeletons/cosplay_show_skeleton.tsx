@@ -73,7 +73,7 @@ export function PopularRecommendSkeleton() {
         <p className="text-sm text-muted-foreground">热门推荐</p>
         <div className="flex flex-col mt-5 space-y-6">
           {Array.from({ length: 6 }, (item, index) => (
-            <PopularRecommendItemSkeleton />
+            <PopularRecommendItemSkeleton key={index} />
           ))}
         </div>
       </div>
