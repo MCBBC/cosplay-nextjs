@@ -55,7 +55,7 @@ export function CosplayContainerSkeleton() {
 export function PopularRecommendItemSkeleton() {
   return (
     <>
-      <div className="flex" key={index}>
+      <div className="flex">
         <div className="relative w-28 h-20"></div>
         <div className="flex flex-col justify-between my-1 ml-2">
           <small className="text-sm font-medium line-clamp-2">title</small>
