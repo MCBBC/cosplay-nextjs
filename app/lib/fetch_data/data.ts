@@ -3,7 +3,7 @@ import { unstable_noStore as noStore } from "next/cache";
 import { Cosplay } from "../definitions";
 
 const ITEMS_PRE_PAGE = 30;
-export async function fetchCosplay(query: string, currentPage: number) {
+export async function fetchCosplay(currentPage: number, query?: string) {
   noStore();
   const offset = (currentPage - 1) * ITEMS_PRE_PAGE;
   try {
@@ -22,6 +22,18 @@ export async function fetchCosplay(query: string, currentPage: number) {
     return data.rows;
   } catch (error) {
     console.log("数据库错误", error);
-    throw new Error(`获取数据错误${error}`);
+    throw new Error(`获取数据错误`);
+  }
+}
+
+export async function fetchCosplayPages(query: string) {
+  noStore();
+  try {
+    const data = await sql`select count(*) from posts`;
+    const totalPages = Math.ceil(Number(data.rows[0].count) / ITEMS_PRE_PAGE);
+    return totalPages;
+  } catch (error) {
+    console.log("数据库错误", error);
+    throw new Error(`获取数据错误`);
   }
 }

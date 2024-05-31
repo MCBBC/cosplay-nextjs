@@ -13,7 +13,9 @@ export default function Page({
   };
 }) {
   const query = searchParams?.query || "";
-  const currentPage = searchParams?.page || 1;
+  const currentPage = searchParams?.page || "1";
 
-  return (<CosplayMain></CosplayMain>)
+  return (
+    <CosplayMain searchParams={{ query, page: currentPage }}></CosplayMain>
+  );
 }

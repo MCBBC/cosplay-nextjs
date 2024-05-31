@@ -14,10 +14,10 @@ export async function CosplayList({
   query,
   currentPage,
 }: {
-  query: string;
+  query?: string;
   currentPage: number;
 }) {
-  const dataList = await fetchCosplay(query, currentPage);
+  const dataList = await fetchCosplay(currentPage, query);
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
