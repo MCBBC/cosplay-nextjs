@@ -61,7 +61,7 @@ export async function CoserList({
 export function CoserItem({ coser }: { coser: Coser }) {
   return (
     <Link
-      href={`/front/cosers/${coser.id}`}
+      href={`/front/cosers/${coser.id}?name=${coser.name}`}
       className="flex items-center transition-all hover:bg-accent p-3">
       <Avatar name={coser.name[0]} className="w-9 h-9" />
       <h3 className="font-medium leading-none text-sm ml-2 truncate">

@@ -19,3 +19,35 @@ export function CosersListSkeleton() {
     </Skeleton>
   );
 }
+
+export function CoserDetailBackGroundSkeleton() {
+  return (
+    <Skeleton>
+      <div className="relative">
+        <div className="w-full pb-1/4">
+          <div className="rounded-none"></div>
+        </div>
+        <div className="flex items-end p-3 md:px-6 md:pb-4 md:pt-3 border border-solid border-gray-200">
+          <Avatar
+            className="w-20 md:w-32 h-20 md:h-32 p-1 md:p-2 border border-solid border-gray-200 bg-white -mt-16 z-10"
+            radius="sm"
+          />
+          <div className="ml-4 md:ml-5 w-full -mt-16 md:mt-0 z-10">
+            <h4 className="scroll-m-20 text-xl font-semibold tracking-tight text-white md:text-slate-950 mb-1 md:mb-2">
+              蠢沫沫
+            </h4>
+            <CoserDetailContactInformationSkeleton />
+          </div>
+        </div>
+      </div>
+    </Skeleton>
+  );
+}
+
+export function CoserDetailContactInformationSkeleton() {
+  return (
+    <Skeleton>
+      <div className="flex space-x-1 w-0 min-w-full overflow-x-auto"></div>
+    </Skeleton>
+  );
+}

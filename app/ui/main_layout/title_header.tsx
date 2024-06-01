@@ -1,33 +1,26 @@
-"use client";
 import Image from "next/image";
 import Favicon from "@/public/images/favicon.ico";
 import {
   Divider,
   Button,
   Navbar,
-  NavbarBrand,
   NavbarMenuToggle,
   NavbarMenu,
-  NavbarMenuItem,
   NavbarContent,
-  NavbarItem,
 } from "@nextui-org/react";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useState } from "react";
 import NavLinks from "./nav_links";
 
 export default function TitleHeader() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
-      <Navbar classNames={{ content: "!justify-center !basis-auto" }} isBlurred>
+      <Navbar
+        classNames={{ content: "!justify-center !basis-auto" }}
+        isBlurred
+        isBordered={true}>
         <NavbarContent className="h-6 w-6 md:hidden ml-4">
-          <NavbarMenuToggle
-            icon={<Bars3Icon />}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-            className="sm:hidden"
-          />
+          <NavbarMenuToggle icon={<Bars3Icon />} className="sm:hidden" />
         </NavbarContent>
 
         <NavbarContent className="flex items-center justify-center py-3 px-4">
@@ -52,7 +45,6 @@ export default function TitleHeader() {
           <NavLinks />
         </NavbarMenu>
       </Navbar>
-      <Divider />
     </>
   );
 }
