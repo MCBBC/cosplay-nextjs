@@ -17,8 +17,8 @@ const post_views = [];
 ```json
 AUTH_SECRET="" // 随机的密钥
 
-IMG_REMOTW_URL="acom,b.com,c.org"
 
+// vercel db上的数据库
 POSTGRES_URL=""
 POSTGRES_PRISMA_URL=""
 POSTGRES_URL_NO_SSL=""
