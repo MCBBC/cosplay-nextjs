@@ -38,7 +38,7 @@ export async function CoserDetailMain({
     <>
       <BreadcrumbsComponents breads={breads} />
       <CoserBackground coserId={id} name={name} />
-      {/* <CoserDetailSearch /> */}
+      <CoserDetailSearch />
       <CosplayList
         coserId={id}
         currentPage={searchParams?.page}
@@ -125,39 +125,39 @@ export function CoserContactInformation() {
   );
 }
 
-// export function CoserDetailSearch() {
-//   const production = [
-//     {
-//       label: "Cat",
-//       value: "cat",
-//       description: "The second most popular pet in the world",
-//     },
-//   ];
+export function CoserDetailSearch() {
+  const production = [
+    {
+      label: "Cat",
+      value: "cat",
+      description: "The second most popular pet in the world",
+    },
+  ];
 
-//   return (
-//     <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 my-6">
-//       <Autocomplete
-//         isDisabled
-//         defaultItems={production}
-//         placeholder="作品"
-//         defaultSelectedKey="cat"
-//         className="w-full md:w-3/5">
-//         {(item) => (
-//           <>
-//             <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>
-//           </>
-//         )}
-//       </Autocomplete>
-//       {/* <Autocomplete
-//         isDisabled
-//         placeholder="角色"
-//         defaultSelectedKey="cat"
-//         defaultItems={production}
-//         className="flex items-center w-full md:w-2/5">
-//         {production.map((item) => (
-//           <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>
-//         ))}
-//       </Autocomplete> */}
-//     </div>
-//   );
-// }
+  return (
+    <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 my-6">
+      {/* <Autocomplete
+        isDisabled
+        defaultItems={production}
+        placeholder="作品"
+        defaultSelectedKey="cat"
+        className="w-full md:w-3/5">
+        {(item) => (
+          <>
+            <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>
+          </>
+        )}
+      </Autocomplete> */}
+      {/* <Autocomplete
+        isDisabled
+        placeholder="角色"
+        defaultSelectedKey="cat"
+        defaultItems={production}
+        className="flex items-center w-full md:w-2/5">
+        {production.map((item) => (
+          <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>
+        ))}
+      </Autocomplete> */}
+    </div>
+  );
+}
