@@ -7,7 +7,10 @@ import {
   // AutocompleteItem,
 } from "@nextui-org/react";
 import { Suspense } from "react";
-import { CoserDetailBackGroundSkeleton } from "../skeletons/cosers_skeleon";
+import {
+  CoserDetailBackGroundSkeleton,
+  CoserBackgroundImageSkeleton,
+} from "../skeletons/cosers_skeleon";
 import { CosplayList } from "./coser_show";
 import { CustomPagination } from "../cosplay/pagination";
 import { fetchCosplayPagesByCoserId } from "@/app/lib/fetch_data/data";
@@ -34,7 +37,7 @@ export async function CoserDetailMain({
   return (
     <>
       <BreadcrumbsComponents breads={breads} />
-      <CoserBackground coserId={id} />
+      <CoserBackground coserId={id} name={name} />
       {/* <CoserDetailSearch /> */}
       <CosplayList
         coserId={id}
@@ -47,31 +50,51 @@ export async function CoserDetailMain({
   );
 }
 
-export function CoserBackground({ coserId }: { coserId: string | number }) {
+export async function CoserBackgroundImage() {
   return (
-    <Suspense fallback={<CoserDetailBackGroundSkeleton />}>
-      <div className="w-full pb-1/4">
+    <div className="relative w-full" style={{ paddingBottom: "25%" }}>
+      <div className="absolute top-0 left-0 right-0 bottom-0">
         <Image
           classNames={{
-            img: "object-cover rounded-none w-full",
-            wrapper: "w-full !max-w-full",
+            img: "object-cover rounded-none absolute h-full w-full top-0 let-0 bottom-0 right-0",
+            wrapper:
+              "!max-w-full h-full w-full top-0 let-0 bottom-0 right-0 rounded-none",
           }}
           src="https://image.sharecosplay.com/efdb34b1-3f6b-4a92-b979-cdb1c6b5698e"
           alt="background"
         />
       </div>
-      <div className="flex items-end p-3 md:px-6 md:pb-4 md:pt-3 border border-solid border-gray-200">
-        <Avatar
-          color="default"
-          showFallback
-          className="w-20 md:w-32 h-20 md:h-32 p-1 md:p-2 border border-solid border-gray-200 bg-white -mt-16 z-10"
-          name="蠢"
-          radius="sm"
-        />
-        <div className="ml-4 md:ml-5 w-full -mt-16 md:mt-0 z-10">
-          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight text-white md:text-slate-950 mb-1 md:mb-2">
-            蠢沫沫
-          </h4>
+    </div>
+  );
+}
+
+export async function CoserBackground({
+  coserId,
+  name,
+}: {
+  coserId: string | number;
+  name: string;
+}) {
+  await new Promise((resolve) => {
+    setTimeout(resolve, 6000);
+  });
+  return (
+    <Suspense fallback={<CoserDetailBackGroundSkeleton />}>
+      <div className="relative">
+        <CoserBackgroundImage />
+        <div className="flex items-end p-3 md:px-6 md:pb-4 md:pt-3 border border-solid border-gray-200">
+          <Avatar
+            color="default"
+            showFallback
+            className="w-20 md:w-32 h-20 md:h-32 p-1 md:p-2 border border-solid border-gray-200 bg-white -mt-16 z-10"
+            name={name[0]}
+            radius="sm"
+          />
+          <div className="ml-4 md:ml-5 w-full -mt-16 md:mt-0 z-10">
+            <h4 className="scroll-m-20 text-xl font-semibold tracking-tight text-white md:text-slate-950 mb-1 md:mb-2">
+              {name}
+            </h4>
+          </div>
         </div>
       </div>
     </Suspense>
