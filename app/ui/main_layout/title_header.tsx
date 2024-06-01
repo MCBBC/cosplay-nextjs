@@ -20,10 +20,7 @@ export default function TitleHeader() {
         isBlurred
         isBordered={true}>
         <NavbarContent>
-          <NavbarMenuToggle
-            icon={<Bars3Icon />}
-            className="h-6 w-6 md:hidden ml-4"
-          />
+          <NavbarMenuToggle className="h-6 w-6 md:hidden ml-4" />
         </NavbarContent>
 
         <NavbarContent className="flex items-center justify-center py-3 px-4">
