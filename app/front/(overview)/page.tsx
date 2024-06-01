@@ -2,6 +2,7 @@ import { CosplayList } from "@/app/ui/cosplay/cosplay_list";
 import { CosplayListSkeleton } from "@/app/ui/skeletons/image_group_skeleton";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
+import { AdUnit } from "next-google-adsense";
 export default async function Page() {
   const currentPage = 1;
   return (
@@ -14,6 +15,11 @@ export default async function Page() {
       <Suspense fallback={<CosplayListSkeleton />}>
         <CosplayList query={""} currentPage={currentPage}></CosplayList>
       </Suspense>
+      <AdUnit
+        publisherId="pub-5901616898778649"
+        slotId="9099579216"
+        layout="display"
+      />
     </>
   );
 }

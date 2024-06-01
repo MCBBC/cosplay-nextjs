@@ -5,6 +5,7 @@ export default function Page({
 }: {
   searchParams?: {
     name?: string;
+    page?: string;
   };
   params?: {
     id?: string;
@@ -12,5 +13,10 @@ export default function Page({
 }) {
   const coserName = searchParams?.name || "";
   const coserId = params?.id || 0;
-  return <CoserDetailMain name={coserName} id={coserId}></CoserDetailMain>;
+  return (
+    <CoserDetailMain
+      name={coserName}
+      id={coserId}
+      searchParams={searchParams}></CoserDetailMain>
+  );
 }

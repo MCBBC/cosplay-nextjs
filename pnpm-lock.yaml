@@ -44,6 +44,9 @@ dependencies:
   next-auth:
     specifier: 5.0.0-beta.18
     version: 5.0.0-beta.18(next@14.2.3)(react@18.3.1)
+  next-google-adsense:
+    specifier: ^1.0.9
+    version: 1.0.9(next@14.2.3)(react@18.3.1)
   next-themes:
     specifier: ^0.3.0
     version: 0.3.0(react-dom@18.3.1)(react@18.3.1)
@@ -5104,6 +5107,17 @@ packages:
         optional: true
     dependencies:
       '@auth/core': 0.31.0
+      next: 14.2.3(react-dom@18.3.1)(react@18.3.1)
+      react: 18.3.1
+    dev: false
+
+  /next-google-adsense@1.0.9(next@14.2.3)(react@18.3.1):
+    resolution: {integrity: sha512-iMNFw0IL6airoX6NRxgCV8GTsluQ0QoQ21dIXzmLQ85ThGfL5I9egSatp07FY0XggWBIiTofvuDBK7wq5s3jQg==}
+    hasBin: true
+    peerDependencies:
+      next: '>=11.0.0'
+      react: '>=17.0.0'
+    dependencies:
       next: 14.2.3(react-dom@18.3.1)(react@18.3.1)
       react: 18.3.1
     dev: false
