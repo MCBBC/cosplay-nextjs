@@ -34,12 +34,12 @@ export async function CosplayList({
 
 export function CosplayItem({ item }: { item: Cosplay }) {
   return (
-    <div className="space-y-3 relative">
+    <div className="space-y-3 relative h-full flex flex-col">
       <Link
         href={`/front/cosplays/${item.id}?name=${item.cos_name}&coserId=${item.cos_id}`}
-        className="space-y-3"
+        className="space-y-3 flex-auto flex flex-col"
         target="_blank">
-        <div className="overflow-hidden rounded-md relative">
+        <div className="overflow-hidden rounded-md relative flex-auto">
           <Suspense fallback={<CosplayCoverSkeleton />}>
             <CosplayCover src={item.cover} />
           </Suspense>

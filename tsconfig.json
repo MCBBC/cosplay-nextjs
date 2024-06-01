@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2015", 
+    "target": "es2015",
     "lib": [
       "dom",
       "dom.iterable",
@@ -32,6 +32,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "app/**/*/ts",
     ".next/types/**/*.ts",
     "./dist/types/**/*.ts",
     "app/front/(overview)/loading.tsx"
