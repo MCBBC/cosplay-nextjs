@@ -4,7 +4,7 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useFormStatus, useFormState } from "react-dom";
 import { Button } from "../button";
-import { authenticate } from "@/app/lib/actions";
+import { authenticate } from "@/app/lib/actions/auth";
 
 export default function LoginForm() {
   let [hidePasswordState, setPasswordState] = useState(true);
