@@ -7,11 +7,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: {
     template: "% | Share Cosplay",
-    default: "MicroMatrix",
+    default: "MicroMatrix | Share Cosplay",
   },
   description: "免费的的写真网站",
   referrer: "no-referrer",
-  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
@@ -23,6 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <GoogleAdSense />
+        <link rel="icon" href="/images/favicon.ico" />
       </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>
