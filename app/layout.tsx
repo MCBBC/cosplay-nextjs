@@ -5,9 +5,13 @@ import { GoogleAdSense } from "next-google-adsense";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MicroMatrix | Share Cosplay",
+  title: {
+    template: "% | Share Cosplay",
+    default: "MicroMatrix",
+  },
   description: "免费的的写真网站",
   referrer: "no-referrer",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({
