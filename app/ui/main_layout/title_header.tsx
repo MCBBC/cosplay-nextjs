@@ -19,8 +19,11 @@ export default function TitleHeader() {
         classNames={{ content: "!justify-center !basis-auto", wrapper: "px-0" }}
         isBlurred
         isBordered={true}>
-        <NavbarContent className="h-6 w-6 md:hidden ml-4">
-          <NavbarMenuToggle icon={<Bars3Icon />} />
+        <NavbarContent>
+          <NavbarMenuToggle
+            icon={<Bars3Icon />}
+            className="h-6 w-6 md:hidden ml-4"
+          />
         </NavbarContent>
 
         <NavbarContent className="flex items-center justify-center py-3 px-4">
