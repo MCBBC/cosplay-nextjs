@@ -17,6 +17,7 @@ export function CosplayCover({ src }: { src: string | undefined }) {
         // src={base64Image}
         alt="封面"
         onLoad={() => setLoadingFlag(false)}
+        onError={() => setLoadingFlag(true)}
         className={`object-cover transition-all  hover:scale-105 aspect-[3/4] ${
           loadingFlag ? "invisible w-0 h-0" : "h-auto w-auto"
         }`}></Image>

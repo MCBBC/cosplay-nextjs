@@ -22,7 +22,7 @@ export async function CosplayList({
   return (
     <div className="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
       {dataList?.map((item, index) => (
-        <div key={index}>
+        <div className="space-y-3 relative  flex flex-col" key={index}>
           <Suspense fallback={<CosPlayItemSkeleton />}>
             <CosplayItem item={item}></CosplayItem>
           </Suspense>
@@ -34,7 +34,7 @@ export async function CosplayList({
 
 export function CosplayItem({ item }: { item: Cosplay }) {
   return (
-    <div className="space-y-3 relative h-full flex flex-col">
+    <>
       <Link
         href={`/front/cosplays/${item.id}?name=${item.cos_name}&coserId=${item.cos_id}`}
         className="space-y-3 flex-auto flex flex-col"
@@ -65,6 +65,6 @@ export function CosplayItem({ item }: { item: Cosplay }) {
           {item.cos_name}
         </h3>
       </Link>
-    </div>
+    </>
   );
 }
