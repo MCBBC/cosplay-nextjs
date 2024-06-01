@@ -1,12 +1,36 @@
+"use client";
 import Image from "next/image";
 import Favicon from "@/public/images/favicon.ico";
-import { Divider } from "@nextui-org/react";
+import {
+  Divider,
+  Button,
+  Navbar,
+  NavbarBrand,
+  NavbarMenuToggle,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarContent,
+  NavbarItem,
+} from "@nextui-org/react";
+import { Bars3Icon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import { useState } from "react";
+import NavLinks from "./nav_links";
 
 export default function TitleHeader() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
-      <div className="flex flex-col justify-center items-center relative top-0  z-10 md:z-0">
-        <div className="flex items-center justify-center py-3 px-4">
+      <Navbar classNames={{ content: "!justify-center !basis-auto" }} isBlurred>
+        <NavbarContent className="h-6 w-6 md:hidden ml-4">
+          <NavbarMenuToggle
+            icon={<Bars3Icon />}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="sm:hidden"
+          />
+        </NavbarContent>
+
+        <NavbarContent className="flex items-center justify-center py-3 px-4">
           <Image
             src={Favicon}
             alt="网站图标"
@@ -14,8 +38,20 @@ export default function TitleHeader() {
             unoptimized
           />
           <div className="text-lg font-semibold">Share Cosplay</div>
-        </div>
-      </div>
+        </NavbarContent>
+        <NavbarContent className="md:hidden mr-4 ">
+          <Link href={"/login"}>
+            <Button
+              className="min-flex w-full justify-start items-centerw, inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-8 rounded-md px-3 text-xs"
+              size="sm">
+              登录
+            </Button>
+          </Link>
+        </NavbarContent>
+        <NavbarMenu>
+          <NavLinks />
+        </NavbarMenu>
+      </Navbar>
       <Divider />
     </>
   );
