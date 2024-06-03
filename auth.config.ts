@@ -5,19 +5,15 @@ export const authConfig = {
     signIn: "/login",
   },
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
+    async redirect({ url, baseUrl }) {
+      // 如果用户刚刚登录成功，则重定向到 /dashboard
+      return `${baseUrl}/dashboard`;
+    },
+    async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
-      const callbackUrl = nextUrl.searchParams.get("callbackUrl");
-      if (isOnDashboard) {
-        if (isLoggedIn) return true;
-        return false; // Redirect unauthenticated users to login page
-      } else if (isLoggedIn) {
-        if (callbackUrl) {
-          return Response.redirect(new URL(callbackUrl, nextUrl));
-        } else {
-          return Response.redirect(new URL("/dashboard", nextUrl));
-        }
+      if (!isLoggedIn && isOnDashboard) {
+        return false;
       }
       return true;
     },
