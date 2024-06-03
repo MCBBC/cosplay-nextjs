@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Favicon from "@/public/images/favicon.ico";
+import NavLinks from "./nav_links";
 export default function DashboardSideNav() {
   return (
     <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
@@ -14,7 +15,7 @@ export default function DashboardSideNav() {
           <span>MICROMATRIX</span>
         </Link>
       </div>
-      左侧菜单
+      <NavLinks />
     </div>
   );
 }

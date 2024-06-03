@@ -3,17 +3,16 @@ import { BreadcrumbsComponents } from "../breadcrumbs/breadcurmbs";
 import {
   Image,
   Avatar,
-  // Autocomplete,
-  // AutocompleteItem,
+
 } from "@nextui-org/react";
 import { Suspense } from "react";
 import {
   CoserDetailBackGroundSkeleton,
-  CoserBackgroundImageSkeleton,
 } from "../skeletons/cosers_skeleon";
 import { CosplayList } from "./coser_show";
 import { CustomPagination } from "../cosplay/pagination";
 import { fetchCosplayPagesByCoserId } from "@/app/lib/fetch_data/data";
+import { CoserDetailSearch } from "./coser_detail_search";
 export async function CoserDetailMain({
   name,
   id,
@@ -125,39 +124,4 @@ export function CoserContactInformation() {
   );
 }
 
-export function CoserDetailSearch() {
-  const production = [
-    {
-      label: "Cat",
-      value: "cat",
-      description: "The second most popular pet in the world",
-    },
-  ];
 
-  return (
-    <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 my-6">
-      {/* <Autocomplete
-        isDisabled
-        defaultItems={production}
-        placeholder="作品"
-        defaultSelectedKey="cat"
-        className="w-full md:w-3/5">
-        {(item) => (
-          <>
-            <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>
-          </>
-        )}
-      </Autocomplete> */}
-      {/* <Autocomplete
-        isDisabled
-        placeholder="角色"
-        defaultSelectedKey="cat"
-        defaultItems={production}
-        className="flex items-center w-full md:w-2/5">
-        {production.map((item) => (
-          <AutocompleteItem key={item.value}>{item.label}</AutocompleteItem>
-        ))}
-      </Autocomplete> */}
-    </div>
-  );
-}
