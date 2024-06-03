@@ -13,7 +13,6 @@ import {
   getKeyValue,
 } from "@nextui-org/react";
 import { Key, useCallback } from "react";
-import { CustomPagination } from "../../cosplay/pagination";
 
 export default function CosplaysTable() {
   const statusColorMap: Record<string, ChipProps["color"]> = {
@@ -54,7 +53,6 @@ export default function CosplaysTable() {
           )}
         </TableBody>
       </Table>
-      <CustomPagination totalPages={20} />
     </>
   );
 }
