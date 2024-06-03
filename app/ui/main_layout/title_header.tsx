@@ -1,14 +1,12 @@
 import Image from "next/image";
 import Favicon from "@/public/images/favicon.ico";
 import {
-  Divider,
   Button,
   Navbar,
   NavbarMenuToggle,
   NavbarMenu,
   NavbarContent,
 } from "@nextui-org/react";
-import { Bars3Icon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import NavLinks from "./nav_links";
 
@@ -28,7 +26,6 @@ export default function TitleHeader() {
             src={Favicon}
             alt="网站图标"
             className="w-10 h-10 mr-4"
-            unoptimized
           />
           <div className="text-lg font-semibold">Share Cosplay</div>
         </NavbarContent>

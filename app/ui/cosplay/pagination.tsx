@@ -9,7 +9,6 @@ export function CustomPagination({ totalPages }: { totalPages: number }) {
 
   const createPageURL = (pageNumber: number | string) => {
     const params = new URLSearchParams(searchParams);
-
     params.set("page", pageNumber.toString());
     replace(`${pathname}?${params.toString()}`);
   };

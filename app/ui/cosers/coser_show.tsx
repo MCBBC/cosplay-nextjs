@@ -50,8 +50,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
     <>
       <Link
         href={`/front/cosplays/${item.id}?name=${item.cos_name}&coserId=${item.cos_id}`}
-        className="space-y-3 flex-auto flex flex-col"
-        target="_blank">
+        className="space-y-3 flex-auto flex flex-col">
         <div className="overflow-hidden rounded-md relative flex-auto">
           <Suspense fallback={<CosplayCoverSkeleton />}>
             <CosplayCover src={item.cover} />
