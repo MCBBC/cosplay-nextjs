@@ -22,21 +22,17 @@ export default function TitleHeader() {
         </NavbarContent>
 
         <NavbarContent className="flex items-center justify-center py-3 px-4">
-          <Image
-            src={Favicon}
-            alt="网站图标"
-            className="w-10 h-10 mr-4"
-          />
+          <Image src={Favicon} alt="网站图标" className="w-10 h-10 mr-4" />
           <div className="text-lg font-semibold">Share Cosplay</div>
         </NavbarContent>
         <NavbarContent className="md:hidden mr-4 ">
-          <Link href={"/login"}>
-            <Button
-              className="min-flex w-full justify-start items-centerw, inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-8 rounded-md px-3 text-xs"
-              size="sm">
-              登录
-            </Button>
-          </Link>
+          <Button
+            className="invisible min-flex w-full justify-start items-centerw, inline-flex items-center justify-center whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-8 rounded-md px-3 text-xs"
+            size="sm">
+            登录
+          </Button>
+          {/* <Link href={"/dashboard"}>
+          </Link> */}
         </NavbarContent>
         <NavbarMenu>
           <NavLinks />
