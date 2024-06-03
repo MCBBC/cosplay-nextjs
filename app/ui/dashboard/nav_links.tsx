@@ -1,21 +1,31 @@
-"use client";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import Link from "next/link";
+import {
+  HomeIcon,
+  CameraIcon,
+  UserCircleIcon,
+} from "@heroicons/react/24/outline";
+
 export default function NavLinks() {
-  const defaultContent =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+  const links = [
+    { name: "Cosplays", icon: CameraIcon, href: "/dashboard/cosplays" },
+    { name: "Cosers", icon: UserCircleIcon, href: "/dashboard/cosers" },
+  ];
   return (
-    <div className="flex-1 overflow-auto py-2">
-      <Accordion>
-        <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
-          {defaultContent}
-        </AccordionItem>
-        <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
-          {defaultContent}
-        </AccordionItem>
-        <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
-          {defaultContent}
-        </AccordionItem>
-      </Accordion>
+    <div className="space-y-8 p-6">
+      {links.map((link) => {
+        const LinkIcon = link.icon;
+        return (
+          <Link
+            href={link.href}
+            key={link.name}
+            className="flex w-full justify-start items-center">
+            <LinkIcon className="h-6 w-6 shrink-0" />
+            <h2 className="px-4 text-lg font-semibold tracking-tight">
+              {link.name}
+            </h2>
+          </Link>
+        );
+      })}
     </div>
   );
 }

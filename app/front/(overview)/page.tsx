@@ -16,10 +16,18 @@ export default async function Page() {
       <Suspense fallback={<CosplayListSkeleton />}>
         <CosplayList query={""} currentPage={currentPage}></CosplayList>
       </Suspense>
-      <AdUnit
+      {/* <AdUnit
         publisherId="pub-5901616898778649"
         slotId="1013737103"
         layout="display"
+      /> */}
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+        data-ad-client="ca-pub-5901616898778649"
+        data-ad-slot="1013737103"
       />
     </>
   );
