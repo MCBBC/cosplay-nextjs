@@ -18,9 +18,8 @@ export default async function Page() {
       </Suspense>
       <AdUnit
         publisherId="pub-5901616898778649"
-        slotId="9099579216"
-        layout="custom"
-        customLayout={<InformationStream />}
+        slotId="1013737103"
+        layout="display"
       />
     </>
   );
