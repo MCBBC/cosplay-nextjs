@@ -4,7 +4,7 @@ import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
 // import { AdUnit } from "next-google-adsense";
 // import { InformationStream } from "@/app/ui/google_ads/ads";
-// import AdBanner from "@/components/AdBanner";
+import AdBanner from "@/components/AdBanner";
 export default async function Page() {
   const currentPage = 1;
   return (
