@@ -1,5 +1,5 @@
 import { CosplayShowMain } from "@/app/ui/cosplay_show/cosplay_show_main";
-
+import AdBanner from "@/components/AdBanner";
 export default function Page({
   searchParams,
   params,
@@ -16,10 +16,17 @@ export default function Page({
   const cosplayId = params?.id || "0";
   const coserId = searchParams?.coserId || "0";
   return (
-    <CosplayShowMain
-      cosplayId={cosplayId}
-      cosplayName={cosplayName}
-      coserId={coserId}
-    />
+    <>
+      <CosplayShowMain
+        cosplayId={cosplayId}
+        cosplayName={cosplayName}
+        coserId={coserId}
+      />
+      <AdBanner
+        dataAdFormat="auto"
+        dataFullWidthResponsive={false}
+        dataAdSlot="1013737103"
+      />
+    </>
   );
 }
