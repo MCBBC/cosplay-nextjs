@@ -23,7 +23,7 @@ export default async function Page() {
       /> */}
       <ins
         className="adsbygoogle"
-        style={{ display: "block" }}
+        style={{ display: "block", height: "200px" }}
         data-ad-format="auto"
         data-full-width-responsive="true"
         data-ad-client="ca-pub-5901616898778649"

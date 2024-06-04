@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { inter } from "@/fonts";
 import { Providers } from "./providers";
-import Head from "next/head";
 import { GoogleAdSense } from "next-google-adsense";
 import "./globals.css";
 
@@ -21,10 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <Head>
+      <head>
         <GoogleAdSense />
         <link rel="icon" href="/images/favicon.ico" />
-      </Head>
+      </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
