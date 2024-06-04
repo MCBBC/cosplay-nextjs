@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { inter } from "@/fonts";
 import { Providers } from "./providers";
-import { GoogleAdSense } from "next-google-adsense";
+// import { GoogleAdSense } from "next-google-adsense";
+import AdSense from "@/components/AdSense";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,7 +22,8 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <GoogleAdSense />
+        {/* <GoogleAdSense /> */}
+        <AdSense pId="5901616898778649" />
         <link rel="icon" href="/images/favicon.ico" />
       </head>
       <body className={inter.className}>

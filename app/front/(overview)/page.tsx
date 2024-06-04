@@ -2,8 +2,9 @@ import { CosplayList } from "@/app/ui/cosplay/cosplay_list";
 import { CosplayListSkeleton } from "@/app/ui/skeletons/image_group_skeleton";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
-import { AdUnit } from "next-google-adsense";
-import { InformationStream } from "@/app/ui/google_ads/ads";
+// import { AdUnit } from "next-google-adsense";
+// import { InformationStream } from "@/app/ui/google_ads/ads";
+import AdBanner from "@/components/AdBanner";
 export default async function Page() {
   const currentPage = 1;
   return (
@@ -16,19 +17,13 @@ export default async function Page() {
       <Suspense fallback={<CosplayListSkeleton />}>
         <CosplayList query={""} currentPage={currentPage}></CosplayList>
       </Suspense>
-      {/* <AdUnit
-        publisherId="pub-5901616898778649"
-        slotId="1013737103"
-        layout="display"
-      /> */}
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-        data-ad-client="ca-pub-5901616898778649"
-        data-ad-slot="1013737103"
-      />
+      <div className="w-full">
+        <AdBanner
+          dataAdFormat="auto"
+          dataFullWidthResponsive={false}
+          dataAdSlot="1013737103"
+        />
+      </div>
     </>
   );
 }
