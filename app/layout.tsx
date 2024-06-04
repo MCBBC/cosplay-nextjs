@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { inter } from "@/fonts";
 import { Providers } from "./providers";
-import { GoogleAdSense } from "next-google-adsense";
+// import { GoogleAdSense } from "next-google-adsense";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,10 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
+      {/* <head>
         <GoogleAdSense />
         <link rel="icon" href="/images/favicon.ico" />
-      </head>
+      </head> */}
       <body className={inter.className}>
         <Providers>{children}</Providers>
       </body>
