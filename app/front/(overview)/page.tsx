@@ -17,11 +17,11 @@ export default async function Page() {
       <Suspense fallback={<CosplayListSkeleton />}>
         <CosplayList query={""} currentPage={currentPage}></CosplayList>
       </Suspense>
-      {/* <AdBanner
+      <AdBanner
         dataAdFormat="auto"
         dataFullWidthResponsive={false}
         dataAdSlot="1013737103"
-      /> */}
+      />
     </>
   );
 }
