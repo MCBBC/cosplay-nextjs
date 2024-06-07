@@ -15,8 +15,9 @@ const AdBanner = ({
   const adRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (adRef.current) {
+    if (adRef.current && !adRef.current.getAttribute("data-loading-flag")) {
       try {
+        adRef.current.setAttribute("data-loading-flag", "true");
         ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
           {}
         );
