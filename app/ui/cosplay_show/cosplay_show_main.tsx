@@ -115,14 +115,14 @@ export function PopularItem({ recommend }: { recommend: Cosplay }) {
 export async function PopularRecommend() {
   const data = await fetchPopularRecommend();
   return (
-    <div className="ml-0 md:ml-8 mt-6 md:mt-0 min-w-64 max-w-64">
+    <>
       <p className="text-sm text-muted-foreground">热门推荐</p>
       <div className="flex flex-col mt-5 space-y-6">
         {data.map((item, index) => (
           <PopularItem recommend={item} key={index} />
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

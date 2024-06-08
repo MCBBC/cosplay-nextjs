@@ -2,8 +2,6 @@ import { CosplayList } from "@/app/ui/cosplay/cosplay_list";
 import { CosplayListSkeleton } from "@/app/ui/skeletons/image_group_skeleton";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
-// import { AdUnit } from "next-google-adsense";
-// import { InformationStream } from "@/app/ui/google_ads/ads";
 import AdBanner from "@/components/AdBanner";
 export default async function Page() {
   const currentPage = 1;
@@ -18,7 +16,7 @@ export default async function Page() {
         <CosplayList query={""} currentPage={currentPage}></CosplayList>
       </Suspense>
       <AdBanner
-        dataAdFormat="auto"
+        dataAdFormat="fluid"
         dataFullWidthResponsive={false}
         dataAdSlot="1013737103"
       />

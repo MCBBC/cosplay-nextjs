@@ -23,9 +23,9 @@ export default function Page({
         coserId={coserId}
       />
       <AdBanner
-        dataAdFormat="auto"
+        dataAdFormat="fluid"
         dataFullWidthResponsive={false}
-        dataAdSlot="1013737103"
+        dataAdSlot="6557707820"
       />
     </>
   );

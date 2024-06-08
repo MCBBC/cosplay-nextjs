@@ -15,7 +15,6 @@ export default function TitleHeader() {
     <>
       <Navbar
         classNames={{ content: "!justify-center !basis-auto", wrapper: "px-0" }}
-        isBlurred
         isBordered={true}>
         <NavbarContent className="md:hidden ml-4">
           <NavbarMenuToggle className="h-6 w-6" />

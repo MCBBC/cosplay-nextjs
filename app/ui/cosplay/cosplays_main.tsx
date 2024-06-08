@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { CosplayListSkeleton } from "../skeletons/image_group_skeleton";
 import { CustomPagination } from "./pagination";
 import { fetchCosplayPages } from "@/app/lib/fetch_data/data";
+import AdBanner from "@/components/AdBanner";
 export default async function CosplayMain({
   searchParams,
 }: {
@@ -26,6 +27,11 @@ export default async function CosplayMain({
       <Suspense fallback={<CosplayListSkeleton />}>
         <CosplayList currentPage={currentPage} />
       </Suspense>
+      <AdBanner
+        dataAdFormat="fluid"
+        dataFullWidthResponsive={false}
+        dataAdSlot="1013737103"
+      />
       <CustomPagination totalPages={totalPages} />
     </>
   );
