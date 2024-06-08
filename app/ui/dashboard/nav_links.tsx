@@ -7,6 +7,7 @@ import {
 
 export default function NavLinks() {
   const links = [
+    { name: "主页", icon: HomeIcon, href: "/dashboard" },
     { name: "Cosplays", icon: CameraIcon, href: "/dashboard/cosplays" },
     { name: "Cosers", icon: UserCircleIcon, href: "/dashboard/cosers" },
   ];
