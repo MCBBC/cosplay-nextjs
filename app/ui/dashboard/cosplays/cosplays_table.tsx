@@ -14,7 +14,11 @@ import {
 } from "@nextui-org/react";
 import { Key, useCallback } from "react";
 
-export default function CosplaysTable() {
+export default async function CosplaysTable({
+  currentPage,
+}: {
+  currentPage: number | string;
+}) {
   const statusColorMap: Record<string, ChipProps["color"]> = {
     active: "success",
     paused: "danger",
