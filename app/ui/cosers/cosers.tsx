@@ -6,7 +6,7 @@ import { Avatar } from "@nextui-org/react";
 import {
   fetchCoserList,
   fetchCoserPages,
-} from "@/app/lib/fetchData/fetch_coser";
+} from "@/app/lib/fetchData/fetchCoser";
 import { Coser } from "@/app/lib/definitions";
 import { Suspense } from "react";
 import { CosersListSkeleton } from "../skeletons/cosers-skeleton";
