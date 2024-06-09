@@ -15,10 +15,10 @@ export async function fetchCosplay(currentPage: number, query?: string) {
         posts.creation_date
         from posts
         join cosers on posts.coser_id = cosers.id
+        where posts.title ilike ${`%${query}%`}
         order by posts.creation_date desc, posts.id desc
         limit ${ITEMS_PRE_PAGE} offset ${offset}
         `;
-
     return data.rows;
   } catch (error) {
     console.log("数据库错误", error);
@@ -29,7 +29,8 @@ export async function fetchCosplay(currentPage: number, query?: string) {
 export async function fetchCosplayPages(query: string) {
   noStore();
   try {
-    const data = await sql`select count(*) from posts`;
+    const data =
+      await sql`select count(*) from posts where posts.title ilike ${`%${query}%`}`;
     const totalPages = Math.ceil(Number(data.rows[0].count) / ITEMS_PRE_PAGE);
     return totalPages;
   } catch (error) {

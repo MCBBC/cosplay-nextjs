@@ -1,5 +1,5 @@
-import { CosplayList } from "@/app/ui/cosplay/cosplay_list";
-import { CosplayListSkeleton } from "@/app/ui/skeletons/image_group_skeleton";
+import { CosplayList } from "@/app/ui/cosplay/cosplay-list";
+import { CosplayListSkeleton } from "@/app/ui/skeletons/image-group-skeleton";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
 import AdBanner from "@/components/AdBanner";

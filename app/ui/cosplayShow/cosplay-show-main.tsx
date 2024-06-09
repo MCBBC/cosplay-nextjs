@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BreadcrumbsComponents } from "../breadcrumbs/breadcurmbs";
+import { BreadcrumbsComponents } from "../breadcrumbs/breadcrumbs";
 import { Image } from "@nextui-org/react";
 import { EyeIcon } from "@heroicons/react/24/outline";
 
@@ -8,16 +8,16 @@ import {
   CosplayContainerSkeleton,
   CosplayTitleSkeleton,
   GuessYouLikeSkeleton,
-} from "@/app/ui/skeletons/cosplay_show_skeleton";
+} from "@/app/ui/skeletons/cosplay-show-skeleton";
 import {
   fetchCosplayShowById,
   fetchGuessYouLike,
   fetchPopularRecommend,
-} from "@/app/lib/fetch_data/fetch_cosplay_show";
+} from "@/app/lib/fetchData/fetchCosplayShow";
 import { DateFormatter } from "@internationalized/date";
-import { ImageListWrapper } from "./image_show";
+import { ImageListWrapper } from "./image-show";
 import { Cosplay } from "@/app/lib/definitions";
-import { CosplayFlatCover } from "../cosplay/cosplay_cover";
+import { CosplayFlatCover } from "../cosplay/cosplay-cover";
 
 export function CosplayShowTitle({ title }: { title: string }) {
   return (

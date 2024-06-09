@@ -1,4 +1,4 @@
-import LoginForm from "@/app/ui/login_from/login_form";
+import LoginForm from "@/app/ui/loginFrom/login-form";
 import Link from "next/link";
 export default function Page() {
   return (

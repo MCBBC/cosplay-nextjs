@@ -1,4 +1,4 @@
-import { CosplayShowMain } from "@/app/ui/cosplay_show/cosplay_show_main";
+import { CosplayShowMain } from "@/app/ui/cosplayShow/cosplay-show-main";
 import AdBanner from "@/components/AdBanner";
 export default function Page({
   searchParams,

@@ -1,4 +1,4 @@
-import { fetchCosplayByCoserId } from "@/app/lib/fetch_data/data";
+import { fetchCosplayByCoserId } from "@/app/lib/fetchData/data";
 import Link from "next/link";
 
 import { Avatar } from "@nextui-org/react";
@@ -6,9 +6,9 @@ import { Suspense } from "react";
 import {
   CosPlayItemSkeleton,
   CosplayCoverSkeleton,
-} from "../skeletons/image_group_skeleton";
+} from "../skeletons/image-group-skeleton";
 import { Cosplay } from "@/app/lib/definitions";
-import { CosplayCover } from "@/app/ui/cosplay/cosplay_cover";
+import { CosplayCover } from "@/app/ui/cosplay/cosplay-cover";
 
 export async function CosplayList({
   coserId,

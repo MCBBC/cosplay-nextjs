@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import {
   CosplayImageListSkeleton,
   CosplayImageSkeleton,
-} from "../skeletons/cosplay_show_skeleton";
+} from "../skeletons/cosplay-show-skeleton";
 import Fancybox from "./fancybox";
 
 export function ImageShow({ src }: { src: string }) {
@@ -25,7 +25,7 @@ export function ImageShow({ src }: { src: string }) {
         }`}
       />
     </a>
-  )
+  );
 }
 
 export function ImageListWrapper({

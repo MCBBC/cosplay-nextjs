@@ -1,4 +1,4 @@
-import { fetchCosplay } from "@/app/lib/fetch_data/data";
+import { fetchCosplay } from "@/app/lib/fetchData/data";
 import Link from "next/link";
 
 import { Avatar } from "@nextui-org/react";
@@ -6,19 +6,15 @@ import { Suspense } from "react";
 import {
   CosPlayItemSkeleton,
   CosplayCoverSkeleton,
-} from "../skeletons/image_group_skeleton";
+} from "../skeletons/image-group-skeleton";
 import { Cosplay } from "@/app/lib/definitions";
-import { CosplayCover } from "./cosplay_cover";
+import { CosplayCover } from "./cosplay-cover";
 
 export async function CosplayList({
-  query,
-  currentPage,
+  dataList
 }: {
-  query?: string;
-  currentPage: number;
+  dataList:Cosplay[]
 }) {
-  const dataList = await fetchCosplay(currentPage, query);
-
   return (
     <div className="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
       {dataList?.map((item, index) => (

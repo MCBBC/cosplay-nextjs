@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { BreadcrumbsComponents } from "../breadcrumbs/breadcurmbs";
+import { BreadcrumbsComponents } from "../breadcrumbs/breadcrumbs";
 import { CustomPagination } from "../cosplay/pagination";
-import Search from "./search";
+import Search from "../../../components/Search";
 import { Avatar } from "@nextui-org/react";
 import {
   fetchCoserList,
   fetchCoserPages,
-} from "@/app/lib/fetch_data/fetch_coser";
+} from "@/app/lib/fetchData/fetch_coser";
 import { Coser } from "@/app/lib/definitions";
 import { Suspense } from "react";
-import { CosersListSkeleton } from "../skeletons/cosers_skeleon";
+import { CosersListSkeleton } from "../skeletons/cosers-skeleton";
 
 export async function CosersMain({
   searchParams,
@@ -30,7 +30,7 @@ export async function CosersMain({
   return (
     <>
       <BreadcrumbsComponents breads={breads}></BreadcrumbsComponents>
-      <Search placeholder="输入名字搜索" />
+      <Search placeholder="输入名字搜索" className="mx-auto" />
       <CoserList currentPage={currentPage} query={query} />
       <CustomPagination totalPages={totalPages} />
     </>

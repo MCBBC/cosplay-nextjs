@@ -1,18 +1,12 @@
 import Link from "next/link";
-import { BreadcrumbsComponents } from "../breadcrumbs/breadcurmbs";
-import {
-  Image,
-  Avatar,
-
-} from "@nextui-org/react";
+import { BreadcrumbsComponents } from "../breadcrumbs/breadcrumbs";
+import { Image, Avatar } from "@nextui-org/react";
 import { Suspense } from "react";
-import {
-  CoserDetailBackGroundSkeleton,
-} from "../skeletons/cosers_skeleon";
-import { CosplayList } from "./coser_show";
+import { CoserDetailBackGroundSkeleton } from "../skeletons/cosers-skeleton";
+import { CosplayList } from "./coser-show";
 import { CustomPagination } from "../cosplay/pagination";
-import { fetchCosplayPagesByCoserId } from "@/app/lib/fetch_data/data";
-import { CoserDetailSearch } from "./coser_detail_search";
+import { fetchCosplayPagesByCoserId } from "@/app/lib/fetchData/data";
+import { CoserDetailSearch } from "./coser-detail-search";
 export async function CoserDetailMain({
   name,
   id,
@@ -123,5 +117,3 @@ export function CoserContactInformation() {
     </div>
   );
 }
-
-

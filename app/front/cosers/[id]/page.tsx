@@ -1,4 +1,4 @@
-import { CoserDetailMain } from "@/app/ui/cosers/coser_detail";
+import { CoserDetailMain } from "@/app/ui/cosers/coser-detail";
 export default function Page({
   searchParams,
   params,

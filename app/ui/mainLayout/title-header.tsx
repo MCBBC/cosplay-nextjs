@@ -7,8 +7,7 @@ import {
   NavbarMenu,
   NavbarContent,
 } from "@nextui-org/react";
-import Link from "next/link";
-import NavLinks from "./nav_links";
+import NavLinks from "./nav-links";
 
 export default function TitleHeader() {
   return (

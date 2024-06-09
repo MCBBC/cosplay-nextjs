@@ -1,10 +1,10 @@
-import DashboardSideNav from "../ui/dashboard/side_nav";
-import DashboardHeadMenu from "../ui/dashboard/head_menu";
+import DashboardSideNav from "../ui/dashboard/side-nav";
+import DashboardHeadMenu from "../ui/dashboard/head-menu";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
+    <div className="flex h-screen">
       <DashboardSideNav />
-      <div className="flex flex-col">
+      <div className="flex flex-auto flex-col">
         <DashboardHeadMenu />
         {children}
       </div>

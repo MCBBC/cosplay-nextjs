@@ -4,7 +4,13 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next-nprogress-bar";
 import { useDebouncedCallback } from "use-debounce";
-export default function Search({ placeholder }: { placeholder: string }) {
+export default function Search({
+  placeholder,
+  className,
+}: {
+  placeholder: string;
+  className?: string;
+}) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -20,7 +26,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
     replace(`${pathname}?${params.toString()}`);
   }, 300);
   return (
-    <div className="relative px-px left-[50%] translate-x-[-50%] lg:w-1/2 xl:w-2/5">
+    <div className={`relative px-px  lg:w-1/2 xl:w-2/5 ${className}`}>
       <Input
         type="text"
         placeholder={placeholder}

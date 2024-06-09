@@ -4,7 +4,7 @@ import { useState } from "react";
 import {
   CosplayCoverSkeleton,
   CosplayFlatCoverSkeleton,
-} from "../skeletons/image_group_skeleton";
+} from "../skeletons/image-group-skeleton";
 
 export function CosplayCover({ src }: { src: string | undefined }) {
   const [loadingFlag, setLoadingFlag] = useState(true);

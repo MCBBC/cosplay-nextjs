@@ -1,16 +1,23 @@
-import CosplaysTable from "@/app/ui/dashboard/cosplays/cosplays_table";
+import CosplaysTableWrapper from "@/app/ui/dashboard/cosplays/cosplays-table-wrapper";
+import { Suspense } from "react";
 export default function Page({
   searchParams,
+  params,
 }: {
   searchParams?: {
     page?: string;
+    query?: string;
   };
+  params?: {};
 }) {
-  const currentPage = searchParams?.page || 1;
+  const currentPage = Number(searchParams?.page || 1);
+  const query = searchParams?.query || "";
   return (
     <>
-      <div className="p-8">
-        <CosplaysTable currentPage={currentPage} />
+      <div className="px-8">
+        <Suspense>
+          <CosplaysTableWrapper currentPage={currentPage} query={query} />
+        </Suspense>
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import FrontMain from "@/app/ui/skeletons/front_main_skeleton";
+import FrontMain from "@/app/ui/skeletons/front-main-skeleton";
 
 export default function Loading() {
   return <FrontMain />;

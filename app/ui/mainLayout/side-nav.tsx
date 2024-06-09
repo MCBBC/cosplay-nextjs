@@ -1,7 +1,7 @@
-import NavLinks from "@/app/ui/main_layout/nav_links";
+import NavLinks from "@/app/ui/mainLayout/nav-links";
 
 import { Divider } from "@nextui-org/react";
-import LoginButton from "./login_button";
+import LoginButton from "./login-button";
 
 export default function SideNav() {
   return (

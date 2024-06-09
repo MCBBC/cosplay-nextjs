@@ -1,5 +1,5 @@
 import { BellIcon } from "@heroicons/react/24/outline";
-import { CosplayListSkeleton } from "./image_group_skeleton";
+import { CosplayListSkeleton } from "./image-group-skeleton";
 export default function FrontMain() {
   return (
     <div className="w-full px-8">
