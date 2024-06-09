@@ -1,7 +1,8 @@
 "use client";
 import { Input } from "@nextui-org/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import { useDebouncedCallback } from "use-debounce";
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();

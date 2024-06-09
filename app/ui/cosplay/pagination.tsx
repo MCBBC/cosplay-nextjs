@@ -1,6 +1,7 @@
 "use client";
 import { Pagination } from "@nextui-org/react";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 export function CustomPagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { inter } from "@/fonts";
 import { Providers } from "./providers";
+import NprogressProvider from "@/components/NProgressProvider";
 // import { GoogleAdSense } from "next-google-adsense";
 import AdSense from "@/components/AdSense";
 import "./globals.css";
@@ -27,7 +28,11 @@ export default function RootLayout({
         <link rel="icon" href="/images/favicon.ico" />
       </head>
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <NprogressProvider>
+          {/* <Providers> */}
+          {children}
+          {/* </Providers> */}
+        </NprogressProvider>
       </body>
     </html>
   );
