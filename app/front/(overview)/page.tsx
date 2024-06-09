@@ -3,8 +3,9 @@ import { CosplayListSkeleton } from "@/app/ui/skeletons/image-group-skeleton";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
 import AdBanner from "@/components/AdBanner";
+import { fetchCosplay } from "@/app/lib/fetchData/data";
 export default async function Page() {
-  const currentPage = 1;
+  const dataList = await fetchCosplay(1, "");
   return (
     <>
       <div className="h-6"></div>
@@ -13,7 +14,7 @@ export default async function Page() {
         <p>项目还未完工,有些许BUG</p>
       </div>
       <Suspense fallback={<CosplayListSkeleton />}>
-        <CosplayList query={""} currentPage={currentPage}></CosplayList>
+        <CosplayList dataList={dataList}></CosplayList>
       </Suspense>
       <AdBanner
         dataAdFormat="fluid"
