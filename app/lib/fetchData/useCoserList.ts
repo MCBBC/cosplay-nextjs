@@ -45,6 +45,8 @@ export function useCoserList({
   };
 
   useEffect(() => {
+    console.log("filterText", filterText);
+
     if (!hasLoadedRef.current) {
       loadCoser(offset);
       hasLoadedRef.current = true; // 设置标志位为 true
