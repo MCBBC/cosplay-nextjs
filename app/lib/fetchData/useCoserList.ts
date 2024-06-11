@@ -19,17 +19,21 @@ export function useCoserList({
   const hasLoadedRef = useRef(false); // 标志位
 
   const loadCoser = async (currentOffset: number) => {
+    const controller = new AbortController();
+    const { signal } = controller;
     try {
       setIsLoading(true);
 
       let res = await fetch(
-        `/dashboard/cosers/api?offset=${currentOffset}&limit=${limit}&query=${filterText}`
+        `/dashboard/cosers/api?offset=${currentOffset}&limit=${limit}&query=${filterText}`,
+        { signal }
       );
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }
 
       let json = await res.json();
+      console.log(json);
       // 由于是从零开始的，所以算一次未来的偏移量再算一次从0开始的偏移量
       setHasMore(json.totalCount > offset + 2 * limit);
       setItems((prevItems) => [...prevItems, ...json.results]);
@@ -45,13 +49,10 @@ export function useCoserList({
   };
 
   useEffect(() => {
-    console.log("filterText", filterText);
-
-    if (!hasLoadedRef.current) {
-      loadCoser(offset);
-      hasLoadedRef.current = true; // 设置标志位为 true
-    }
-  }, []);
+    setItems([]);
+    setOffset(0);
+    loadCoser(offset);
+  }, [filterText]);
 
   const onLoadMore = () => {
     const newOffset = offset + limit;
