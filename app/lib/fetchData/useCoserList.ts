@@ -5,13 +5,12 @@ export type UseCoserListProps = {
   /** Delay to wait before fetching more items */
   fetchDelay?: number;
   filterText?: string;
-  defaultCoserId?: number | string;
+  coserId?: number;
 };
 
 export function useCoserList({
   fetchDelay = 0,
   filterText = "",
-  defaultCoserId = 0,
 }: UseCoserListProps = {}) {
   const [items, setItems] = useState<Coser[]>([]);
   const [hasMore, setHasMore] = useState(true);
@@ -26,9 +25,7 @@ export function useCoserList({
       setIsLoading(true);
 
       let res = await fetch(
-        `/dashboard/cosers/api?offset=${currentOffset}&limit=${limit}&query=${filterText}${
-          defaultCoserId != 0 ? `&coserId=${defaultCoserId}` : ""
-        }`,
+        `/dashboard/cosers/api?offset=${currentOffset}&limit=${limit}&query=${filterText}`,
         { signal }
       );
       if (!res.ok) {

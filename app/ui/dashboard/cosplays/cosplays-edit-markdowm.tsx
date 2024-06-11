@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Vditor from "vditor";
 import "vditor/dist/index.css";
 
-export default function CosplaysContent({
+export default function CosplayContent({
   markdownText,
 }: {
   markdownText: string;
@@ -14,7 +14,7 @@ export default function CosplaysContent({
         vditor.setValue(markdownText);
         setVd(vditor);
       },
-      height: "600px",
+      height: 500,
     });
     // Clear the effect
     return () => {

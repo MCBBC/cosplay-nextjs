@@ -1,15 +1,13 @@
 "use client";
 import { Input } from "@nextui-org/react";
-import CosplaysContent from "./cosplays-edit-markdowm";
+import CosplayContent from "./cosplays-edit-markdowm";
 import AutocompleteCoserName from "@/components/AutocompleteCoserName";
 import { Cosplay } from "@/app/lib/definitions";
 
 export default function CosplayEditWrapper({
   detail,
-  cosplayId,
 }: {
   detail: Cosplay | null;
-  cosplayId: number | string;
 }) {
   return (
     <form className="self-center w-full">
@@ -21,8 +19,8 @@ export default function CosplayEditWrapper({
         label="标题"
         placeholder="输入你的标题"
       />
-      <AutocompleteCoserName defaultCoserId={cosplayId} />
-      <CosplaysContent markdownText={detail?.content || ""} />
+      <AutocompleteCoserName coserId={detail?.cos_id || "0"} />
+      <CosplayContent markdownText={detail?.content || ""} />
     </form>
   );
 }

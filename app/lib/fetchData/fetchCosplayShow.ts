@@ -18,6 +18,7 @@ export async function fetchCosplayShowById(
     posts.id,
     posts.title,
     posts.content,
+    posts.coser_id as cos_id,
     posts.cover,
     posts.creation_date,
     posts.view_count 

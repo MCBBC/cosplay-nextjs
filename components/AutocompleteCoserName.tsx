@@ -5,17 +5,16 @@ import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 export default function AutocompleteCoserName({
-  defaultCoserId,
+  coserId,
 }: {
-  defaultCoserId: number | string;
+  coserId: number | string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [filterText, setFilterText] = useState("");
   const { items, hasMore, isLoading, onLoadMore } = useCoserList({
     filterText,
-    defaultCoserId,
   });
-  const [value, setValue] = useState(defaultCoserId);
+  const [value, setValue] = useState(coserId);
   const [, scrollerRef] = useInfiniteScroll({
     isEnabled: isOpen,
     hasMore,
@@ -37,8 +36,8 @@ export default function AutocompleteCoserName({
       label="Coser"
       placeholder="选择你的Coser"
       scrollRef={scrollerRef}
+      defaultSelectedKey={value}
       onInputChange={(value) => handleSearch(value)}
-      selectedKey={value}
       onSelectionChange={setValue}
       onOpenChange={setIsOpen}>
       {(item) => (

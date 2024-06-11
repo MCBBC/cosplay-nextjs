@@ -3,7 +3,7 @@ import { BreadcrumbsComponents } from "@/app/ui/breadcrumbs/breadcrumbs";
 import CosplayEditWrapper from "@/app/ui/dashboard/cosplays/cosplays-edit-wrapper";
 
 export default async function Page({ params }: { params?: { id?: number } }) {
-  const cosplayId = params?.id || "0";
+  const cosplayId = params?.id || 0;
 
   const detail = await fetchCosplayShowById(cosplayId);
   const breads = [
@@ -14,7 +14,7 @@ export default async function Page({ params }: { params?: { id?: number } }) {
   return (
     <main className="px-8 h-full flex flex-col">
       <BreadcrumbsComponents breads={breads}></BreadcrumbsComponents>
-      <CosplayEditWrapper cosplayId={7} detail={detail} />
+      <CosplayEditWrapper detail={detail} />
     </main>
   );
 }
