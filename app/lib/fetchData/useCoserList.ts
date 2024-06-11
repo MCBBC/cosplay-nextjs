@@ -5,18 +5,19 @@ export type UseCoserListProps = {
   /** Delay to wait before fetching more items */
   fetchDelay?: number;
   filterText?: string;
+  defaultCoserId?: number | string;
 };
 
 export function useCoserList({
   fetchDelay = 0,
   filterText = "",
+  defaultCoserId = 0,
 }: UseCoserListProps = {}) {
   const [items, setItems] = useState<Coser[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(0);
   const limit = 10;
-  const hasLoadedRef = useRef(false); // 标志位
 
   const loadCoser = async (currentOffset: number) => {
     const controller = new AbortController();
@@ -25,7 +26,9 @@ export function useCoserList({
       setIsLoading(true);
 
       let res = await fetch(
-        `/dashboard/cosers/api?offset=${currentOffset}&limit=${limit}&query=${filterText}`,
+        `/dashboard/cosers/api?offset=${currentOffset}&limit=${limit}&query=${filterText}${
+          defaultCoserId != 0 ? `&coserId=${defaultCoserId}` : ""
+        }`,
         { signal }
       );
       if (!res.ok) {
@@ -33,7 +36,6 @@ export function useCoserList({
       }
 
       let json = await res.json();
-      console.log(json);
       // 由于是从零开始的，所以算一次未来的偏移量再算一次从0开始的偏移量
       setHasMore(json.totalCount > offset + 2 * limit);
       setItems((prevItems) => [...prevItems, ...json.results]);
