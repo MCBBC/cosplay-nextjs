@@ -83,7 +83,7 @@ export function ImageListWrapper({
       )}
 
       <Button
-        className="mt-4"
+        className={`mt-4 ${currentIndex > imageSrcs.length ? "invisible" : ""}`}
         color="primary"
         variant="solid"
         onClick={loadMoreImages}>
