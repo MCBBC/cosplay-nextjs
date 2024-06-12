@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import Vditor from "vditor";
 import "vditor/dist/index.css";
-// 定义 ref 暴露的方法类型
+
 export interface VditorInstance {
   getContent: () => string;
 }
@@ -16,6 +16,7 @@ const CosplayContent = forwardRef(
     ref: any
   ) => {
     const [vd, setVd] = useState<Vditor>();
+
     useEffect(() => {
       const vditor = new Vditor("vditor", {
         after: () => {
@@ -25,29 +26,22 @@ const CosplayContent = forwardRef(
         height: 500,
       });
 
-      // // 使用 useImperativeHandle 自定义 ref 暴露的实例值
-      // Clear the effect
       return () => {
         vd?.destroy();
         setVd(undefined);
       };
-    }, []);
+    }, [markdownText]); // 将 markdownText 添加为依赖
 
-    useImperativeHandle(
-      ref,
-      () => {
-        return {
-          // ... 你的方法 ...
-          getContent: () => {
-            return vd?.getValue();
-          },
-        };
+    useImperativeHandle(ref, () => ({
+      getContent: () => {
+        return vd?.getValue();
       },
-      [vd]
-    );
+    }), [vd]);
 
-    return <div id="vditor" className="mt-4" ref={ref} />;
+    return <div id="vditor" className="mt-4" />;
   }
 );
 
-export {CosplayContent};
+CosplayContent.displayName = 'CosplayContent'; // 给组件分配一个displayName
+
+export { CosplayContent };

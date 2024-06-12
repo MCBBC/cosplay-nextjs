@@ -3,7 +3,7 @@
 //   .split(",")
 //   .map((item) => ({ hostname: item }));
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   redirects: () => [
     {
       source: "/",
