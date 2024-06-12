@@ -1,18 +1,13 @@
 "use client";
 import { Button, Input, Link } from "@nextui-org/react";
-import { VditorInstance, CosplayContent } from "./cosplays-edit-markdowm";
+import  { VditorInstance,CosplayContent } from "./cosplays-edit-markdowm";
 import AutocompleteCoserName from "@/components/AutocompleteCoserName";
-import { Cosplay } from "@/app/lib/definitions";
-import { updateCosplay } from "@/app/lib/actions/cosplays";
+import { addCosplay } from "@/app/lib/actions/cosplays";
 import { useRef, useState } from "react";
 
-export default function CosplayEditWrapper({
-  detail,
-}: {
-  detail: Cosplay | null;
-}) {
-  const [title, setTitle] = useState(detail?.title || "");
-  const [cosId, setCosId] = useState(detail?.cos_id || "0");
+export default function CosplayAddWrapper() {
+  const [title, setTitle] = useState("");
+  const [cosId, setCosId] = useState("0");
   const selectedCoserId = (value: string) => {
     setCosId(value);
   };
@@ -36,12 +31,8 @@ export default function CosplayEditWrapper({
       console.log("coser不要忘记了");
       return;
     }
-    if (!detail?.id) {
-      console.log("cosplayId不要忘记了");
-      return;
-    }
-    updateCosplay({
-      id: detail.id,
+
+    addCosplay({
       title: title,
       cosId,
       content: vditorRef.current.getContent(),
@@ -56,13 +47,11 @@ export default function CosplayEditWrapper({
         className="mb-4"
         type="text"
         label="标题"
+        onValueChange={(value) => setTitle(value)}
         placeholder="输入你的标题"
       />
-      <AutocompleteCoserName
-        coserId={detail?.cos_id || "0"}
-        onSelectCoser={selectedCoserId}
-      />
-      <CosplayContent markdownText={detail?.content || ""} ref={vditorRef} />
+      <AutocompleteCoserName coserId={"0"} onSelectCoser={selectedCoserId} />
+      <CosplayContent markdownText={""} ref={vditorRef} />
       <div className="my-6 flex justify-end gap-4">
         <Link
           href="/dashboard/cosplays"
@@ -70,7 +59,7 @@ export default function CosplayEditWrapper({
           返回
         </Link>
         <Button type="submit" onClick={handleClick}>
-          编辑
+          添加
         </Button>
       </div>
     </div>

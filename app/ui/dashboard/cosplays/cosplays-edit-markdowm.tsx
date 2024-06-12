@@ -50,4 +50,4 @@ const CosplayContent = forwardRef(
   }
 );
 
-export default CosplayContent;
+export {CosplayContent};
