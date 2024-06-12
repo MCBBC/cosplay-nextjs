@@ -56,6 +56,7 @@ async function seedCosers(client) {
                 post_count int not null default 0
             );
             create index if not exists idx_cosers_name on cosers(name);
+            CREATE INDEX IF NOT EXISTS idx_cosers_id ON cosers(id);
             `;
 
     console.log("created cosers table");

@@ -12,7 +12,7 @@ export default async function Page({ params }: { params?: { id?: number } }) {
     { path: "/dashboard/cosplays", name: "编辑" },
   ];
   return (
-    <main className="px-8 h-full flex flex-col">
+    <main className="px-8 h-full flex flex-col overflow-auto">
       <BreadcrumbsComponents breads={breads}></BreadcrumbsComponents>
       <CosplayEditWrapper detail={detail} />
     </main>

@@ -1,17 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Coser } from "../definitions";
 
 export type UseCoserListProps = {
-  /** Delay to wait before fetching more items */
-  fetchDelay?: number;
   filterText?: string;
   coserId?: number;
 };
 
-export function useCoserList({
-  fetchDelay = 0,
-  filterText = "",
-}: UseCoserListProps = {}) {
+export function useCoserList({ filterText = "" }: UseCoserListProps = {}) {
   const [items, setItems] = useState<Coser[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);

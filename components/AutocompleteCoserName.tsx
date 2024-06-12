@@ -1,50 +1,52 @@
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
-import { useInfiniteScroll } from "@nextui-org/use-infinite-scroll";
-import { useCoserList } from "@/app/lib/fetchData/useCoserList";
-import { useState } from "react";
-import { useDebouncedCallback } from "use-debounce";
+import { Coser } from "@/app/lib/definitions";
+import { useAsyncList } from "@react-stately/data";
 
 export default function AutocompleteCoserName({
   coserId,
+  onSelectCoser,
 }: {
   coserId: number | string;
+  onSelectCoser?: Function;
 }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [filterText, setFilterText] = useState("");
-  const { items, hasMore, isLoading, onLoadMore } = useCoserList({
-    filterText,
-  });
-  const [value, setValue] = useState(coserId);
-  const [, scrollerRef] = useInfiniteScroll({
-    isEnabled: isOpen,
-    hasMore,
-    shouldUseLoader: false, // We don't want to show the loader at the bottom of the list
-    onLoadMore,
-  });
+  let list = useAsyncList<Coser>({
+    async load({ signal, filterText }) {
+      let res = await fetch(
+        `/dashboard/cosers/api?query=${filterText}&offset=0&limit=20&coserId=${coserId}`,
+        {
+          signal,
+        }
+      );
+      let json = await res.json();
 
-  const handleSearch = useDebouncedCallback((value: string) => {
-    setFilterText(value);
-  }, 250);
+      return {
+        items: json.results,
+      };
+    },
+    initialSelectedKeys: [coserId],
+  });
 
   return (
-    <Autocomplete
-      className="max-w-xs"
-      variant="bordered"
-      isLoading={isLoading}
-      defaultItems={items}
-      labelPlacement="outside-left"
-      label="Coser"
-      placeholder="选择你的Coser"
-      scrollRef={scrollerRef}
-      defaultSelectedKey={value}
-      onInputChange={(value) => handleSearch(value)}
-      onSelectionChange={setValue}
-      onOpenChange={setIsOpen}>
-      {(item) => (
-        <AutocompleteItem key={item.id} className="capitalize">
-          {item.name}
-        </AutocompleteItem>
-      )}
-    </Autocomplete>
+    <>
+      <Autocomplete
+        className="max-w-xs"
+        variant="bordered"
+        inputValue={list.filterText}
+        isLoading={list.isLoading}
+        items={list.items}
+        labelPlacement="outside-left"
+        label="Coser"
+        placeholder="选择你的Coser"
+        onSelectionChange={(value) => {
+          onSelectCoser && onSelectCoser(value);
+        }}
+        onInputChange={list.setFilterText}>
+        {(item) => (
+          <AutocompleteItem key={item.id} className="capitalize">
+            {item.name}
+          </AutocompleteItem>
+        )}
+      </Autocomplete>
+    </>
   );
 }

@@ -5,22 +5,24 @@ import { type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
-  const countResult =
-    await sql`SELECT COUNT(*) FROM cosers where cosers.name ilike ${`%${searchParams.get(
-      "query"
-    )}%`}`;
-  const totalCount = countResult.rows[0].count;
-  const data = await sql<Coser>`select
-  cosers.id,
-  cosers.name
-    from cosers
-    where cosers.name ilike ${`%${searchParams.get("query")}%`}
-    order by cosers.id, cosers.name
-    limit ${searchParams.get("limit")} offset ${searchParams.get("offset")}
+  // const countResult =
+  //   await sql`SELECT COUNT(*) FROM cosers where cosers.name ilike ${`%${searchParams.get(
+  //     "query"
+  //   )}%`}`;
+  // const totalCount = countResult.rows[0].count;
+  const coserId = searchParams.get("coserId");
+  const query = searchParams.get("query");
+  const limit = searchParams.get("limit");
+  const offset = searchParams.get("offset");
+  const data = await sql<Coser>`
+  SELECT cosers.id,cosers.name FROM cosers WHERE id = ${coserId}
+  UNION ALL
+  (SELECT cosers.id,cosers.name FROM cosers WHERE id != ${coserId} AND name ILIKE ${`%${query}%`} LIMIT ${limit});
     `;
+
   return Response.json({
     results: data.rows,
     ok: true,
-    totalCount: totalCount,
+    // totalCount: totalCount,
   });
 }

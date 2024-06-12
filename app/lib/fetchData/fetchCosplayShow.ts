@@ -81,7 +81,6 @@ export async function fetchPopularRecommend(): Promise<Cosplay[]> {
         post_id,
         count(*) as view_count
       from post_views
-      where created_at >= NOW() - INTERVAL '1 month'
       group by post_id
     )
     select
