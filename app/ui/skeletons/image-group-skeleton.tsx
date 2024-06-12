@@ -3,7 +3,7 @@ import { Avatar, Skeleton, Image } from "@nextui-org/react";
 export function CosplayCoverSkeleton() {
   return (
     <Skeleton>
-      <div className="aspect-[3/4]"></div>
+      <div className="aspect-[3/4] h-auto w-auto"></div>
     </Skeleton>
   );
 }
