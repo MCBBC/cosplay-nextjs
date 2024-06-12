@@ -1,20 +1,23 @@
 "use client";
-import { Button, Input, Link } from "@nextui-org/react";
-import  { VditorInstance,CosplayContent } from "./cosplays-edit-markdowm";
+import { Button, Input, Link, Textarea, Image } from "@nextui-org/react";
+import { VditorInstance, CosplayContent } from "./cosplays-edit-markdowm";
 import AutocompleteCoserName from "@/components/AutocompleteCoserName";
 import { addCosplay } from "@/app/lib/actions/cosplays";
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CosplayAddWrapper() {
+  const router = useRouter();
   const [title, setTitle] = useState("");
-  const [cosId, setCosId] = useState("0");
+  const [coserId, setCosId] = useState("0");
+  const [cover, setCover] = useState("");
   const selectedCoserId = (value: string) => {
     setCosId(value);
   };
 
   // 创建一个引用
   const vditorRef = useRef<VditorInstance>(null);
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!vditorRef.current) {
       console.log("编辑器不存在");
       return;
@@ -27,16 +30,23 @@ export default function CosplayAddWrapper() {
       console.log("标题不要忘记了");
       return;
     }
-    if (!cosId) {
+    if (!coserId) {
       console.log("coser不要忘记了");
       return;
     }
-
-    addCosplay({
+    if (!cover) {
+      console.log("封面不要忘记了");
+      return;
+    }
+    const { message } = await addCosplay({
       title: title,
-      cosId,
+      coserId,
       content: vditorRef.current.getContent(),
+      cover: cover,
     });
+    if (message) {
+      router.push("/dashboard/cosplays");
+    }
   };
 
   return (
@@ -51,6 +61,26 @@ export default function CosplayAddWrapper() {
         placeholder="输入你的标题"
       />
       <AutocompleteCoserName coserId={"0"} onSelectCoser={selectedCoserId} />
+      <div className="flex items-center">
+        <Textarea
+          value={cover}
+          labelPlacement="outside-left"
+          className="mb-4 mr-2 w-[400px]"
+          classNames={{ mainWrapper: "flex-auto" }}
+          type="text"
+          label="封面"
+          onValueChange={(value) => setCover(value)}
+          placeholder="请设置你的封面"
+        />
+        <Image
+          width={100}
+          alt="cover"
+          isBlurred
+          src={cover}
+          removeWrapper={true}
+          classNames={{ img: "object-cover h-[100px]" }}
+        />
+      </div>
       <CosplayContent markdownText={""} ref={vditorRef} />
       <div className="my-6 flex justify-end gap-4">
         <Link

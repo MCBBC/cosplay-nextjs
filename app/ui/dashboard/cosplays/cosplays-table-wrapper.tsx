@@ -11,8 +11,6 @@ export default async function CosplaysTableWrapper({
   currentPage: number;
   query: string;
 }) {
-  console.log(query);
-
   const users: Cosplay[] = await fetchCosplay(currentPage, query);
   const totalPages = await fetchCosplayPages(query);
 

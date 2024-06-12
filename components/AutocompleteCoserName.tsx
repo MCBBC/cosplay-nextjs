@@ -29,7 +29,7 @@ export default function AutocompleteCoserName({
   return (
     <>
       <Autocomplete
-        className="max-w-xs"
+        className="max-w-xs mb-4"
         variant="bordered"
         inputValue={list.filterText}
         isLoading={list.isLoading}

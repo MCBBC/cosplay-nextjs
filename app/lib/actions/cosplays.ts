@@ -4,33 +4,68 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+import { z } from "zod";
 
 export type State = {
   errors?: {
-    id?: number[];
+    id?: string[];
     title?: string[];
     content?: string[];
     coserId?: string[];
+    cover?: string[];
   };
   message?: string | null;
 };
 
+const FormSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  coserId: z.string(),
+  content: z.string(),
+  cover: z.string(),
+});
+
+const UpdateCosplay = FormSchema.omit({ id: true });
+const CreateCosplay = FormSchema.omit({ id: true });
+
 export async function addCosplay({
   title,
-  cosId,
+  coserId,
   content,
+  cover,
 }: {
   title: string;
-  cosId: string | number;
+  coserId: string | number;
   content: string;
-}): Promise<State> {
+  cover: string;
+}) {
+  const validatedFields = CreateCosplay.safeParse({
+    title: title,
+    coserId: coserId,
+    content: content,
+    cover: cover,
+  });
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Create Cosplay.",
+    };
+  }
+
+  const {
+    title: _title,
+    coserId: _coserId,
+    content: _content,
+    cover: _cover,
+  } = validatedFields.data;
+
   try {
-    const data = await sql`insert into posts(title, coser_id, content)
-      values(${title},${cosId},${content})
+    const data = await sql`insert into posts(title, coser_id, content,cover)
+      values(${_title},${_coserId},${_content},${_cover})
       returning posts.id
       `;
-    console.log(data);
-    return { message: "成功" };
+    revalidatePath("/dashboard/cosplays");
+    return { message: data.rows.length > 0 };
   } catch (error) {
     console.log(error);
     return {
@@ -42,22 +77,46 @@ export async function addCosplay({
 export async function updateCosplay({
   id,
   title,
-  cosId,
+  coserId,
   content,
+  cover,
 }: {
   id: number;
   title: string;
-  cosId: string | number;
+  coserId: string | number;
   content: string;
-}): Promise<State> {
+  cover: string;
+}) {
+  const validatedFields = UpdateCosplay.safeParse({
+    title: title,
+    coserId: coserId,
+    content: content,
+    cover: cover,
+  });
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Create Cosplay.",
+    };
+  }
+
+  const {
+    title: _title,
+    coserId: _coserId,
+    content: _content,
+    cover: _cover,
+  } = validatedFields.data;
   try {
-    await sql`update posts
-    set title = ${title},
-    coser_id = ${cosId},
-    content = ${content}
+    const data = await sql`update posts
+    set title = ${_title},
+    coser_id = ${_coserId},
+    content = ${_content},
+    cover = ${_cover}
     where posts.id = ${id}
+    returning posts.id
     `;
-    return { message: "成功" };
+    revalidatePath("/dashboard/cosplays");
+    return { message: data.rows.length > 0 };
   } catch (error) {
     return {
       message: "Database Error: Failed to Update Cosplay.",
