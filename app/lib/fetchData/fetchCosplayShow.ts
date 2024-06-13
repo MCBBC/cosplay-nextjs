@@ -73,7 +73,7 @@ export async function fetchGuessYouLike(
  * @return {*}
  * @Date: 2024-05-31
  */
-export async function fetchPopularRecommend(): Promise<Cosplay[]> {
+export async function fetchPopularRecommend(limitNumber:number): Promise<Cosplay[]> {
   noStore();
   try {
     const data = await sql<Cosplay>`
@@ -88,7 +88,7 @@ export async function fetchPopularRecommend(): Promise<Cosplay[]> {
     join cosers on cosers.id = posts.coser_id
     order by
       posts.view_count desc
-    limit 8
+    limit ${limitNumber}
     `;
 
     return data.rows;

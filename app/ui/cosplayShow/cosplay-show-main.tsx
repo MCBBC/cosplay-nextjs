@@ -114,7 +114,7 @@ export function PopularItem({ recommend }: { recommend: Cosplay }) {
 }
 
 export async function PopularRecommend() {
-  const data = await fetchPopularRecommend();
+  const data = await fetchPopularRecommend(8);
   return (
     <>
       <p className="text-sm text-muted-foreground">热门推荐</p>
