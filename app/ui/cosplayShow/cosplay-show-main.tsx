@@ -18,6 +18,7 @@ import { DateFormatter } from "@internationalized/date";
 import { ImageListWrapper } from "./image-show";
 import { Cosplay } from "@/app/lib/definitions";
 import { CosplayFlatCover } from "../cosplay/cosplay-cover";
+import { addCosplayView } from "@/app/lib/actions/cosplays-show";
 
 export function CosplayShowTitle({ title }: { title: string }) {
   return (
@@ -134,6 +135,12 @@ export async function CosplayShowContainer({
   const data = await fetchCosplayShowById(cosplayId);
   const toDate = new Date(data?.creation_date!.toString() || "2024/05/20");
   const date = new DateFormatter("local").format(toDate);
+  data?.id &&
+    typeof data?.view_count !== "undefined" &&
+    (await addCosplayView({
+      cosplayId: data?.id.toString(),
+      viewCount: data?.view_count + 1,
+    }));
   return (
     <>
       <Suspense fallback={<CosplayTitleSkeleton />}>

@@ -1,9 +1,6 @@
 "use server";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
-import { signIn } from "@/auth";
-import { AuthError } from "next-auth";
 import { z } from "zod";
 
 export type State = {
@@ -17,6 +14,7 @@ export type State = {
   message?: string | null;
 };
 
+// 期望能检验到的值
 const FormSchema = z.object({
   id: z.string(),
   title: z.string(),
@@ -65,7 +63,7 @@ export async function addCosplay({
       returning posts.id
       `;
     revalidatePath("/dashboard/cosplays");
-    return { message: data.rows.length > 0 };
+    return { message: data.rowCount > 0 };
   } catch (error) {
     console.log(error);
     return {
@@ -112,8 +110,8 @@ export async function updateCosplay({
     coser_id = ${_coserId},
     content = ${_content},
     cover = ${_cover}
-    where posts.id = ${id}
-    returning posts.id
+    where id = ${id}
+    returning id
     `;
     revalidatePath("/dashboard/cosplays");
     return { message: data.rows.length > 0 };
