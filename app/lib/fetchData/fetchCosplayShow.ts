@@ -69,20 +69,14 @@ export async function fetchGuessYouLike(
 
 /**
  * @Author: HideInMatrix
- * @description: 获取最近一个月最受欢迎的数据
+ * @description: 获取阅读最多的数据
  * @return {*}
  * @Date: 2024-05-31
  */
 export async function fetchPopularRecommend(): Promise<Cosplay[]> {
   noStore();
   try {
-    const data = await sql<Cosplay>`with recent_views as(
-      select
-        post_id,
-        count(*) as view_count
-      from post_views
-      group by post_id
-    )
+    const data = await sql<Cosplay>`
     select
       posts.id,
       posts.title,
@@ -91,10 +85,9 @@ export async function fetchPopularRecommend(): Promise<Cosplay[]> {
       cosers.id as cos_id,
       cosers.name as cos_name
     from posts
-    join recent_views on posts.id = recent_views.post_id
     join cosers on cosers.id = posts.coser_id
     order by
-      recent_views.view_count desc
+      posts.view_count desc
     limit 8
     `;
 
