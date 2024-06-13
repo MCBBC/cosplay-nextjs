@@ -123,3 +123,15 @@ export async function updateCosplay({
     };
   }
 }
+
+export async function deleteCosplay(cosplayId: number) {
+  try {
+    await sql`delete from posts where posts.id =${cosplayId}`;
+    revalidatePath("/dashboard/cosplays");
+    return { message: "Deleted Cosplay." };
+  } catch (error) {
+    return {
+      message: "Database Error: Failed to Delete Cosplay.",
+    };
+  }
+}

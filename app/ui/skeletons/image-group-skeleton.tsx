@@ -1,4 +1,4 @@
-import { Avatar, Skeleton, Image } from "@nextui-org/react";
+import { Avatar, Skeleton } from "@nextui-org/react";
 
 export function CosplayCoverSkeleton() {
   return (

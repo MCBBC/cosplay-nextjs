@@ -1,4 +1,5 @@
 "use client";
+import { deleteCosplay } from "@/app/lib/actions/cosplays";
 import { Cosplay } from "@/app/lib/definitions";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { DateFormatter } from "@internationalized/date";
@@ -48,6 +49,9 @@ export default function CosplaysTable({ tableData }: { tableData: Cosplay[] }) {
         const date = new DateFormatter("local").format(toDate);
         return <span>{date}</span>;
       case "actions":
+        const deleteCosplayFn = async () => {
+          await deleteCosplay(cosplay.id);
+        };
         return (
           <div className="relative flex items-center gap-6">
             <Tooltip content="编辑">
@@ -58,7 +62,9 @@ export default function CosplaysTable({ tableData }: { tableData: Cosplay[] }) {
               </Link>
             </Tooltip>
             <Tooltip color="danger" content="删除">
-              <span className="text-lg text-danger cursor-pointer active:opacity-50">
+              <span
+                className="text-lg text-danger cursor-pointer active:opacity-50"
+                onClick={deleteCosplayFn}>
                 <TrashIcon className="h-4 w-4" />
               </span>
             </Tooltip>
