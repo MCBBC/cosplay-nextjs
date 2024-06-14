@@ -26,12 +26,15 @@ export async function fetchCosplay(currentPage: number, query?: string) {
   }
 }
 
-export async function fetchCosplayPages(query: string) {
+export async function fetchCosplayPages(
+  query: string,
+  itemsPrePage = ITEMS_PRE_PAGE
+) {
   noStore();
   try {
     const data =
       await sql`select count(*) from posts where posts.title ilike ${`%${query}%`}`;
-    const totalPages = Math.ceil(Number(data.rows[0].count) / ITEMS_PRE_PAGE);
+    const totalPages = Math.ceil(Number(data.rows[0].count) / itemsPrePage);
     return totalPages;
   } catch (error) {
     console.log("数据库错误", error);
@@ -88,6 +91,24 @@ export async function fetchCosplayPagesByCoserId({
     `;
     const totalPages = Math.ceil(Number(data.rows[0].count) / ITEMS_PRE_PAGE);
     return totalPages;
+  } catch (error) {
+    console.log("数据库错误", error);
+    throw new Error(`获取指定Coser的作品数量错误`);
+  }
+}
+
+export async function fetchCosplayPagesWithSitemap(
+  start: number,
+  itemsPrePage = ITEMS_PRE_PAGE
+) {
+  const offset = start * itemsPrePage;
+  try {
+    const data = await sql`select
+      posts.id,posts.title,posts.creation_date,posts.coser_id as cos_id
+    from posts
+    limit ${itemsPrePage} offset ${offset}
+    `;
+    return data.rows;
   } catch (error) {
     console.log("数据库错误", error);
     throw new Error(`获取指定Coser的作品数量错误`);

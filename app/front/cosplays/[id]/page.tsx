@@ -1,5 +1,20 @@
 import { CosplayShowMain } from "@/app/ui/cosplayShow/cosplay-show-main";
 import AdBanner from "@/components/AdBanner";
+import { Metadata } from "next/types";
+
+export function generateMetadata({
+  searchParams,
+}: {
+  params?: { id: string };
+  searchParams?: {
+    name: string;
+  };
+}): Metadata {
+  return {
+    title: searchParams?.name,
+  };
+}
+
 export default function Page({
   searchParams,
   params,

@@ -2,16 +2,18 @@ import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
 import { Coser } from "../definitions";
 
-const ITEMS_PER_PAGE = 20;
+const ITEMS_PRE_PAGE = 20;
 export async function fetchCoserList({
   currentPage,
   query,
+  itemsPrePage = ITEMS_PRE_PAGE,
 }: {
   currentPage: number;
   query: string;
+  itemsPrePage?: number;
 }): Promise<Coser[]> {
   noStore();
-  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+  const offset = (currentPage - 1) * itemsPrePage;
   const data = await sql<Coser>`select
     cosers.id,
     cosers.name
@@ -19,7 +21,7 @@ export async function fetchCoserList({
   where
     cosers.name ilike ${`%${query}%`}
   order by cosers.id, cosers.name
-  limit ${ITEMS_PER_PAGE} offset ${offset}
+  limit ${itemsPrePage} offset ${offset}
   `;
   return data.rows;
   try {
@@ -28,8 +30,10 @@ export async function fetchCoserList({
 
 export async function fetchCoserPages({
   query,
+  itemsPrePage = ITEMS_PRE_PAGE,
 }: {
   query: string;
+  itemsPrePage?: number;
 }): Promise<number> {
   noStore();
   try {
@@ -38,7 +42,7 @@ export async function fetchCoserPages({
         where 
         cosers.name ilike ${`%${query}%`}`;
 
-    const totalPages = Math.ceil(Number(data.rows[0].count) / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(Number(data.rows[0].count) / itemsPrePage);
     return totalPages;
   } catch (error) {
     console.error("Database Error:", error);

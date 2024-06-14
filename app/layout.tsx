@@ -8,8 +8,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    template: "% | Share Cosplay",
-    default: "MicroMatrix | Share Cosplay",
+    template: "%s | Share Cosplay",
+    default: "MicroMatrix",
   },
   description: "免费的的写真网站",
   referrer: "no-referrer",
