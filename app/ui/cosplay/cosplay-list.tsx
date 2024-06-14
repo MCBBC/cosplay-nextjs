@@ -10,11 +10,7 @@ import {
 import { Cosplay } from "@/app/lib/definitions";
 import { CosplayCover } from "./cosplay-cover";
 
-export async function CosplayList({
-  dataList
-}: {
-  dataList:Cosplay[]
-}) {
+export async function CosplayList({ dataList }: { dataList: Cosplay[] }) {
   return (
     <div className="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
       {dataList?.map((item, index) => (
@@ -46,7 +42,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
         </div>
       </Link>
       <Link
-        href={`front/cosers/${item.cos_id}`}
+        href={`front/cosers/${item.cos_id}?name=${item.cos_name}`}
         className="flex items-center h-8 items-center">
         <Avatar
           size="sm"
