@@ -10,6 +10,7 @@ export type State = {
     content?: string[];
     coserId?: string[];
     cover?: string[];
+    status?: string[];
   };
   message?: string | null;
 };
@@ -21,6 +22,7 @@ const FormSchema = z.object({
   coserId: z.string(),
   content: z.string(),
   cover: z.string(),
+  status: z.string(),
 });
 
 const UpdateCosplay = FormSchema.omit({ id: true });
@@ -78,18 +80,21 @@ export async function updateCosplay({
   coserId,
   content,
   cover,
+  status,
 }: {
   id: number;
   title: string;
   coserId: string | number;
   content: string;
   cover: string;
+  status: number;
 }) {
   const validatedFields = UpdateCosplay.safeParse({
     title: title,
     coserId: coserId,
     content: content,
     cover: cover,
+    status,
   });
   if (!validatedFields.success) {
     return {
@@ -103,13 +108,15 @@ export async function updateCosplay({
     coserId: _coserId,
     content: _content,
     cover: _cover,
+    status: _status,
   } = validatedFields.data;
   try {
     const data = await sql`update posts
     set title = ${_title},
     coser_id = ${_coserId},
     content = ${_content},
-    cover = ${_cover}
+    cover = ${_cover},
+    status = ${_status}
     where id = ${id}
     returning id
     `;

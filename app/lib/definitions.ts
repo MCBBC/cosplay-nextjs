@@ -18,6 +18,7 @@ export type Cosplay = {
   onload?: boolean;
   creation_date?: string;
   view_count?: number;
+  status?:number
 };
 
 export type Coser = {

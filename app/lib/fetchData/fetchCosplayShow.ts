@@ -21,7 +21,8 @@ export async function fetchCosplayShowById(
     posts.coser_id as cos_id,
     posts.cover,
     posts.creation_date,
-    posts.view_count 
+    posts.view_count,
+    posts.status 
     from posts 
     where id=${cosplayShowId}`;
     // 如果查询结果为空，返回 null
@@ -58,7 +59,7 @@ export async function fetchGuessYouLike(
     cosers.name as cos_name 
     from posts
     join cosers on posts.coser_id = cosers.id
-    where posts.coser_id = ${coserId}
+    where posts.coser_id = ${coserId} and posts.status !=2
     limit 5`;
     return data.rows;
   } catch (error) {
@@ -73,7 +74,9 @@ export async function fetchGuessYouLike(
  * @return {*}
  * @Date: 2024-05-31
  */
-export async function fetchPopularRecommend(limitNumber:number): Promise<Cosplay[]> {
+export async function fetchPopularRecommend(
+  limitNumber: number
+): Promise<Cosplay[]> {
   noStore();
   try {
     const data = await sql<Cosplay>`
@@ -86,6 +89,7 @@ export async function fetchPopularRecommend(limitNumber:number): Promise<Cosplay
       cosers.name as cos_name
     from posts
     join cosers on cosers.id = posts.coser_id
+    where posts.status !=2
     order by
       posts.view_count desc
     limit ${limitNumber}

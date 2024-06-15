@@ -16,6 +16,34 @@ export async function fetchCosplay(currentPage: number, query?: string) {
         from posts
         join cosers on posts.coser_id = cosers.id
         where posts.title ilike ${`%${query}%`}
+        and posts.status !=2
+        order by posts.creation_date desc, posts.id desc
+        limit ${ITEMS_PRE_PAGE} offset ${offset}
+        `;
+    return data.rows;
+  } catch (error) {
+    console.log("数据库错误", error);
+    throw new Error(`获取Cosplay接口错误`);
+  }
+}
+
+export async function fetchCosplayDashBoard(
+  currentPage: number,
+  query?: string
+) {
+  noStore();
+  const offset = (currentPage - 1) * ITEMS_PRE_PAGE;
+  try {
+    const data = await sql<Cosplay>`select posts.id,
+        posts.title,
+        cosers.id as cos_id,
+        cosers.name as cos_name,
+        posts.cover,
+        posts.creation_date,
+        posts.status
+        from posts
+        join cosers on posts.coser_id = cosers.id
+        where posts.title ilike ${`%${query}%`}
         order by posts.creation_date desc, posts.id desc
         limit ${ITEMS_PRE_PAGE} offset ${offset}
         `;
@@ -33,7 +61,7 @@ export async function fetchCosplayPages(
   noStore();
   try {
     const data =
-      await sql`select count(*) from posts where posts.title ilike ${`%${query}%`}`;
+      await sql`select count(*) from posts where posts.title ilike ${`%${query}%`} and posts.status !=2`;
     const totalPages = Math.ceil(Number(data.rows[0].count) / itemsPrePage);
     return totalPages;
   } catch (error) {
@@ -63,7 +91,7 @@ export async function fetchCosplayByCoserId({
       cosers.id as cos_id
       from posts
       join cosers on posts.coser_id = cosers.id
-      where posts.coser_id = ${coserId}
+      where posts.coser_id = ${coserId} and posts.status !=2
       order by posts.title desc, posts.id desc
       limit ${ITEMS_PRE_PAGE} offset ${offset}
     `;
@@ -87,7 +115,7 @@ export async function fetchCosplayPagesByCoserId({
     const data = await sql`select
       count(id)
     from posts
-    where posts.coser_id = ${coserId}
+    where posts.coser_id = ${coserId} and posts.status !=2
     `;
     const totalPages = Math.ceil(Number(data.rows[0].count) / ITEMS_PRE_PAGE);
     return totalPages;
@@ -104,7 +132,7 @@ export async function fetchCosplayPagesWithSitemap(
   const offset = start * itemsPrePage;
   try {
     const data = await sql`select
-      posts.id,posts.title,posts.creation_date,posts.coser_id as cos_id
+      posts.id,posts.title,posts.creation_date,posts.coser_id as cos_id and posts.status !=2
     from posts
     limit ${itemsPrePage} offset ${offset}
     `;

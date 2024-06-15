@@ -93,6 +93,7 @@ async function seedPosts(client) {
                 cover varchar,
                 creation_date date DEFAULT CURRENT_DATE,
                 view_count int4 DEFAULT 0,
+                status int default 1,
                 CONSTRAINT tag_id_fkey FOREIGN KEY (coser_id) REFERENCES public.cosers(id)
             );
             CREATE INDEX IF NOT EXISTS idx_posts_coser_id ON posts(coser_id);

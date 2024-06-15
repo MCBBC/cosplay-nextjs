@@ -1,5 +1,13 @@
 "use client";
-import { Button, Input, Link, Image, Textarea } from "@nextui-org/react";
+import {
+  Button,
+  Input,
+  Link,
+  Image,
+  Textarea,
+  Select,
+  SelectItem,
+} from "@nextui-org/react";
 import { VditorInstance, CosplayContent } from "./cosplays-edit-markdowm";
 import AutocompleteCoserName from "@/components/AutocompleteCoserName";
 import { Cosplay } from "@/app/lib/definitions";
@@ -16,6 +24,7 @@ export default function CosplayEditWrapper({
   const [title, setTitle] = useState(detail?.title || "");
   const [coserId, setCosId] = useState(detail?.cos_id.toString() || "0");
   const [cover, setCover] = useState(detail?.cover || "");
+  const [status, setStatus] = useState(detail?.status || 1);
   const selectedCoserId = (value: string) => {
     setCosId(value);
   };
@@ -47,13 +56,6 @@ export default function CosplayEditWrapper({
       console.log("封面不要忘记了");
       return;
     }
-    console.log({
-      id: detail.id,
-      title: title,
-      coserId,
-      content: vditorRef.current.getContent(),
-      cover: cover,
-    });
 
     const { message } = await updateCosplay({
       id: detail.id,
@@ -61,10 +63,15 @@ export default function CosplayEditWrapper({
       coserId,
       content: vditorRef.current.getContent(),
       cover: cover,
+      status: status,
     });
     if (message) {
       router.push("/dashboard/cosplays");
     }
+  };
+
+  const statusChange = (val: any) => {
+    setStatus(val["currentKey"]);
   };
 
   return (
@@ -79,6 +86,16 @@ export default function CosplayEditWrapper({
         onValueChange={(value) => setTitle(value)}
         placeholder="输入你的标题"
       />
+      <Select
+        label="选择状态"
+        className="mb-4 w-[300px]"
+        classNames={{ label: "shrink-0" }}
+        labelPlacement="outside-left"
+        defaultSelectedKeys={String(status)}
+        onSelectionChange={(val) => statusChange(val)}>
+        <SelectItem key="1">通过</SelectItem>
+        <SelectItem key="2">禁止</SelectItem>
+      </Select>
       <AutocompleteCoserName
         coserId={detail?.cos_id || "0"}
         onSelectCoser={selectedCoserId}

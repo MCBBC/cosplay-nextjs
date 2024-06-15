@@ -15,6 +15,7 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import { Key, useCallback } from "react";
+import CosplayStatus from "./status";
 
 export default function CosplaysTable({ tableData }: { tableData: Cosplay[] }) {
   const columns = [
@@ -22,6 +23,7 @@ export default function CosplaysTable({ tableData }: { tableData: Cosplay[] }) {
     { name: "封面", uid: "cover" },
     { name: "Cosers", uid: "cosers" },
     { name: "创建时间", uid: "creation_date" },
+    { name: "status", uid: "status" },
     { name: "操作", uid: "actions" },
   ];
 
@@ -70,6 +72,8 @@ export default function CosplaysTable({ tableData }: { tableData: Cosplay[] }) {
             </Tooltip>
           </div>
         );
+      case "status":
+        return <CosplayStatus status={cosplay.status?.toString() || "1"} />;
       default:
         return <></>;
     }

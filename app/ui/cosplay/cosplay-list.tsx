@@ -1,4 +1,3 @@
-import { fetchCosplay } from "@/app/lib/fetchData/data";
 import Link from "next/link";
 
 import { Avatar } from "@nextui-org/react";
