@@ -1,7 +1,5 @@
 import { fetchCosplayByCoserId } from "@/app/lib/fetchData/data";
 import Link from "next/link";
-
-import { Avatar } from "@nextui-org/react";
 import { Suspense } from "react";
 import {
   CosPlayItemSkeleton,
@@ -50,7 +48,8 @@ export function CosplayItem({ item }: { item: Cosplay }) {
     <>
       <Link
         href={`/front/cosplays/${item.id}?name=${item.cos_name}&coserId=${item.cos_id}`}
-        className="space-y-3 flex-auto flex flex-col">
+        className="space-y-3 flex-auto flex flex-col"
+        title={item.cos_name}>
         <div className="overflow-hidden rounded-md relative flex-auto">
           <Suspense fallback={<CosplayCoverSkeleton />}>
             <CosplayCover src={item.cover} />

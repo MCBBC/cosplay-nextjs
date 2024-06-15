@@ -1,6 +1,15 @@
 {
   "headers": [
     {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=10, stale-while-revalidate=59"
+        }
+      ]
+    },
+    {
       "source": "/front/cosplays/(.*)",
       "headers": [
         {
