@@ -9,7 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const cosplaySitemap = Array.from(
     { length: totalCosplayPages },
     (item, index) => ({
-      url: `${BASE_URL}/front/cosplays/sitemap.xml/${index}`,
+      url: `${BASE_URL}/front/cosplays/sitemap/${index}.xml`,
       priority: 1,
       lastModified: new Date(),
       changeFrequency: "always",
@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
   const totalPages = await fetchCoserPages({ query: "", itemsPrePage: 50000 });
   const coserSitemap = Array.from({ length: totalPages }, (item, index) => ({
-    url: `${BASE_URL}/front/cosers/sitemap.xml/${index}`,
+    url: `${BASE_URL}/front/cosers/sitemap/${index}.xml`,
     priority: 1,
     lastModified: new Date(),
     changeFrequency: "always",
