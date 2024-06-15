@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { inter } from "@/fonts";
-import { Providers } from "./providers";
+// import { Providers } from "./providers";
 import NprogressProvider from "@/components/NProgressProvider";
-// import { GoogleAdSense } from "next-google-adsense";
 import AdSense from "@/components/AdSense";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -25,6 +25,7 @@ export default function RootLayout({
       <head>
         {/* <GoogleAdSense /> */}
         <AdSense pId="5901616898778649" />
+        <GoogleAnalytics gaId="G-15MZJRZZB1" />
         <link rel="icon" href="/images/favicon.ico" />
       </head>
       <body className={inter.className}>
