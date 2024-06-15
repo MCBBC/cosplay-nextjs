@@ -1,4 +1,3 @@
-import { BASE_URL } from "@/app/lib/constants";
 import {
   fetchCosplayPages,
   fetchCosplayPagesWithSitemap,
@@ -25,6 +24,8 @@ export default async function sitemap({
 }): Promise<MetadataRoute.Sitemap> {
   // Google's limit is 50,000 URLs per sitemap
   const products = await fetchCosplayPagesWithSitemap(id, 50000);
+  const BASE_URL =
+    process.env.SITE_URL ?? "https://sharecosplay.micromatrix.org";
   return products.map((product) => ({
     url: escapeXML(
       `${BASE_URL}/front/cosplays/${product.id}?name=${product.title}&coserId=${product.cos_id}`
