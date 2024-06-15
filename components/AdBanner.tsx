@@ -30,7 +30,7 @@ const AdBanner = ({
           if (flag) {
             router.push("/adBlock");
           }
-        }, 2000); // 可能需要调整这个时间，确保广告有足够时间加载
+        }, 4000); // 可能需要调整这个时间，确保广告有足够时间加载
       } catch (error: any) {
         console.log(error.message);
       }
