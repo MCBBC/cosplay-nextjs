@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BreadcrumbsComponents } from "../breadcrumbs/breadcrumbs";
-import { CustomPagination } from "../cosplay/pagination";
+import { CustomPagination } from "../common/pagination";
 import Search from "../../../components/Search";
 import { Avatar } from "@nextui-org/react";
 import {

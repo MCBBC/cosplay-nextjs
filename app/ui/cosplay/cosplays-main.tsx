@@ -3,7 +3,7 @@ import { BreadcrumbsComponents } from "../breadcrumbs/breadcrumbs";
 import { CosplayList } from "./cosplay-list";
 import { Suspense } from "react";
 import { CosplayListSkeleton } from "../skeletons/image-group-skeleton";
-import { CustomPagination } from "./pagination";
+import { CustomPagination } from "../common/pagination";
 import { fetchCosplay, fetchCosplayPages } from "@/app/lib/fetchData/data";
 import { AdBanner } from "@/components/AdBanner";
 export default async function CosplayMain({

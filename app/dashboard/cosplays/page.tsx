@@ -2,7 +2,6 @@ import CosplaysTableWrapper from "@/app/ui/dashboard/cosplays/cosplays-table-wra
 import { Suspense } from "react";
 export default function Page({
   searchParams,
-  params,
 }: {
   searchParams?: {
     page?: string;

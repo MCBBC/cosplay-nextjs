@@ -4,7 +4,7 @@ import { Image, Avatar } from "@nextui-org/react";
 import { Suspense } from "react";
 import { CoserDetailBackGroundSkeleton } from "../skeletons/cosers-skeleton";
 import { CosplayList } from "./coser-show";
-import { CustomPagination } from "../cosplay/pagination";
+import { CustomPagination } from "../common/pagination";
 import { fetchCosplayPagesByCoserId } from "@/app/lib/fetchData/data";
 import { CoserDetailSearch } from "./coser-detail-search";
 export async function CoserDetailMain({
