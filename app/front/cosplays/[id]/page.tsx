@@ -1,5 +1,5 @@
 import { CosplayShowMain } from "@/app/ui/cosplayShow/cosplay-show-main";
-import AdBanner from "@/components/AdBanner";
+import { AdBanner } from "@/components/AdBanner";
 import { Metadata } from "next/types";
 
 export function generateMetadata({

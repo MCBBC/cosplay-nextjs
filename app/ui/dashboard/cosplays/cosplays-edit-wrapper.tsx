@@ -5,7 +5,7 @@ import AutocompleteCoserName from "@/components/AutocompleteCoserName";
 import { Cosplay } from "@/app/lib/definitions";
 import { updateCosplay } from "@/app/lib/actions/cosplays";
 import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 
 export default function CosplayEditWrapper({
   detail,

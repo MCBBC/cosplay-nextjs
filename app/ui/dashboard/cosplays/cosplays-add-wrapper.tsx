@@ -4,7 +4,7 @@ import { VditorInstance, CosplayContent } from "./cosplays-edit-markdowm";
 import AutocompleteCoserName from "@/components/AutocompleteCoserName";
 import { addCosplay } from "@/app/lib/actions/cosplays";
 import { useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 
 export default function CosplayAddWrapper() {
   const router = useRouter();
