@@ -27,11 +27,11 @@ export function CosplayItem({ item }: { item: Cosplay }) {
   return (
     <>
       <Link
-        href={`/front/cosplays/${item.id}?name=${item.cos_name}&coserId=${item.cos_id}`}
+        href={`/front/cosplays/${item.id}?name=${item.coser?.name}&coserId=${item.coser?.id}`}
         className="space-y-3 flex-auto flex flex-col">
         <div className="overflow-hidden rounded-md relative flex-auto">
           <Suspense fallback={<CosplayCoverSkeleton />}>
-            <CosplayCover src={item.cover} />
+            <CosplayCover src={item.cover || ""} />
           </Suspense>
         </div>
         <div className="space-y-1 text-md">
@@ -41,18 +41,18 @@ export function CosplayItem({ item }: { item: Cosplay }) {
         </div>
       </Link>
       <Link
-        href={`front/cosers/${item.cos_id}?name=${item.cos_name}`}
+        href={`front/cosers/${item.coser?.id}?name=${item.coser?.name}`}
         className="flex items-center h-8 items-center">
         <Avatar
           size="sm"
           color="default"
           showFallback
-          name={item.cos_name[0]}
+          name={item.coser?.name[0]}
           className="shrink-0 overflow-hidden rounded-full h-7 w-7"
         />
 
         <h3 className="font-medium leading-none text-sm ml-1 truncate">
-          {item.cos_name}
+          {item.coser?.name}
         </h3>
       </Link>
     </>

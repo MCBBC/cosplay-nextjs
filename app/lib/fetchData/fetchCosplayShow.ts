@@ -1,6 +1,4 @@
-import { sql } from "@vercel/postgres";
-import { unstable_noStore as noStore } from "next/cache";
-import { Cosplay } from "../definitions";
+import { prisma } from "../prisma";
 
 /**
  * @Author: HideInMatrix
@@ -9,31 +7,26 @@ import { Cosplay } from "../definitions";
  * @return {*}
  * @Date: 2024-05-31
  */
-export async function fetchCosplayShowById(
-  cosplayShowId: string | number
-): Promise<Cosplay | null> {
-  noStore();
+export async function fetchCosplayShowById(cosplayShowId: string | number) {
   try {
-    const data = await sql<Cosplay>`select 
-    posts.id,
-    posts.title,
-    posts.content,
-    posts.coser_id as cos_id,
-    posts.cover,
-    posts.creation_date,
-    posts.view_count,
-    posts.status 
-    from posts 
-    where id=${cosplayShowId}`;
-    // 如果查询结果为空，返回 null
-    if (data.rows.length === 0) {
-      return null;
-    }
-
-    // 只返回查询结果的第一条记录
-    return data.rows[0];
+    const data = await prisma.posts.findUnique({
+      where: {
+        id: Number(cosplayShowId),
+      },
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        coser_id: true,
+        cover: true,
+        creation_date: true,
+        view_count: true,
+        status: true,
+      },
+    });
+    return data;
   } catch (error) {
-    console.log("数据库错误", error);
+    console.error("数据库错误", error);
     throw new Error(`获取数据错误`);
   }
 }
@@ -44,26 +37,32 @@ export async function fetchCosplayShowById(
  * @return {*}
  * @Date: 2024-05-31
  */
-export async function fetchGuessYouLike(
-  coserId: string | number
-): Promise<Cosplay[]> {
-  noStore();
+export async function fetchGuessYouLike(coserId: string | number) {
   try {
-    const data = await sql<Cosplay>`select 
-    posts.id,
-    posts.title,
-    posts.cover,
-    posts.creation_date,
-    posts.view_count,
-    cosers.id as cos_id,
-    cosers.name as cos_name 
-    from posts
-    join cosers on posts.coser_id = cosers.id
-    where posts.coser_id = ${coserId} and posts.status !=2
-    limit 5`;
-    return data.rows;
+    const data = await prisma.posts.findMany({
+      where: {
+        coser_id: Number(coserId),
+        status: {
+          not: 2,
+        },
+      },
+      select: {
+        id: true,
+        title: true,
+        cover: true,
+        creation_date: true,
+        coser: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      take: 5,
+    });
+    return data;
   } catch (error) {
-    console.log("数据库错误", error);
+    console.error("数据库错误", error);
     throw new Error(`获取数据错误`);
   }
 }
@@ -74,30 +73,30 @@ export async function fetchGuessYouLike(
  * @return {*}
  * @Date: 2024-05-31
  */
-export async function fetchPopularRecommend(
-  limitNumber: number
-): Promise<Cosplay[]> {
-  noStore();
+export async function fetchPopularRecommend(limitNumber: number) {
   try {
-    const data = await sql<Cosplay>`
-    select
-      posts.id,
-      posts.title,
-      posts.cover,
-      posts.creation_date,
-      cosers.id as cos_id,
-      cosers.name as cos_name
-    from posts
-    join cosers on cosers.id = posts.coser_id
-    where posts.status !=2
-    order by
-      posts.view_count desc
-    limit ${limitNumber}
-    `;
-
-    return data.rows;
+    const data = await prisma.posts.findMany({
+      where: {
+        status: {
+          not: 2,
+        },
+      },
+      include: {
+        coser: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      orderBy: {
+        view_count: "desc",
+      },
+      take: limitNumber,
+    });
+    return data;
   } catch (error) {
-    console.log("数据库错误", error);
+    console.error("数据库错误", error);
     throw new Error(`获取数据错误`);
   }
 }

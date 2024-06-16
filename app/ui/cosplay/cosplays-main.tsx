@@ -21,8 +21,8 @@ export default async function CosplayMain({
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
   const [totalPages, dataList] = await Promise.all([
-    fetchCosplayPages(query),
-    fetchCosplay(currentPage, query),
+    fetchCosplayPages({ query }),
+    fetchCosplay({ currentPage, query }),
   ]);
   return (
     <>

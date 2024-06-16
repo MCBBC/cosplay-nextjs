@@ -10,10 +10,10 @@ import {
 } from "@nextui-org/react";
 import { VditorInstance, CosplayContent } from "./cosplays-edit-markdowm";
 import AutocompleteCoserName from "@/components/AutocompleteCoserName";
-import { Cosplay } from "@/app/lib/definitions";
 import { updateCosplay } from "@/app/lib/actions/cosplays";
 import { useRef, useState } from "react";
 import { useRouter } from "next-nprogress-bar";
+import { posts as Cosplay } from "@prisma/client";
 
 export default function CosplayEditWrapper({
   detail,
@@ -22,7 +22,7 @@ export default function CosplayEditWrapper({
 }) {
   const router = useRouter();
   const [title, setTitle] = useState(detail?.title || "");
-  const [coserId, setCosId] = useState(detail?.cos_id.toString() || "0");
+  const [coserId, setCosId] = useState(detail?.coser_id || "0");
   const [cover, setCover] = useState(detail?.cover || "");
   const [status, setStatus] = useState(detail?.status || 1);
   const selectedCoserId = (value: string) => {
@@ -60,10 +60,10 @@ export default function CosplayEditWrapper({
     const { message } = await updateCosplay({
       id: detail.id,
       title: title,
-      coserId,
+      coserId: Number(coserId),
       content: vditorRef.current.getContent(),
       cover: cover,
-      status: status,
+      status: Number(status),
     });
     if (message) {
       router.push("/dashboard/cosplays");
@@ -97,7 +97,7 @@ export default function CosplayEditWrapper({
         <SelectItem key="2">禁止</SelectItem>
       </Select>
       <AutocompleteCoserName
-        coserId={detail?.cos_id || "0"}
+        coserId={detail?.coser_id || "0"}
         onSelectCoser={selectedCoserId}
       />
       <div className="flex items-center">

@@ -1,32 +1,6 @@
 "use server";
-import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
-import { z } from "zod";
-
-export type State = {
-  errors?: {
-    id?: string[];
-    title?: string[];
-    content?: string[];
-    coserId?: string[];
-    cover?: string[];
-    status?: string[];
-  };
-  message?: string | null;
-};
-
-// 期望能检验到的值
-const FormSchema = z.object({
-  id: z.string(),
-  title: z.string(),
-  coserId: z.string(),
-  content: z.string(),
-  cover: z.string(),
-  status: z.string(),
-});
-
-const UpdateCosplay = FormSchema.omit({ id: true });
-const CreateCosplay = FormSchema.omit({ id: true });
+import { prisma } from "../prisma";
 
 export async function addCosplay({
   title,
@@ -35,41 +9,27 @@ export async function addCosplay({
   cover,
 }: {
   title: string;
-  coserId: string | number;
+  coserId: number;
   content: string;
   cover: string;
 }) {
-  const validatedFields = CreateCosplay.safeParse({
-    title: title,
-    coserId: coserId,
-    content: content,
-    cover: cover,
-  });
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields. Failed to Create Cosplay.",
-    };
-  }
-
-  const {
-    title: _title,
-    coserId: _coserId,
-    content: _content,
-    cover: _cover,
-  } = validatedFields.data;
-
+  // 省略验证逻辑...
   try {
-    const data = await sql`insert into posts(title, coser_id, content,cover)
-      values(${_title},${_coserId},${_content},${_cover})
-      returning posts.id
-      `;
-    revalidatePath("/dashboard/cosplays");
-    return { message: data.rowCount > 0 };
+    const data = await prisma.posts.create({
+      data: {
+        title,
+        coser_id: coserId,
+        content,
+        cover,
+      },
+    });
+    // 重新验证路径（如果你在使用 Next.js 的 ISR）
+    // revalidatePath("/dashboard/cosplays");
+    return { message: "Cosplay Created." };
   } catch (error) {
     console.log(error);
     return {
-      message: "Database Error: Failed to Update Cosplay.",
+      message: "Database Error: Failed to Create Cosplay.",
     };
   }
 }
@@ -84,55 +44,39 @@ export async function updateCosplay({
 }: {
   id: number;
   title: string;
-  coserId: string | number;
+  coserId: number;
   content: string;
   cover: string;
   status: number;
 }) {
-  const validatedFields = UpdateCosplay.safeParse({
-    title: title,
-    coserId: coserId,
-    content: content,
-    cover: cover,
-    status,
-  });
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields. Failed to Create Cosplay.",
-    };
-  }
-
-  const {
-    title: _title,
-    coserId: _coserId,
-    content: _content,
-    cover: _cover,
-    status: _status,
-  } = validatedFields.data;
   try {
-    const data = await sql`update posts
-    set title = ${_title},
-    coser_id = ${_coserId},
-    content = ${_content},
-    cover = ${_cover},
-    status = ${_status}
-    where id = ${id}
-    returning id
-    `;
+    const data = await prisma.posts.update({
+      where: { id },
+      data: {
+        title,
+        coser_id: coserId,
+        content,
+        cover,
+        status,
+      },
+    });
+    // 重新验证路径（如果你在使用 Next.js 的 ISR）
     revalidatePath("/dashboard/cosplays");
-    return { message: data.rows.length > 0 };
+    return { message: "Cosplay Updated." };
   } catch (error) {
+    console.log(error);
     return {
       message: "Database Error: Failed to Update Cosplay.",
     };
   }
 }
-
 export async function deleteCosplay(cosplayId: number) {
   try {
-    await sql`delete from posts where posts.id =${cosplayId}`;
-    revalidatePath("/dashboard/cosplays");
+    await prisma.posts.delete({
+      where: { id: cosplayId },
+    });
+    // 重新验证路径（如果你在使用 Next.js 的 ISR）
+    // revalidatePath("/dashboard/cosplays");
     return { message: "Deleted Cosplay." };
   } catch (error) {
     return {

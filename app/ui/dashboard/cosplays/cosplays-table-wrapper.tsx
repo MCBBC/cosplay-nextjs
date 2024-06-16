@@ -1,4 +1,3 @@
-import { Cosplay } from "@/app/lib/definitions";
 import CosplaysTable from "./cosplays-table";
 import {
   fetchCosplayDashBoard,
@@ -14,13 +13,16 @@ export default async function CosplaysTableWrapper({
   currentPage: number;
   query: string;
 }) {
-  const users: Cosplay[] = await fetchCosplayDashBoard(currentPage, query);
-  const totalPages = await fetchCosplayPages(query);
+  const cosplays = await fetchCosplayDashBoard({
+    currentPage,
+    query,
+  });
+  const totalPages = await fetchCosplayPages({ query, status: { not: 0 } });
 
   return (
     <>
       <SearchComponents addUrl="/dashboard/cosplays/create" />
-      <CosplaysTable tableData={users} />
+      <CosplaysTable tableData={cosplays} />
       <CustomPagination totalPages={totalPages} />
     </>
   );

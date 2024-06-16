@@ -1,16 +1,16 @@
-import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { prisma } from "../prisma";
 
 export type State = {
   errors?: {
     id?: string[];
-
     cosplayId?: string[];
     viewCount?: number[];
   };
   message?: string | null;
 };
+
 // 期望能检验到的值
 const FormSchema = z.object({
   id: z.string(),
@@ -19,6 +19,7 @@ const FormSchema = z.object({
 });
 
 const UpdateCosplay = FormSchema.omit({ id: true });
+
 export async function addCosplayView({
   cosplayId,
   viewCount,
@@ -26,27 +27,23 @@ export async function addCosplayView({
   cosplayId: string;
   viewCount: number;
 }) {
-  const validatedFields = UpdateCosplay.safeParse({
-    cosplayId,
-    viewCount,
-  });
-  if (!validatedFields.success) {
-    return {
-      errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields. Failed to Create Cosplay.",
-    };
-  }
-  const { cosplayId: _cosplayId, viewCount: _viewCount } = validatedFields.data;
-
   try {
-    const data = await sql`update posts
-    set view_count = ${_viewCount}
-    where id = ${_cosplayId}
-    returning id
-    `;
-    revalidatePath(`/front/cosplays/${_cosplayId}`);
-    return { message: data.rows.length > 0 };
+    const data = await prisma.posts.update({
+      where: {
+        id: Number(cosplayId), // 确保这个字段是你数据库中的唯一标识
+      },
+      data: {
+        view_count: viewCount, // 确保这个字段正确对应了你的数据库中的视图计数字段
+      },
+    });
+
+    // 假设你需要在更新后执行页面的重新验证
+    revalidatePath(`/front/cosplays/${cosplayId}`);
+
+    // 返回信息，表示更新是否成功
+    return { message: data ? "Update successful" : "No record updated" };
   } catch (error) {
+    console.error("Database Error:", error);
     return {
       message: "Database Error: Failed to Update Cosplay.",
     };

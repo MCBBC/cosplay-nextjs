@@ -5,11 +5,6 @@ import { type NextRequest } from "next/server";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
-  // const countResult =
-  //   await sql`SELECT COUNT(*) FROM cosers where cosers.name ilike ${`%${searchParams.get(
-  //     "query"
-  //   )}%`}`;
-  // const totalCount = countResult.rows[0].count;
   const coserId = searchParams.get("coserId");
   const query = searchParams.get("query");
   const limit = searchParams.get("limit");

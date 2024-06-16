@@ -1,3 +1,4 @@
+import { BackupButton } from "@/app/ui/common/client-buttons";
 export default function Page({
   searchParams,
 }: {
@@ -7,5 +8,9 @@ export default function Page({
   };
   params?: {};
 }) {
-  return <div className="px-8"></div>;
+  return (
+    <div className="px-8">
+      <BackupButton />
+    </div>
+  );
 }

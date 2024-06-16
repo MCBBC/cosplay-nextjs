@@ -16,6 +16,7 @@
     "@internationalized/date": "^3.5.4",
     "@next/third-parties": "^14.2.4",
     "@nextui-org/react": "^2.4.0",
+    "@prisma/client": "^5.15.0",
     "@react-stately/data": "^3.11.4",
     "@types/bcrypt": "^5.0.2",
     "@vercel/postgres": "^0.8.0",
@@ -23,7 +24,9 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.2.4",
+    "fs": "0.0.1-security",
     "install": "^0.13.0",
+    "json2csv": "6.0.0-alpha.2",
     "next": "14.2.3",
     "next-auth": "5.0.0-beta.18",
     "next-nprogress-bar": "^2.3.12",
@@ -35,12 +38,14 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/json2csv": "^5.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
+    "prisma": "^5.15.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }

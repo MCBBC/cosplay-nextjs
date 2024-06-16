@@ -4,7 +4,10 @@ import { fetchCosplayPages } from "@/app/lib/fetchData/data";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Google's limit is 50,000 URLs per sitemap
-  const totalCosplayPages = await fetchCosplayPages("", 50000);
+  const totalCosplayPages = await fetchCosplayPages({
+    query: "",
+    itemsPrePage: 50000,
+  });
   const BASE_URL =
     process.env.SITE_URL ?? "https://sharecosplay.micromatrix.org";
   const cosplaySitemap = Array.from(

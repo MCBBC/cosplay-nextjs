@@ -17,7 +17,7 @@ import Link from "next/link";
 import { Key, useCallback } from "react";
 import CosplayStatus from "./status";
 
-export default function CosplaysTable({ tableData }: { tableData: Cosplay[] }) {
+export default function CosplaysTable({ tableData }: { tableData: any[] }) {
   const columns = [
     { name: "标题", uid: "title" },
     { name: "封面", uid: "cover" },
@@ -39,11 +39,11 @@ export default function CosplaysTable({ tableData }: { tableData: Cosplay[] }) {
             loading="lazy"
             shadow="md"
             alt="cover"
-            src={cosplay.cover}
+            src={cosplay?.cover || ''}
           />
         );
       case "cosers":
-        return <span>{cosplay.cos_name}</span>;
+        return <span>{cosplay.coser?.name}</span>;
       case "creation_date":
         const toDate = new Date(
           cosplay?.creation_date!.toString() || "2024/05/20"

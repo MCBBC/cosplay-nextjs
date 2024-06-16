@@ -1,71 +1,97 @@
-import { sql } from "@vercel/postgres";
-import { unstable_noStore as noStore } from "next/cache";
-import { Cosplay } from "../definitions";
+import { prisma } from "../prisma";
 
-const ITEMS_PRE_PAGE = 30;
-export async function fetchCosplay(currentPage: number, query?: string) {
-  noStore();
-  const offset = (currentPage - 1) * ITEMS_PRE_PAGE;
+const ITEMS_PER_PAGE = 30;
+
+export async function fetchCosplayDashBoard({
+  currentPage,
+  query,
+}: {
+  currentPage: number;
+  query?: string;
+}) {
+  return await fetchCosplay({ currentPage, query, status: { not: 0 } });
+}
+
+export async function fetchCosplay({
+  currentPage,
+  query,
+  itemsPrePage = ITEMS_PER_PAGE,
+  status = {
+    not: 2,
+  },
+}: {
+  currentPage: number;
+  query?: string;
+  itemsPrePage?: number;
+  status?: { not: number };
+}) {
+  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
   try {
-    const data = await sql<Cosplay>`select posts.id,
-        posts.title,
-        cosers.id as cos_id,
-        cosers.name as cos_name,
-        posts.cover,
-        posts.creation_date
-        from posts
-        join cosers on posts.coser_id = cosers.id
-        where posts.title ilike ${`%${query}%`}
-        and posts.status !=2
-        order by posts.creation_date desc, posts.id desc
-        limit ${ITEMS_PRE_PAGE} offset ${offset}
-        `;
-    return data.rows;
+    const data = await prisma.posts.findMany({
+      where: {
+        title: {
+          contains: query || "",
+          mode: "insensitive",
+        },
+        status: status,
+      },
+      select: {
+        id: true,
+        title: true,
+        cover: true,
+        creation_date: true,
+        status: status.not !== 2,
+        coser_id: true,
+        coser: {
+          select: {
+            id: true, // 假设你只想包含 coser 的 id
+            name: true, // 和 name 字段
+          },
+        },
+      },
+      orderBy: [
+        {
+          creation_date: "desc",
+        },
+        {
+          id: "desc",
+        },
+      ],
+      skip: offset,
+      take: itemsPrePage,
+    });
+    return data;
   } catch (error) {
-    console.log("数据库错误", error);
-    throw new Error(`获取Cosplay接口错误`);
+    console.error("数据库错误", error);
+    throw new Error(`获取Cosplay接口错误${error}`);
   }
 }
 
-export async function fetchCosplayDashBoard(
-  currentPage: number,
-  query?: string
-) {
-  noStore();
-  const offset = (currentPage - 1) * ITEMS_PRE_PAGE;
+export async function fetchCosplayPages({
+  query,
+  itemsPrePage = ITEMS_PER_PAGE,
+  status = {
+    not: 2,
+  },
+}: {
+  query: string;
+  itemsPrePage?: number;
+  status?: { not: number };
+}) {
   try {
-    const data = await sql<Cosplay>`select posts.id,
-        posts.title,
-        cosers.id as cos_id,
-        cosers.name as cos_name,
-        posts.cover,
-        posts.creation_date,
-        posts.status
-        from posts
-        join cosers on posts.coser_id = cosers.id
-        where posts.title ilike ${`%${query}%`}
-        order by posts.creation_date desc, posts.id desc
-        limit ${ITEMS_PRE_PAGE} offset ${offset}
-        `;
-    return data.rows;
-  } catch (error) {
-    console.log("数据库错误", error);
-    throw new Error(`获取Cosplay接口错误`);
-  }
-}
-
-export async function fetchCosplayPages(
-  query: string,
-  itemsPrePage = ITEMS_PRE_PAGE
-) {
-  noStore();
-  try {
-    const data =
-      await sql`select count(*) from posts where posts.title ilike ${`%${query}%`} and posts.status !=2`;
-    const totalPages = Math.ceil(Number(data.rows[0].count) / itemsPrePage);
+    const count = await prisma.posts.count({
+      where: {
+        title: {
+          contains: query,
+          mode: "insensitive",
+        },
+        status: status,
+      },
+    });
+    const totalPages = Math.ceil(count / itemsPrePage);
     return totalPages;
   } catch (error) {
-    console.log("数据库错误", error);
+    console.error("数据库错误", error);
     throw new Error(`获取Cosplay数量错误`);
   }
 }
@@ -73,72 +99,101 @@ export async function fetchCosplayPages(
 export async function fetchCosplayByCoserId({
   coserId,
   currentPage,
-  queryProduction,
-  queryCharacter,
+  itemsPrePage = ITEMS_PER_PAGE,
 }: {
   coserId: number | string;
   currentPage: number;
-  queryProduction?: string;
-  queryCharacter?: string;
+  itemsPrePage?: number;
 }) {
-  const offset = (currentPage - 1) * ITEMS_PRE_PAGE;
+  const offset = (currentPage - 1) * itemsPrePage;
   try {
-    const data = await sql<Cosplay>`select
-      posts.id,
-      posts.title,
-      posts.cover,
-      cosers.name as cos_name,
-      cosers.id as cos_id
-      from posts
-      join cosers on posts.coser_id = cosers.id
-      where posts.coser_id = ${coserId} and posts.status !=2
-      order by posts.title desc, posts.id desc
-      limit ${ITEMS_PRE_PAGE} offset ${offset}
-    `;
-    return data.rows;
+    const data = await prisma.posts.findMany({
+      where: {
+        coser_id: Number(coserId),
+        status: {
+          not: 2,
+        },
+      },
+      select: {
+        id: true,
+        title: true,
+        cover: true,
+        coser: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      orderBy: [
+        {
+          title: "desc",
+        },
+        {
+          id: "desc",
+        },
+      ],
+      skip: offset,
+      take: itemsPrePage,
+    });
+    return data;
   } catch (error) {
-    console.log("数据库错误", error);
+    console.error("数据库错误", error);
     throw new Error(`获取指定Coser的作品错误`);
   }
 }
 
 export async function fetchCosplayPagesByCoserId({
   coserId,
-  queryProduction,
-  queryCharacter,
+  itemsPrePage = ITEMS_PER_PAGE,
 }: {
   coserId: number | string;
-  queryProduction?: string;
-  queryCharacter?: string;
+  itemsPrePage?: number;
 }) {
   try {
-    const data = await sql`select
-      count(id)
-    from posts
-    where posts.coser_id = ${coserId} and posts.status !=2
-    `;
-    const totalPages = Math.ceil(Number(data.rows[0].count) / ITEMS_PRE_PAGE);
+    const count = await prisma.posts.count({
+      where: {
+        coser_id: Number(coserId),
+        status: {
+          not: 2,
+        },
+      },
+    });
+    const totalPages = Math.ceil(count / itemsPrePage);
     return totalPages;
   } catch (error) {
-    console.log("数据库错误", error);
-    throw new Error(`获取指定Coser的作品数量错误`);
+    console.error("数据库错误", error);
+    throw new Error(`获取指定Coser的作品数量错误${error}`);
   }
 }
 
-export async function fetchCosplayPagesWithSitemap(
-  start: number,
-  itemsPrePage = ITEMS_PRE_PAGE
-) {
-  const offset = start * itemsPrePage;
+export async function fetchCosplayPagesWithSitemap({
+  currentPage,
+  itemsPrePage = ITEMS_PER_PAGE,
+}: {
+  currentPage: number;
+  itemsPrePage?: number;
+}) {
+  const offset = currentPage * itemsPrePage;
   try {
-    const data = await sql`select
-      posts.id,posts.title,posts.creation_date,posts.coser_id as cos_id and posts.status !=2
-    from posts
-    limit ${itemsPrePage} offset ${offset}
-    `;
-    return data.rows;
+    const data = await prisma.posts.findMany({
+      where: {
+        status: {
+          not: 2,
+        },
+      },
+      select: {
+        id: true,
+        title: true,
+        coser_id: true,
+        creation_date: true,
+      },
+      skip: offset,
+      take: itemsPrePage,
+    });
+    return data;
   } catch (error) {
-    console.log("数据库错误", error);
-    throw new Error(`获取指定Coser的作品数量错误`);
+    console.error("数据库错误", error);
+    throw new Error(`获取指定Coser的作品数量错误,${error}`);
   }
 }

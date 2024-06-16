@@ -54,8 +54,8 @@ async function seedCosers(client) {
                 slug varchar(255) not null,
                 description text,
                 post_count int not null default 0,
-                cover_image varchar(255) default "",
-                background_image varchar(255) default ""
+                cover_image varchar(255) default '',
+                background_image varchar(255) default ''
             );
             create index if not exists idx_cosers_name on cosers(name);
             CREATE INDEX IF NOT EXISTS idx_cosers_id ON cosers(id);

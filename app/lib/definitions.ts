@@ -1,29 +1,31 @@
 export type User = {
-  id: string;
+  id: number;
   name: string;
   email: string;
   password: string;
-  created_at: string;
-  updated_at: string;
-  user_role: string;
+  created_at: string | Date;
+  updated_at: string | Date;
+  user_role: number;
 };
 
 export type Cosplay = {
   id: number;
   title: string;
-  cos_name: string;
-  cos_id: number;
-  cover?: string;
+  coser?: { id: number; name: string } | null;
+  cover?: string | undefined | null;
   content?: string;
   onload?: boolean;
-  creation_date?: string;
+  creation_date?: string | Date;
   view_count?: number;
-  status?:number
+  status?: number;
 };
 
 export type Coser = {
   id: number;
   name: string;
+  slug?: string;
+  description?: string | null;
   post_count?: number;
-  description?: string;
+  cover_image?: string | null;
+  background_image?: string | null;
 };

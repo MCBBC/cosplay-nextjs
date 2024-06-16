@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// 这里的model名字和数据库名字相对应，字段名也是一样
+model users {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  user_role   Int      @default(3)
+}
+
+model posts {
+  id            Int      @id @default(autoincrement())
+  title         String
+  coser_id      Int?
+  content       String
+  cover         String?
+  creation_date DateTime @default(now())
+  view_count     Int      @default(0)
+  status        Int      @default(1)
+  coser         cosers?  @relation(fields: [coser_id], references: [id])
+
+  @@index([coser_id], name: "idx_posts_coser_id")
+  @@index([creation_date, id], name: "idx_posts_creation_date_id")
+}
+
+model cosers {
+  id               Int     @id @default(autoincrement())
+  name             String
+  slug             String  @unique
+  description      String?
+  post_count       Int     @default(0)
+  cover_image      String? @default("")
+  background_image String? @default("")
+  posts            posts[]
+
+  @@index([name], name: "idx_cosers_name")
+}
