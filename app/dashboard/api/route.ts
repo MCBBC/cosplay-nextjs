@@ -64,8 +64,23 @@ async function exportUsersToCsv() {
 }
 
 export async function POST() {
-  await exportPostsToCsv();
-  await exportCosersToCsv();
-  await exportUsersToCsv();
-  return { code: 200, msg: "传输成功" };
+  try {
+    await exportPostsToCsv();
+    await exportCosersToCsv();
+    await exportUsersToCsv();
+    // 使用 Response 对象返回
+    return new Response(JSON.stringify({ code: 200, msg: "传输成功" }), {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    // 处理可能发生的错误
+    return new Response(JSON.stringify({ code: 500, msg: "服务器内部错误" }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 }

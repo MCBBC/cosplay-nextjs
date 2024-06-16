@@ -47,12 +47,12 @@ export function CosplayItem({ item }: { item: Cosplay }) {
   return (
     <>
       <Link
-        href={`/front/cosplays/${item.id}?name=${item.cos_name}&coserId=${item.cos_id}`}
+        href={`/front/cosplays/${item.id}?name=${item.coser?.name}&coserId=${item.coser?.id}`}
         className="space-y-3 flex-auto flex flex-col"
-        title={item.cos_name}>
+        title={item.coser?.name}>
         <div className="overflow-hidden rounded-md relative flex-auto">
           <Suspense fallback={<CosplayCoverSkeleton />}>
-            <CosplayCover src={item.cover} />
+            <CosplayCover src={item.cover || ""} />
           </Suspense>
         </div>
         <div className="space-y-1 text-md">

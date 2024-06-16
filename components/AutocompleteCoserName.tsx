@@ -6,7 +6,7 @@ export default function AutocompleteCoserName({
   coserId,
   onSelectCoser,
 }: {
-  coserId: number | string;
+  coserId: number;
   onSelectCoser?: Function;
 }) {
   let list = useAsyncList<Coser>({

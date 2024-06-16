@@ -9,9 +9,9 @@ import { useRouter } from "next-nprogress-bar";
 export default function CosplayAddWrapper() {
   const router = useRouter();
   const [title, setTitle] = useState("");
-  const [coserId, setCosId] = useState("0");
+  const [coserId, setCosId] = useState(0);
   const [cover, setCover] = useState("");
-  const selectedCoserId = (value: string) => {
+  const selectedCoserId = (value: number) => {
     setCosId(value);
   };
 
@@ -60,7 +60,7 @@ export default function CosplayAddWrapper() {
         onValueChange={(value) => setTitle(value)}
         placeholder="输入你的标题"
       />
-      <AutocompleteCoserName coserId={"0"} onSelectCoser={selectedCoserId} />
+      <AutocompleteCoserName coserId={0} onSelectCoser={selectedCoserId} />
       <div className="flex items-center">
         <Textarea
           value={cover}

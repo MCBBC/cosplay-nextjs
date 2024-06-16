@@ -97,7 +97,7 @@ export default function CosplayEditWrapper({
         <SelectItem key="2">禁止</SelectItem>
       </Select>
       <AutocompleteCoserName
-        coserId={detail?.coser_id || "0"}
+        coserId={detail?.coser_id || 0}
         onSelectCoser={selectedCoserId}
       />
       <div className="flex items-center">
