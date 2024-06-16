@@ -35,7 +35,7 @@ const AdBanner = ({
         console.log(error.message);
       }
     }
-  }, []);
+  }, [router]);
 
   return (
     <div ref={adRef}>

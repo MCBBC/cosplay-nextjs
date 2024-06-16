@@ -30,18 +30,22 @@ const CosplayContent = forwardRef(
         vd?.destroy();
         setVd(undefined);
       };
-    }, [markdownText]); // 将 markdownText 添加为依赖
+    }, [markdownText, vd]); // 将 markdownText 添加为依赖
 
-    useImperativeHandle(ref, () => ({
-      getContent: () => {
-        return vd?.getValue();
-      },
-    }), [vd]);
+    useImperativeHandle(
+      ref,
+      () => ({
+        getContent: () => {
+          return vd?.getValue();
+        },
+      }),
+      [vd]
+    );
 
     return <div id="vditor" className="mt-4" />;
   }
 );
 
-CosplayContent.displayName = 'CosplayContent'; // 给组件分配一个displayName
+CosplayContent.displayName = "CosplayContent"; // 给组件分配一个displayName
 
 export { CosplayContent };

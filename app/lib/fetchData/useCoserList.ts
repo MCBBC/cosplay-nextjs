@@ -49,7 +49,7 @@ export function useCoserList({ filterText = "" }: UseCoserListProps = {}) {
     setItems([]);
     setOffset(0);
     loadCoser(offset);
-  }, [loadCoser]);
+  }, [loadCoser, offset]);
 
   const onLoadMore = () => {
     const newOffset = offset + limit;
