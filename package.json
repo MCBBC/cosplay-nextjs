@@ -19,7 +19,6 @@
     "@prisma/client": "^5.15.0",
     "@react-stately/data": "^3.11.4",
     "@types/bcrypt": "^5.0.2",
-    "@vercel/postgres": "^0.8.0",
     "bcrypt": "^5.1.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
