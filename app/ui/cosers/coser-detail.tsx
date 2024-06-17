@@ -68,9 +68,6 @@ export async function CoserBackground({
   coserId: string | number;
   name: string;
 }) {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 6000);
-  });
   return (
     <Suspense fallback={<CoserDetailBackGroundSkeleton />}>
       <div className="relative">

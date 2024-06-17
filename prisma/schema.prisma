@@ -19,7 +19,7 @@ model users {
   password   String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  user_role   Int      @default(3)
+  user_role  Int      @default(3)
 }
 
 model posts {
@@ -29,7 +29,7 @@ model posts {
   content       String
   cover         String?
   creation_date DateTime @default(now())
-  view_count     Int      @default(0)
+  view_count    Int      @default(0)
   status        Int      @default(1)
   coser         cosers?  @relation(fields: [coser_id], references: [id])
 
@@ -46,6 +46,7 @@ model cosers {
   cover_image      String? @default("")
   background_image String? @default("")
   posts            posts[]
+  cover            String?
 
   @@index([name], name: "idx_cosers_name")
 }

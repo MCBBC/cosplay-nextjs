@@ -187,6 +187,11 @@ export async function fetchCosplayPagesWithSitemap({
         title: true,
         coser_id: true,
         creation_date: true,
+        coser:{
+          select:{
+            name:true
+          }
+        }
       },
       skip: offset,
       take: itemsPrePage,

@@ -47,7 +47,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
   return (
     <>
       <Link
-        href={`/front/cosplays/${item.id}?name=${item.coser?.name}&coserId=${item.coser?.id}`}
+        href={`/front/cosplays/${item.id}?name=${item.coser?.name}&coserId=${item.coser?.id}&title=${item.title}`}
         className="space-y-3 flex-auto flex flex-col"
         title={item.coser?.name}>
         <div className="overflow-hidden rounded-md relative flex-auto">

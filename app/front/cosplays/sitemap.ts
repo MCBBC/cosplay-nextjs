@@ -34,7 +34,7 @@ export default async function sitemap({
     process.env.SITE_URL ?? "https://sharecosplay.micromatrix.org";
   return products.map((product) => ({
     url: escapeXML(
-      `${BASE_URL}/front/cosplays/${product.id}?name=${product.title}&coserId=${product.coser_id}`
+      `${BASE_URL}/front/cosplays/${product.id}?name=${product.coser?.name}&coserId=${product.coser_id}&title=${product.title}`
     ),
     lastModified: product.creation_date,
     changeFrequency: "monthly",

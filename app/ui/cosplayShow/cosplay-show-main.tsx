@@ -34,7 +34,7 @@ export function GuessLikeItem({ cosplay }: { cosplay: Cosplay }) {
   const date = new DateFormatter("local").format(toDate);
   return (
     <Link
-      href={`/front/cosplays/${cosplay.id}?name=${cosplay.coser?.name}&coserId=${cosplay.coser?.id}`}>
+      href={`/front/cosplays/${cosplay.id}?name=${cosplay.coser?.name}&coserId=${cosplay.coser?.id}&title=${cosplay.title}`}>
       <div className="relative w-full h-32 xl:h-36 2xl:h-32">
         <CosplayFlatCover src={cosplay.cover || ""} />
       </div>
@@ -91,7 +91,7 @@ export function PopularItem({ recommend }: { recommend: Cosplay }) {
 
   return (
     <Link
-      href={`/front/cosplays/${recommend.id}?name=${recommend.coser?.name}&coserId=${recommend.coser?.id}`}
+      href={`/front/cosplays/${recommend.id}?name=${recommend.coser?.name}&coserId=${recommend.coser?.id}&title=${recommend.title}`}
       className="transition-all hover:scale-105 flex"
       target="_blank">
       <Image

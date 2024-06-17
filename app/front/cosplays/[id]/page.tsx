@@ -7,11 +7,11 @@ export function generateMetadata({
 }: {
   params?: { id: string };
   searchParams?: {
-    name: string;
+    title?: string;
   };
 }): Metadata {
   return {
-    title: searchParams?.name,
+    title: searchParams?.title,
   };
 }
 
