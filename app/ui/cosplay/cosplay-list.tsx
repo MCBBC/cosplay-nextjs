@@ -41,7 +41,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
         </div>
       </Link>
       <Link
-        href={`front/cosers/${item.coser?.id}`}
+        href={`/front/cosers/${item.coser?.id}`}
         className="flex items-center h-8 items-center">
         <Avatar
           size="sm"
