@@ -51,6 +51,7 @@ export async function fetchGuessYouLike(coserId: string | number) {
         title: true,
         cover: true,
         creation_date: true,
+        view_count:true,
         coser: {
           select: {
             id: true,

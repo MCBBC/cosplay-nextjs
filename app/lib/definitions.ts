@@ -15,10 +15,11 @@ export type Cosplay = {
   creation_date?: Date;
   status?: number;
   coser_id?: number | null;
-  coser: {
-    name: string;
-    avatar: string | null;
-    id: number;
+  view_count?: number | null;
+  coser?: {
+    name?: string;
+    avatar?: string | null;
+    id?: number;
   } | null;
 };
 

@@ -47,7 +47,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
           size="sm"
           color="default"
           showFallback
-          name={item.coser?.name[0]}
+          name={item.coser?.name && item.coser?.name[0]}
           src={item.coser?.avatar || ""}
           className="shrink-0 overflow-hidden rounded-full h-7 w-7"
         />
