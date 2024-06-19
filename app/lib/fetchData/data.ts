@@ -46,6 +46,7 @@ export async function fetchCosplay({
           select: {
             id: true, // 假设你只想包含 coser 的 id
             name: true, // 和 name 字段
+            avatar: true,
           },
         },
       },
@@ -122,6 +123,7 @@ export async function fetchCosplayByCoserId({
           select: {
             id: true,
             name: true,
+            avatar: true,
           },
         },
       },
@@ -187,11 +189,12 @@ export async function fetchCosplayPagesWithSitemap({
         title: true,
         coser_id: true,
         creation_date: true,
-        coser:{
-          select:{
-            name:true
-          }
-        }
+        coser: {
+          select: {
+            name: true,
+            avatar: true,
+          },
+        },
       },
       skip: offset,
       take: itemsPrePage,

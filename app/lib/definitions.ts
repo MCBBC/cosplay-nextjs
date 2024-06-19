@@ -9,15 +9,17 @@ export type User = {
 };
 
 export type Cosplay = {
-  id: number;
   title: string;
-  coser?: { id: number; name: string } | null;
-  cover?: string | undefined | null;
-  content?: string;
-  onload?: boolean;
-  creation_date?: string | Date;
-  view_count?: number;
+  id: number;
+  cover: string | null;
+  creation_date?: Date;
   status?: number;
+  coser_id?: number | null;
+  coser: {
+    name: string;
+    avatar: string | null;
+    id: number;
+  } | null;
 };
 
 export type Coser = {

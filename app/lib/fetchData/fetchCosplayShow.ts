@@ -86,6 +86,7 @@ export async function fetchPopularRecommend(limitNumber: number) {
           select: {
             id: true,
             name: true,
+            avatar: true,
           },
         },
       },
