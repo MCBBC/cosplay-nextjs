@@ -1,4 +1,3 @@
-import { fetchCoserInfoById } from "@/app/lib/fetchData/fetchCoser";
 import { EditCoserForm } from "@/app/ui/dashboard/coser/edit-form";
 
 export default async function Page({
@@ -12,8 +11,15 @@ export default async function Page({
     id: string;
   };
 }) {
-  const coserId = Number(params?.id) || 0;
-  const coserInfo = await fetchCoserInfoById({ coserId: coserId });
+  const coserInfo = {
+    id: 0,
+    name: "",
+    slug: "",
+    description: "",
+    post_count: 0,
+    avatar: "",
+    background_image: "",
+  };
   return (
     <>
       <EditCoserForm coserInfo={coserInfo} />

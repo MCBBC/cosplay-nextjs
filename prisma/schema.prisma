@@ -40,13 +40,11 @@ model posts {
 model cosers {
   id               Int     @id @default(autoincrement())
   name             String
-  slug             String  @unique
   description      String?
   post_count       Int     @default(0)
-  cover_image      String? @default("")
+  avatar           String? @default("")
   background_image String? @default("")
   posts            posts[]
-  cover            String?
 
   @@index([name], name: "idx_cosers_name")
 }

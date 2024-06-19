@@ -24,7 +24,7 @@ export default async function Page({
   ]);
   return (
     <div className="px-8">
-      <SearchComponents addUrl="/dashboard/cosplays/create" />
+      <SearchComponents addUrl="/dashboard/cosers/create" />
       <Suspense>
         <CoserTable tableData={tableData} />
       </Suspense>

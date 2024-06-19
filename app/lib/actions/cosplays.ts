@@ -13,9 +13,8 @@ export async function addCosplay({
   content: string;
   cover: string;
 }) {
-  // 省略验证逻辑...
   try {
-    const data = await prisma.posts.create({
+    await prisma.posts.create({
       data: {
         title,
         coser_id: coserId,
@@ -23,9 +22,8 @@ export async function addCosplay({
         cover,
       },
     });
-    // 重新验证路径（如果你在使用 Next.js 的 ISR）
     // revalidatePath("/dashboard/cosplays");
-    return { message: "Cosplay Created." };
+    return { message: "Cosplay Created.", code: 200 };
   } catch (error) {
     console.log(error);
     return {

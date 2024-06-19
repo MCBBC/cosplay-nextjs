@@ -30,7 +30,7 @@ const CosplayContent = forwardRef(
         vd?.destroy();
         setVd(undefined);
       };
-    }, [markdownText, vd]); // 将 markdownText 添加为依赖
+    }, [markdownText]); // 将 markdownText 添加为依赖
 
     useImperativeHandle(
       ref,

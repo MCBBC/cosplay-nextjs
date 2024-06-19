@@ -1,5 +1,4 @@
 // 如果你使用Prisma，它会为你的模型自动生成类型
-import { cosers as Cosers } from "@prisma/client";
 import { prisma } from "../prisma";
 
 const ITEMS_PRE_PAGE = 20;
@@ -75,5 +74,21 @@ export async function fetchCoserPages({
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch total number of Cosers.");
+  }
+}
+
+export async function fetchCoserInfoById({ coserId }: { coserId: number }) {
+  try {
+    const data = await prisma.cosers.findUnique({
+      where: {
+        id: coserId,
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("数据库错误", error);
+    throw new Error(`获取数据错误`);
+  } finally {
+    await prisma.$disconnect(); // 确保数据库连接已关闭
   }
 }

@@ -26,6 +26,6 @@ export type Coser = {
   slug?: string;
   description?: string | null;
   post_count?: number;
-  cover_image?: string | null;
+  avatar?: string | null;
   background_image?: string | null;
 };

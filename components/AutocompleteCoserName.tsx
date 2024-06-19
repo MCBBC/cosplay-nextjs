@@ -12,7 +12,7 @@ export default function AutocompleteCoserName({
   let list = useAsyncList<Coser>({
     async load({ signal, filterText }) {
       let res = await fetch(
-        `/dashboard/cosers/api?query=${filterText}&offset=0&limit=20&coserId=${coserId}`,
+        `/dashboard/cosers/filter?query=${filterText}&offset=0&limit=20&coserId=${coserId}`,
         {
           signal,
         }

@@ -38,13 +38,13 @@ export default function CosplayAddWrapper() {
       console.log("封面不要忘记了");
       return;
     }
-    const { message } = await addCosplay({
+    const result = await addCosplay({
       title: title,
-      coserId,
+      coserId: Number(coserId),
       content: vditorRef.current.getContent(),
       cover: cover,
     });
-    if (message) {
+    if (result?.code) {
       router.push("/dashboard/cosplays");
     }
   };

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Coser } from "../definitions";
+import { cosers as Coser } from "@prisma/client";
 
 export type UseCoserListProps = {
   filterText?: string;
@@ -22,7 +22,7 @@ export function useCoserList({ filterText = "" }: UseCoserListProps = {}) {
         setIsLoading(true);
 
         let res = await fetch(
-          `/dashboard/cosers/api?offset=${currentOffset}&limit=${limit}&query=${filterText}`,
+          `/dashboard/cosers/filter?offset=${currentOffset}&limit=${limit}&query=${filterText}`,
           { signal }
         );
         if (!res.ok) {
