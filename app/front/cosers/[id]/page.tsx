@@ -1,22 +1,21 @@
+import { fetchCoserInfoById } from "@/app/lib/fetchData/fetchCoser";
 import { CoserDetailMain } from "@/app/ui/cosers/coser-detail";
-export default function Page({
+export default async function Page({
   searchParams,
   params,
 }: {
   searchParams?: {
-    name?: string;
     page?: string;
   };
   params?: {
     id?: string;
   };
 }) {
-  const coserName = searchParams?.name || "";
-  const coserId = params?.id || 0;
+  const coserId = Number(params?.id) || 0;
+  const coserInfo = await fetchCoserInfoById({ coserId: coserId });
   return (
     <CoserDetailMain
-      name={coserName}
-      id={coserId}
+      coserInfo={coserInfo}
       searchParams={searchParams}></CoserDetailMain>
   );
 }

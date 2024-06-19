@@ -13,6 +13,7 @@ import { cosers as Coser } from "@prisma/client";
 import Link from "next/link";
 import { Key, useCallback } from "react";
 import { DateFormatter } from "@internationalized/date";
+import { deleteCoser } from "@/app/lib/actions/cosers";
 
 export default function CoserTable({ tableData }: { tableData: any[] }) {
   const columns = [
@@ -25,7 +26,9 @@ export default function CoserTable({ tableData }: { tableData: any[] }) {
       case "name":
         return <p>{coser.name}</p>;
       case "actions":
-        const deleteCosplayFn = async () => {};
+        const deleteCosplayFn = async () => {
+          await deleteCoser(coser.id);
+        };
         return (
           <div className="relative flex items-center gap-6">
             <Tooltip content="编辑">

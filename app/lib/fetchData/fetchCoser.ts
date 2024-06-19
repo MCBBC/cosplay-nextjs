@@ -32,7 +32,7 @@ export async function fetchCoserList({
       },
       orderBy: [
         {
-          id: "asc",
+          id: "desc",
         },
         {
           name: "asc",

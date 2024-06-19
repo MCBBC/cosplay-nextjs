@@ -106,14 +106,16 @@ export function EditCoserForm({ coserInfo }: { coserInfo: Cosers | null }) {
       if (coserInfo?.id) {
         _formData.id = coserInfo.id;
       }
-      await fetch("/dashboard/cosers/edit", {
+      const result = await fetch("/dashboard/cosers/edit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(_formData),
       });
-      router.push("/dashboard/cosers");
+      if (result.ok) {
+        router.push("/dashboard/cosers");
+      }
     }
   };
   return (
