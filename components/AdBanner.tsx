@@ -25,12 +25,12 @@ const AdBanner = ({
         );
 
         // 检测广告位是否被填充内容
-        setTimeout(() => {
-          let flag = AdBlockDetect(adRef.current);
-          if (flag) {
-            router.push("/adBlock");
-          }
-        }, 4000); // 可能需要调整这个时间，确保广告有足够时间加载
+        // setTimeout(() => {
+        //   let flag = AdBlockDetect(adRef.current);
+        //   if (flag) {
+        //     router.push("/adBlock");
+        //   }
+        // }, 4000); // 可能需要调整这个时间，确保广告有足够时间加载
       } catch (error: any) {
         console.log(error.message);
       }
