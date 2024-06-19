@@ -82,7 +82,7 @@ const CoserBackground = forwardRef(
     );
   }
 );
-CoserBackground.displayName = "displayName";
+CoserBackground.displayName = "CoserBackground";
 
 export type CoserType = {
   avatar: string;
