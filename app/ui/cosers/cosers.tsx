@@ -63,7 +63,11 @@ export function CoserItem({ coser }: { coser: Coser }) {
     <Link
       href={`/front/cosers/${coser.id}`}
       className="flex items-center transition-all hover:bg-accent p-3">
-      <Avatar name={coser.name[0]} className="w-9 h-9" />
+      <Avatar
+        name={coser.name[0]}
+        src={coser.avatar || ""}
+        className="w-9 h-9"
+      />
       <h3 className="font-medium leading-none text-sm ml-2 truncate">
         {coser.name}
       </h3>

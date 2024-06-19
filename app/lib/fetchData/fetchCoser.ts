@@ -29,6 +29,7 @@ export async function fetchCoserList({
       select: {
         id: true,
         name: true,
+        avatar: true,
       },
       orderBy: [
         {
