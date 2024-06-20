@@ -54,11 +54,11 @@ const CoserBackground = forwardRef(
           <div className="relative">
             <Avatar
               color="default"
-              showFallback
               className="w-20 md:w-32 h-20 md:h-32 p-1 md:p-2 border border-solid border-gray-200 bg-white -mt-16 z-10 shrink-0"
               name={name[0]}
               src={avatar}
               radius="sm"
+              showFallback={true}
             />
             <Input
               className="absolute top-0 left-0 right-0 bottom-0 z-20"

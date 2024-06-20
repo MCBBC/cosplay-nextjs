@@ -76,7 +76,7 @@ export async function CoserBackground({
         <div className="flex items-end p-3 md:px-6 md:pb-4 md:pt-3 border border-solid border-gray-200">
           <Avatar
             color="default"
-            showFallback
+            showFallback={true}
             className="w-20 md:w-32 h-20 md:h-32 p-1 md:p-2 border border-solid border-gray-200 bg-white -mt-16 z-10 shrink-0"
             name={name[0]}
             src={avatar}

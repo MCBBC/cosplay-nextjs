@@ -23,7 +23,7 @@ export default async function sitemap({
   const BASE_URL =
     process.env.SITE_URL ?? "https://sharecosplay.micromatrix.org";
   return products.map((product) => ({
-    url: `${BASE_URL}/front/cosers/${product.id}?name=${product.name}`,
+    url: `${BASE_URL}/front/cosers/${product.id}`,
     priority: 0.9,
   }));
 }

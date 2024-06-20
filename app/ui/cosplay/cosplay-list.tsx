@@ -46,7 +46,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
         <Avatar
           size="sm"
           color="default"
-          showFallback
+          showFallback={true}
           name={item.coser?.name && item.coser?.name[0]}
           src={item.coser?.avatar || ""}
           className="shrink-0 overflow-hidden rounded-full h-7 w-7"

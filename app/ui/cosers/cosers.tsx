@@ -67,6 +67,7 @@ export function CoserItem({ coser }: { coser: Coser }) {
         name={coser.name[0]}
         src={coser.avatar || ""}
         className="w-9 h-9"
+        showFallback={true}
       />
       <h3 className="font-medium leading-none text-sm ml-2 truncate">
         {coser.name}
