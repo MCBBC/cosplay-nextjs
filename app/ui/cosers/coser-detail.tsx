@@ -6,7 +6,7 @@ import { CoserDetailBackGroundSkeleton } from "../skeletons/cosers-skeleton";
 import { CosplayList } from "./coser-show";
 import { CustomPagination } from "../common/pagination";
 import { fetchCosplayPagesByCoserId } from "@/app/lib/fetchData/data";
-import { CoserDetailSearch } from "./coser-detail-search";
+// import { CoserDetailSearch } from "./coser-detail-search";
 import { cosers as Cosers } from "@prisma/client";
 export async function CoserDetailMain({
   coserInfo,
@@ -36,7 +36,7 @@ export async function CoserDetailMain({
         backgroundImg={coserInfo?.background_image || ""}
         name={coserInfo?.name || ""}
       />
-      <CoserDetailSearch />
+      {/* <CoserDetailSearch /> */}
       <CosplayList
         coserId={coserInfo?.id || 0}
         currentPage={searchParams?.page}
