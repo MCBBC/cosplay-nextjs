@@ -1,4 +1,5 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -15,8 +16,19 @@ const AdBanner = ({
 }: AdBannerTypes) => {
   const adRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
-    if (adRef.current && !adRef.current.getAttribute("data-loading-flag")) {
+    // 只在客户端渲染时设置 isClient 为 true
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (
+      isClient &&
+      adRef.current &&
+      !adRef.current.getAttribute("data-loading-flag")
+    ) {
       try {
         adRef.current.setAttribute("data-loading-flag", "true");
         // 尝试加载广告
@@ -27,33 +39,21 @@ const AdBanner = ({
         console.log(error.message);
       }
     }
-  }, [router]);
+  }, [isClient, router]);
 
   return (
     <div ref={adRef}>
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-5901616898778649"
-        data-ad-slot={dataAdSlot}
-        data-ad-format={dataAdFormat}
-        data-full-width-responsive={dataFullWidthResponsive.toString()}></ins>
+      {isClient && (
+        <ins
+          className="adsbygoogle"
+          style={{ display: "block" }}
+          data-ad-client="ca-pub-5901616898778649"
+          data-ad-slot={dataAdSlot}
+          data-ad-format={dataAdFormat}
+          data-full-width-responsive={dataFullWidthResponsive.toString()}></ins>
+      )}
     </div>
   );
 };
 
-/**
- * @Author: HideInMatrix
- * @description: 检测Google广告是否被屏蔽
- * @return {*}
- * @Date: 2024-06-15
- */
-function AdBlockDetect(adRef: HTMLDivElement | null) {
-  if (!adRef?.firstChild?.firstChild) {
-    // 如果广告位没有被填充内容，认为广告可能被屏蔽
-    return true;
-  }
-  return false;
-}
-
-export { AdBanner, AdBlockDetect };
+export { AdBanner };

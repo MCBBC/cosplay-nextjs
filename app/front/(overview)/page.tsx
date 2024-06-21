@@ -4,8 +4,10 @@ import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
 import { AdBanner } from "@/components/AdBanner";
 import { fetchRandomRecommend } from "@/app/lib/fetchData/fetchCosplayShow";
+
 export default async function Page() {
   const dataList = await fetchRandomRecommend(30);
+
   return (
     <>
       <div className="h-6"></div>

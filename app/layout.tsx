@@ -5,6 +5,7 @@ import NprogressProvider from "@/components/NProgressProvider";
 import AdSense from "@/components/AdSense";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
+import { BlockAdBlock } from "@/app/ui/common/block-ad-block";
 
 export const metadata: Metadata = {
   title: {
@@ -34,6 +35,7 @@ export default function RootLayout({
           {children}
           {/* </Providers> */}
         </NprogressProvider>
+        <BlockAdBlock />
       </body>
     </html>
   );
