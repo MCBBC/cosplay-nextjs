@@ -16,8 +16,13 @@ import {
 import Link from "next/link";
 import { Key, useCallback } from "react";
 import CosplayStatus from "./status";
+import { revalidatePath } from "next/cache";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function CosplaysTable({ tableData }: { tableData: any[] }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const params = new URLSearchParams(searchParams);
   const columns = [
     { name: "标题", uid: "title" },
     { name: "封面", uid: "cover" },
@@ -39,7 +44,7 @@ export default function CosplaysTable({ tableData }: { tableData: any[] }) {
             loading="lazy"
             shadow="md"
             alt="cover"
-            src={cosplay?.cover || ''}
+            src={cosplay?.cover || ""}
           />
         );
       case "cosers":
@@ -53,6 +58,7 @@ export default function CosplaysTable({ tableData }: { tableData: any[] }) {
       case "actions":
         const deleteCosplayFn = async () => {
           await deleteCosplay(cosplay.id);
+          revalidatePath(`${pathname}?${params.toString()}`);
         };
         return (
           <div className="relative flex items-center gap-6">
