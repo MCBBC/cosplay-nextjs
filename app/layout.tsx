@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { inter } from "@/fonts";
 // import { Providers } from "./providers";
 import NprogressProvider from "@/components/NProgressProvider";
-import AdSense from "@/components/AdSense";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
+import { AutoGoogle } from "./ui/common/auto-google";
 // import { BlockAdBlock } from "@/app/ui/common/block-ad-block";
 
 export const metadata: Metadata = {
@@ -24,9 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* <GoogleAdSense /> */}
-        <AdSense pId="5901616898778649" />
-        <GoogleAnalytics gaId="G-15MZJRZZB1" />
+        <AutoGoogle />
         <link rel="icon" href="/images/favicon.ico" />
       </head>
       <body className={inter.className}>
