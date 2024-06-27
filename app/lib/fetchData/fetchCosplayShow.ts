@@ -135,6 +135,9 @@ export async function fetchRandomRecommend(limitNumber: number) {
         id: {
           in: selectedIds,
         },
+        status: {
+          not: 2,
+        },
       },
       include: {
         coser: {
