@@ -143,19 +143,27 @@ export async function CosplayShowContainer({
     }));
   return (
     <>
-      <Suspense fallback={<CosplayTitleSkeleton />}>
-        <CosplayShowTitle title={data?.title || ""} />
-      </Suspense>
-      <CosplayInfo date={date} viewCount={data?.view_count || 0} />
-      <Suspense fallback={<CosplayContainerSkeleton />}>
-        <div className="flex flex-col items-center">
-          <ImageListWrapper
-            markdownContent={
-              data?.content || Array.from({ length: 12 }, (item) => "")
-            }
-          />
+      {data?.status != 2 ? (
+        <>
+          <Suspense fallback={<CosplayTitleSkeleton />}>
+            <CosplayShowTitle title={data?.title || ""} />
+          </Suspense>
+          <CosplayInfo date={date} viewCount={data?.view_count || 0} />
+          <Suspense fallback={<CosplayContainerSkeleton />}>
+            <div className="flex flex-col items-center">
+              <ImageListWrapper
+                markdownContent={
+                  data?.content || Array.from({ length: 12 }, (item) => "")
+                }
+              />
+            </div>
+          </Suspense>
+        </>
+      ) : (
+        <div className="flex flex-auto items-center justify-center">
+          该图组被封禁
         </div>
-      </Suspense>
+      )}
     </>
   );
 }
@@ -179,7 +187,7 @@ export async function CosplayShowMain({
     <>
       <BreadcrumbsComponents breads={breads} />
       <div className="flex flex-col lg:flex-row">
-        <div className="w-full">
+        <div className="w-full flex flex-col">
           <CosplayShowContainer cosplayId={cosplayId} />
           <div className="mt-6">
             <GuessYouLike coserId={coserId} />

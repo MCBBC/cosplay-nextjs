@@ -15,7 +15,7 @@ export function generateMetadata({
   };
 }
 
-export default function Page({
+export default async function Page({
   searchParams,
   params,
 }: {
