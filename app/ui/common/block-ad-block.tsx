@@ -10,6 +10,6 @@ export function BlockAdBlock() {
     if (adBlockDetected) {
       router.push("/adBlock");
     }
-  }, [adBlockDetected, router]);
+  }, [router]);
   return <></>;
 }

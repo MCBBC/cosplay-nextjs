@@ -30,15 +30,12 @@ export async function CosersMain({
   const totalPages = await fetchCoserPages({ query });
   return (
     <>
+    
       <BreadcrumbsComponents breads={breads}></BreadcrumbsComponents>
       <Search placeholder="输入名字搜索" className="mx-auto" />
       <CoserList currentPage={currentPage} query={query} />
       <CustomPagination totalPages={totalPages} />
-      <AdBanner
-        dataAdFormat="fluid"
-        dataFullWidthResponsive={false}
-        dataAdSlot="1013737103"
-      />
+
     </>
   );
 }
