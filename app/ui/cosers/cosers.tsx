@@ -10,6 +10,7 @@ import {
 import { Coser } from "@/app/lib/definitions";
 import { Suspense } from "react";
 import { CosersListSkeleton } from "../skeletons/cosers-skeleton";
+import { AdBanner } from "@/components/AdBanner";
 
 export async function CosersMain({
   searchParams,
@@ -33,6 +34,11 @@ export async function CosersMain({
       <Search placeholder="输入名字搜索" className="mx-auto" />
       <CoserList currentPage={currentPage} query={query} />
       <CustomPagination totalPages={totalPages} />
+      <AdBanner
+        dataAdFormat="fluid"
+        dataFullWidthResponsive={false}
+        dataAdSlot="1013737103"
+      />
     </>
   );
 }
