@@ -5,15 +5,16 @@ import { useDetectAdBlock } from "adblock-detect-react";
 import { usePathname } from "next/navigation";
 
 export function BlockAdBlock() {
+  const adBlockDetected = useDetectAdBlock();
   const router = useRouter();
   const pathname = usePathname();
-  const adBlockDetected = useDetectAdBlock();
+
   useEffect(() => {
     // console.log("router change", adBlockDetected);
 
     if (adBlockDetected) {
       router.push("/adBlock");
     }
-  }, [pathname]);
+  }, [pathname, adBlockDetected]);
   return <></>;
 }
