@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { AdBanner } from "@/components/AdBanner";
 import { fetchRandomRecommend } from "@/app/lib/fetchData/fetchCosplayShow";
 
-export const revalidate = 86400;
+export const revalidate = 360;
 export default async function Page() {
   const dataList = await fetchRandomRecommend(30);
 
