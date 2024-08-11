@@ -10,7 +10,7 @@ export function BlockAdBlock() {
   const pathname = usePathname();
 
   useEffect(() => {
-    console.log("router change", adBlockDetected);
+    // console.log("router change", adBlockDetected);
 
     if (adBlockDetected) {
       router.push("/adBlock");
