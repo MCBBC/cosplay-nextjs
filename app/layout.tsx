@@ -4,7 +4,7 @@ import { inter } from "@/fonts";
 import NprogressProvider from "@/components/NProgressProvider";
 import "./globals.css";
 import { AutoGoogle } from "./ui/common/auto-google";
-import { BlockAdBlock } from "@/app/ui/common/block-ad-block";
+
 
 export const metadata: Metadata = {
   title: {
@@ -32,7 +32,7 @@ export default function RootLayout({
           {children}
           {/* </Providers> */}
         </NprogressProvider>
-        <BlockAdBlock />
+        
       </body>
     </html>
   );
