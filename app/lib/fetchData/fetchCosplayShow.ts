@@ -110,6 +110,7 @@ export async function fetchPopularRecommend(limitNumber: number) {
  * @Date: 2024-05-31
  */
 export async function fetchRandomRecommend(limitNumber: number) {
+  
   try {
     // Step 1: 获取所有符合条件的ID
     const allIds = await prisma.posts.findMany({
