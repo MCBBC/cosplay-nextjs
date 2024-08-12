@@ -8,7 +8,7 @@ export default function RightContainer({
     <ScrollShadow
       hideScrollBar={true}
       visibility="none"
-      className="flex-auto h-full overflow-auto">
+      className="flex-auto h-dvh overflow-auto">
       {children}
     </ScrollShadow>
   );
