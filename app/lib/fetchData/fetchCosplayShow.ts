@@ -1,4 +1,3 @@
-import { revalidatePath } from "next/cache";
 import { prisma } from "../prisma";
 
 /**
@@ -151,7 +150,6 @@ export async function fetchRandomRecommend(limitNumber: number) {
       },
     });
 
-    revalidatePath("/front");
     return data;
   } catch (error) {
     console.error("数据库错误", error);

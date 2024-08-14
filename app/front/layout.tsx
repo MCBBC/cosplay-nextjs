@@ -9,13 +9,13 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adBlockDetected = useDetectAdBlock();
+  // const adBlockDetected = useDetectAdBlock();
   return (
     <main className="flex h-screen">
       <SideNav></SideNav>
       <RightContainer>
         <TitleHeader></TitleHeader>
-        {adBlockDetected ? (
+        {/* {adBlockDetected ? (
           <div className="flex items-center justify-center flex-col">
             <h3>Please disable your ad blocker!</h3>
             <p>
@@ -24,8 +24,8 @@ export default function Layout({
             </p>
           </div>
         ) : (
-          <div className="w-full px-8">{children}</div>
-        )}
+        )} */}
+        <div className="w-full px-8">{children}</div>
       </RightContainer>
     </main>
   );

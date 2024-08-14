@@ -20,7 +20,12 @@ export default function TitleHeader() {
         </NavbarContent>
 
         <NavbarContent className="flex items-center justify-center py-3 px-4">
-          <Image src={Favicon} alt="网站图标" className="w-10 h-10 mr-4" />
+          <Image
+            src={Favicon}
+            alt="网站图标"
+            className="w-10 h-10 mr-4"
+            unoptimized={true}
+          />
           <div className="text-lg font-semibold">Share Cosplay</div>
         </NavbarContent>
         <NavbarContent className="md:hidden mr-4 ">
