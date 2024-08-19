@@ -13,7 +13,7 @@ export default async function Page() {
       <div className="h-6"></div>
       <div className="flex items-center space-x-2 mb-6 p-2 rounded-lg border text-foreground text-sm">
         <BellIcon className="w-4 h-4" />
-        <p>项目还未完工,有些许BUG</p>
+        <p>项目还未完工,有些许BUG 邮箱:micromatrix@micromatrix.org</p>
       </div>
       <Suspense fallback={<CosplayListSkeleton />}>
         <CosplayList dataList={dataList}></CosplayList>
