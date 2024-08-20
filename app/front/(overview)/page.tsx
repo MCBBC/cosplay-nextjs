@@ -2,7 +2,7 @@ import { CosplayList } from "@/app/ui/cosplay/cosplay-list";
 import { CosplayListSkeleton } from "@/app/ui/skeletons/image-group-skeleton";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
-import { AdBanner } from "@/components/AdBanner";
+// import { AdBanner } from "@/components/AdBanner";
 import { fetchRandomRecommend } from "@/app/lib/fetchData/fetchCosplayShow";
 
 export default async function Page() {
@@ -14,15 +14,16 @@ export default async function Page() {
       <div className="flex items-center space-x-2 mb-6 p-2 rounded-lg border text-foreground text-sm">
         <BellIcon className="w-4 h-4" />
         <p>项目还未完工,有些许BUG 邮箱:micromatrix@micromatrix.org</p>
+        <p>网站转到sharecosplay.micromatrix.cf下</p>
       </div>
       <Suspense fallback={<CosplayListSkeleton />}>
         <CosplayList dataList={dataList}></CosplayList>
       </Suspense>
-      <AdBanner
+      {/* <AdBanner
         dataAdFormat="fluid"
         dataFullWidthResponsive={false}
         dataAdSlot="1013737103"
-      />
+      /> */}
     </>
   );
 }

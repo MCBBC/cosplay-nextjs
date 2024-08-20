@@ -10,7 +10,7 @@ import {
 import { Coser } from "@/app/lib/definitions";
 import { Suspense } from "react";
 import { CosersListSkeleton } from "../skeletons/cosers-skeleton";
-import { AdBanner } from "@/components/AdBanner";
+// import { AdBanner } from "@/components/AdBanner";
 
 export async function CosersMain({
   searchParams,

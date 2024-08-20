@@ -3,8 +3,7 @@ import { inter } from "@/fonts";
 // import { Providers } from "./providers";
 import NprogressProvider from "@/components/NProgressProvider";
 import "./globals.css";
-import { AutoGoogle } from "./ui/common/auto-google";
-
+// import { AutoGoogle } from "./ui/common/auto-google";
 
 export const metadata: Metadata = {
   title: {
@@ -23,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <AutoGoogle />
+        {/* <AutoGoogle /> */}
         <link rel="icon" href="/images/favicon.ico" />
       </head>
       <body className={inter.className}>
@@ -32,7 +31,6 @@ export default function RootLayout({
           {children}
           {/* </Providers> */}
         </NprogressProvider>
-        
       </body>
     </html>
   );
