@@ -7,6 +7,7 @@ import {
   AdsterraNativeBanner,
   AdsxoclickBanner,
 } from "./ui/common/auto-google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +28,7 @@ export default function RootLayout({
       <head>
         <AdsterraNativeBanner />
         <AdsxoclickBanner />
+        <GoogleAnalytics gaId="G-15MZJRZZB1" />
         <link rel="icon" href="/images/favicon.ico" />
         <meta
           name="6a97888e-site-verification"
