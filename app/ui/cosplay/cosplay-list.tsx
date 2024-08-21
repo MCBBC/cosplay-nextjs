@@ -51,12 +51,12 @@ export function CosplayItem({ item }: { item: Cosplay }) {
           src={item.coser?.avatar || ""}
           className="shrink-0 overflow-hidden rounded-full h-7 w-7"
         /> */}
-        {item.coser?.name ? (
+        {item.coser?.avatar ? (
           <Avatar
             size="sm"
             color="default"
             showFallback={true}
-            name={item.coser.name[0]}
+            src={item.coser.avatar || ""}
             className="shrink-0 overflow-hidden rounded-full h-7 w-7"
           />
         ) : (
@@ -64,7 +64,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
             size="sm"
             color="default"
             showFallback={true}
-            src={item.coser?.avatar || ""}
+            name={item.coser?.name && item.coser?.name[0]}
             className="shrink-0 overflow-hidden rounded-full h-7 w-7"
           />
         )}
