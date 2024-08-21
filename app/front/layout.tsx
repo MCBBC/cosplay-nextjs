@@ -2,7 +2,8 @@
 import TitleHeader from "@/app/ui/mainLayout/title-header";
 import SideNav from "@/app/ui/mainLayout/side-nav";
 import RightContainer from "@/app/ui/mainLayout/right-container";
-import AdsterraNativeBannerDom from "@/components/AdsterraNativeBannerDom";
+import AdsterraNativeBannerDom from "@/components/adsterra-ads/AdsterraNativeBannerDom";
+import DesktopFullpage from "@/components/exoclick-ads/DesktopFullpage";
 // import { useDetectAdBlock } from "adblock-detect-react";
 
 export default function Layout({
@@ -28,6 +29,7 @@ export default function Layout({
         )} */}
         <div className="w-full px-8">
           {children}
+          <DesktopFullpage />
           <AdsterraNativeBannerDom></AdsterraNativeBannerDom>
         </div>
       </RightContainer>

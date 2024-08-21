@@ -3,7 +3,10 @@ import { inter } from "@/fonts";
 // import { Providers } from "./providers";
 import NprogressProvider from "@/components/NProgressProvider";
 import "./globals.css";
-import { AdsterraNativeBanner } from "./ui/common/auto-google";
+import {
+  AdsterraNativeBanner,
+  AdsxoclickBanner,
+} from "./ui/common/auto-google";
 
 export const metadata: Metadata = {
   title: {
@@ -23,6 +26,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <AdsterraNativeBanner />
+        <AdsxoclickBanner />
         <link rel="icon" href="/images/favicon.ico" />
         <meta
           name="6a97888e-site-verification"
