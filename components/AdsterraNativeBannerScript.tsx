@@ -10,7 +10,7 @@ const AdsterraNativeBannerScript = ({ pId }: AdsenseTypes) => {
     <Script
       async
       data-cfasync="false"
-      src={`//pl24107554.highratecpm.com/${pId}/invoke.js`}></Script>
+      src={`//comarind.com/${pId}/invoke.js`}></Script>
   );
 };
 
