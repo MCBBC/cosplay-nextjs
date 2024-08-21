@@ -24,6 +24,9 @@ export default function RootLayout({
       <head>
         <AdsterraNativeBanner />
         <link rel="icon" href="/images/favicon.ico" />
+        <meta
+          name="6a97888e-site-verification"
+          content="29135df34c9ebbb0633daabdeb8a80c8"></meta>
       </head>
       <body className={inter.className}>
         <NprogressProvider>
