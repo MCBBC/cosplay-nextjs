@@ -3,17 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-type AdBannerTypes = {
-  dataAdSlot: string;
-  dataAdFormat: string;
-  dataFullWidthResponsive: boolean;
-};
-
-const AdBanner = ({
-  dataAdSlot,
-  dataAdFormat,
-  dataFullWidthResponsive,
-}: AdBannerTypes) => {
+const AdsterraNativeBannerDom = () => {
   const adRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
@@ -43,17 +33,9 @@ const AdBanner = ({
 
   return (
     <div ref={adRef}>
-      {isClient && (
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client="ca-pub-5901616898778649"
-          data-ad-slot={dataAdSlot}
-          data-ad-format={dataAdFormat}
-          data-full-width-responsive={dataFullWidthResponsive.toString()}></ins>
-      )}
+      {isClient && <div id="container-09f1f8d46834983118d9266f5b4eaf90"></div>}
     </div>
   );
 };
 
-export { AdBanner };
+export default AdsterraNativeBannerDom;
