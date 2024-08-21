@@ -4,6 +4,7 @@ import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
 // import { AdBanner } from "@/components/AdBanner";
 import { fetchRandomRecommend } from "@/app/lib/fetchData/fetchCosplayShow";
+import NotificationModal from "@/app/ui/modal";
 
 export default async function Page() {
   const dataList = await fetchRandomRecommend(30);
@@ -19,6 +20,7 @@ export default async function Page() {
       <Suspense fallback={<CosplayListSkeleton />}>
         <CosplayList dataList={dataList}></CosplayList>
       </Suspense>
+      <NotificationModal></NotificationModal>
       {/* <AdBanner
         dataAdFormat="fluid"
         dataFullWidthResponsive={false}
