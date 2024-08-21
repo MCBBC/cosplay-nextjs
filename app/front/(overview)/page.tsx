@@ -12,10 +12,12 @@ export default async function Page() {
   return (
     <>
       <div className="h-6"></div>
-      <div className="flex items-center space-x-2 mb-6 p-2 rounded-lg border text-foreground text-sm">
+      <div className="flex md:flex-row flex-col flex-wrap items-center space-x-2 mb-6 p-2 rounded-lg border text-foreground text-sm">
         <BellIcon className="w-4 h-4" />
-        <p>项目还未完工,有些许BUG 邮箱:micromatrix@micromatrix.org</p>
-        <p>网站转到sharecosplay.micromatrix.cf下</p>
+        <p>
+          项目还未完工,有些许BUG 邮箱:micromatrix@micromatrix.org
+          网站转到sharecosplay.micromatrix.cf下
+        </p>
       </div>
       <Suspense fallback={<CosplayListSkeleton />}>
         <CosplayList dataList={dataList}></CosplayList>
