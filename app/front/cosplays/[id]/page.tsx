@@ -1,5 +1,5 @@
 import { CosplayShowMain } from "@/app/ui/cosplayShow/cosplay-show-main";
-import AdsterraNativeBannerDom from "@/components/AdsterraNativeBannerDom";
+// import AdsterraNativeBannerDom from "@/components/AdsterraNativeBannerDom";
 // import { AdBanner } from "@/components/AdBanner";
 import { Metadata } from "next/types";
 
@@ -43,7 +43,7 @@ export default async function Page({
         dataFullWidthResponsive={false}
         dataAdSlot="6557707820"
       /> */}
-      <AdsterraNativeBannerDom></AdsterraNativeBannerDom>
+      {/* <AdsterraNativeBannerDom></AdsterraNativeBannerDom> */}
     </>
   );
 }

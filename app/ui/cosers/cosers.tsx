@@ -10,7 +10,7 @@ import {
 import { Coser } from "@/app/lib/definitions";
 import { Suspense } from "react";
 import { CosersListSkeleton } from "../skeletons/cosers-skeleton";
-import AdsterraNativeBannerDom from "@/components/AdsterraNativeBannerDom";
+// import AdsterraNativeBannerDom from "@/components/AdsterraNativeBannerDom";
 // import { AdBanner } from "@/components/AdBanner";
 
 export async function CosersMain({
@@ -31,12 +31,11 @@ export async function CosersMain({
   const totalPages = await fetchCoserPages({ query });
   return (
     <>
-    
       <BreadcrumbsComponents breads={breads}></BreadcrumbsComponents>
       <Search placeholder="输入名字搜索" className="mx-auto" />
       <CoserList currentPage={currentPage} query={query} />
       <CustomPagination totalPages={totalPages} />
-      <AdsterraNativeBannerDom></AdsterraNativeBannerDom>
+      {/* <AdsterraNativeBannerDom></AdsterraNativeBannerDom> */}
     </>
   );
 }
