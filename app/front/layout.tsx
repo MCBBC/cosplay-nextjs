@@ -5,6 +5,7 @@ import RightContainer from "@/app/ui/mainLayout/right-container";
 import AdsterraNativeBannerDom from "@/components/adsterra-ads/AdsterraNativeBannerDom";
 import DesktopFullpage from "@/components/exoclick-ads/DesktopFullpage";
 import PopunderAds from "@/components/exoclick-ads/Popunder";
+import ExoclickBanner from "@/components/exoclick-ads/Banner";
 // import { useDetectAdBlock } from "adblock-detect-react";
 
 export default function Layout({
@@ -31,7 +32,8 @@ export default function Layout({
         <div className="w-full px-8">
           {children}
           <DesktopFullpage />
-          <AdsterraNativeBannerDom></AdsterraNativeBannerDom>
+          {/* <AdsterraNativeBannerDom></AdsterraNativeBannerDom> */}
+          <ExoclickBanner></ExoclickBanner>
           <PopunderAds></PopunderAds>
         </div>
       </RightContainer>
