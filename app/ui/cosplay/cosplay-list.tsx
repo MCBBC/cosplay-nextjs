@@ -43,14 +43,31 @@ export function CosplayItem({ item }: { item: Cosplay }) {
       <Link
         href={`/front/cosers/${item.coser?.id}`}
         className="flex items-center h-8 items-center">
-        <Avatar
+        {/* <Avatar
           size="sm"
           color="default"
           showFallback={true}
           name={item.coser?.name && item.coser?.name[0]}
           src={item.coser?.avatar || ""}
           className="shrink-0 overflow-hidden rounded-full h-7 w-7"
-        />
+        /> */}
+        {item.coser?.name ? (
+          <Avatar
+            size="sm"
+            color="default"
+            showFallback={true}
+            name={item.coser.name[0]}
+            className="shrink-0 overflow-hidden rounded-full h-7 w-7"
+          />
+        ) : (
+          <Avatar
+            size="sm"
+            color="default"
+            showFallback={true}
+            src={item.coser?.avatar || ""}
+            className="shrink-0 overflow-hidden rounded-full h-7 w-7"
+          />
+        )}
 
         <h3 className="font-medium leading-none text-sm ml-1 truncate">
           {item.coser?.name}
