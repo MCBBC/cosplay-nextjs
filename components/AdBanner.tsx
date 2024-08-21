@@ -44,13 +44,14 @@ const AdBanner = ({
   return (
     <div ref={adRef}>
       {isClient && (
-        <ins
-          className="adsbygoogle"
-          style={{ display: "block" }}
-          data-ad-client="ca-pub-5901616898778649"
-          data-ad-slot={dataAdSlot}
-          data-ad-format={dataAdFormat}
-          data-full-width-responsive={dataFullWidthResponsive.toString()}></ins>
+        // <ins
+        //   className="adsbygoogle"
+        //   style={{ display: "block" }}
+        //   data-ad-client="ca-pub-5901616898778649"
+        //   data-ad-slot={dataAdSlot}
+        //   data-ad-format={dataAdFormat}
+        //   data-full-width-responsive={dataFullWidthResponsive.toString()}></ins>
+        <div id="container-09f1f8d46834983118d9266f5b4eaf90"></div>
       )}
     </div>
   );

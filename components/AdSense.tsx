@@ -7,13 +7,17 @@ type AdsenseTypes = {
 
 const AdSense = ({ pId }: AdsenseTypes) => {
   return (
+    // <Script
+    //   rel="preload"
+    //   async
+    //   src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${pId}`}
+    //   crossOrigin="anonymous"
+    //   strategy="afterInteractive"
+    // />
     <Script
-      rel="preload"
       async
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${pId}`}
-      crossOrigin="anonymous"
-      strategy="afterInteractive"
-    />
+      data-cfasync="false"
+      src="//pl24107554.highratecpm.com/09f1f8d46834983118d9266f5b4eaf90/invoke.js"></Script>
   );
 };
 
