@@ -37,7 +37,7 @@
     "./dist/types/**/*.ts",
     "app/front/(overview)/loading.tsx",
     "./**/*.ts"
-, "pages/api/coser.ts"  ],
+, "pages/api/coser.ts", "components/exoclick-ads/Popunder.jsx"  ],
   "exclude": [
     "node_modules"
   ]

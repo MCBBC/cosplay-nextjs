@@ -4,6 +4,7 @@ import SideNav from "@/app/ui/mainLayout/side-nav";
 import RightContainer from "@/app/ui/mainLayout/right-container";
 import AdsterraNativeBannerDom from "@/components/adsterra-ads/AdsterraNativeBannerDom";
 import DesktopFullpage from "@/components/exoclick-ads/DesktopFullpage";
+import PopunderAds from "@/components/exoclick-ads/Popunder";
 // import { useDetectAdBlock } from "adblock-detect-react";
 
 export default function Layout({
@@ -31,6 +32,7 @@ export default function Layout({
           {children}
           <DesktopFullpage />
           <AdsterraNativeBannerDom></AdsterraNativeBannerDom>
+          <PopunderAds></PopunderAds>
         </div>
       </RightContainer>
     </main>
