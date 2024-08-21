@@ -2,7 +2,9 @@ import { CosplayList } from "@/app/ui/cosplay/cosplay-list";
 import { CosplayListSkeleton } from "@/app/ui/skeletons/image-group-skeleton";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
-import { AdBanner } from "@/components/AdsterraNativeBannerDom";
+import AdsterraNativeBannerDom, {
+  AdBanner,
+} from "@/components/AdsterraNativeBannerDom";
 import { fetchRandomRecommend } from "@/app/lib/fetchData/fetchCosplayShow";
 import NotificationModal from "@/app/ui/modal";
 
