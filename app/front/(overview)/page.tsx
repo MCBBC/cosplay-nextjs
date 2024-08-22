@@ -5,6 +5,7 @@ import { Suspense } from "react";
 // import AdsterraNativeBannerDom from "@/components/AdsterraNativeBannerDom";
 import { fetchRandomRecommend } from "@/app/lib/fetchData/fetchCosplayShow";
 import NotificationModal from "@/app/ui/modal";
+import Link from "next/link";
 
 export default async function Page() {
   const dataList = await fetchRandomRecommend(30);
@@ -15,7 +16,12 @@ export default async function Page() {
       <div className="flex md:flex-row flex-col flex-wrap items-center space-x-2 mb-6 p-2 rounded-lg border text-foreground text-sm">
         <BellIcon className="w-4 h-4" />
         <p>
-          项目还未完工,有些许BUG 邮箱:micromatrix@micromatrix.org
+          项目还未完工,有些许BUG
+          <Link
+            className="text-red-600"
+            href="mailto:micromatrix@micromatrix.org?subject=我有个建议">
+            邮箱:micromatrix@micromatrix.org
+          </Link>
           网站转到sharecosplay.micromatrix.cf下
         </p>
       </div>
