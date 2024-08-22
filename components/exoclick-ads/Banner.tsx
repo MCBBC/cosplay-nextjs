@@ -36,7 +36,17 @@ const ExoclickBanner = ({ className }: Props) => {
   }, [isClient, router]);
   return (
     <div ref={adRef}>
-      {isClient && <ins className="eas6a97888e2" data-zoneid="5393350"></ins>}
+      {/* {isClient && <ins className="eas6a97888e2" data-zoneid="5393350"></ins>} */}
+      {isClient && (
+        <iframe
+          src="//a.magsrv.com/iframe.php?idzone=5393350&size=300x250"
+          width="300"
+          height="250"
+          scrolling="no"
+          marginWidth={0}
+          marginHeight={0}
+          frameBorder={0}></iframe>
+      )}
     </div>
   );
 };

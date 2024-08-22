@@ -6,12 +6,13 @@ import { CosplayCoverSkeleton } from "../skeletons/image-group-skeleton";
 import { Avatar } from "@nextui-org/react";
 import { Cosplay } from "@/app/lib/definitions";
 import PopunderAds from "@/components/exoclick-ads/Popunder";
+// import DesktopFullpage from "@/components/exoclick-ads/DesktopFullpage";
 
 export function CosplayItem({ item }: { item: Cosplay }) {
   const handleLinkClick = (url: string) => (event: React.MouseEvent) => {
     event.preventDefault(); // 阻止默认的链接跳转行为
     // TODO 定义一个数组，存放广告ID，然后随机抽一个处理
-    let zoneIds = ["5393114", "5393266"];
+    let zoneIds = ["5393266"];
     const randomIndex = Math.floor(Math.random() * zoneIds.length);
     let zoneId = zoneIds[randomIndex];
     document.addEventListener(
@@ -24,6 +25,7 @@ export function CosplayItem({ item }: { item: Cosplay }) {
   return (
     <>
       <PopunderAds></PopunderAds>
+      {/* <DesktopFullpage></DesktopFullpage> */}
       <Link
         href={`/front/cosplays/${item.id}?name=${item.coser?.name}&coserId=${item.coser?.id}&title=${item.title}`}
         className="space-y-3 flex-auto flex flex-col"
