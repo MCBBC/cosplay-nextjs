@@ -34,7 +34,7 @@ export default function Layout({
           <DesktopFullpage />
           {/* <AdsterraNativeBannerDom></AdsterraNativeBannerDom> */}
           <ExoclickBanner></ExoclickBanner>
-          <PopunderAds></PopunderAds>
+          {/* <PopunderAds></PopunderAds> */}
         </div>
       </RightContainer>
     </main>
