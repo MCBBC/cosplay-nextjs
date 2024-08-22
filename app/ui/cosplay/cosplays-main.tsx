@@ -5,8 +5,8 @@ import { Suspense } from "react";
 import { CosplayListSkeleton } from "../skeletons/image-group-skeleton";
 import { CustomPagination } from "../common/pagination";
 import { fetchCosplay, fetchCosplayPages } from "@/app/lib/fetchData/data";
-// import AdsterraNativeBannerDom from "@/components/AdsterraNativeBannerDom";
-// import { AdBanner } from "@/components/AdBanner";
+import ExoclickBanner from "@/components/exoclick-ads/Banner";
+
 export default async function CosplayMain({
   searchParams,
 }: {
@@ -32,12 +32,7 @@ export default async function CosplayMain({
         <CosplayList dataList={dataList} />
       </Suspense>
       <CustomPagination totalPages={totalPages} />
-      {/* <AdBanner
-        dataAdFormat="fluid"
-        dataFullWidthResponsive={false}
-        dataAdSlot="1013737103"
-      /> */}
-      {/* <AdsterraNativeBannerDom></AdsterraNativeBannerDom> */}
+      <ExoclickBanner />
     </>
   );
 }
