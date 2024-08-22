@@ -28,7 +28,7 @@ export default function RootLayout({
       <head>
         <AdsterraNativeBanner />
         <AdsxoclickBanner />
-        <GoogleAnalytics gaId="G-15MZJRZZB1" />
+        <GoogleAnalytics gaId="G-4KFZD228TG" />
         <link rel="icon" href="/images/favicon.ico" />
         <meta
           name="6a97888e-site-verification"

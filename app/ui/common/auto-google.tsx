@@ -13,7 +13,7 @@ export function AutoGoogle() {
       {!isDashboard && (
         <>
           <AdSense pId="09f1f8d46834983118d9266f5b4eaf90" />
-          <GoogleAnalytics gaId="G-15MZJRZZB1" />
+          <GoogleAnalytics gaId="G-4KFZD228TG" />
         </>
       )}
     </>
