@@ -2,9 +2,7 @@
 import TitleHeader from "@/app/ui/mainLayout/title-header";
 import SideNav from "@/app/ui/mainLayout/side-nav";
 import RightContainer from "@/app/ui/mainLayout/right-container";
-import AdsterraNativeBannerDom from "@/components/adsterra-ads/AdsterraNativeBannerDom";
 import DesktopFullpage from "@/components/exoclick-ads/DesktopFullpage";
-import PopunderAds from "@/components/exoclick-ads/Popunder";
 import ExoclickBanner from "@/components/exoclick-ads/Banner";
 // import { useDetectAdBlock } from "adblock-detect-react";
 
@@ -34,7 +32,6 @@ export default function Layout({
           <DesktopFullpage />
           {/* <AdsterraNativeBannerDom></AdsterraNativeBannerDom> */}
           <ExoclickBanner></ExoclickBanner>
-          {/* <PopunderAds></PopunderAds> */}
         </div>
       </RightContainer>
     </main>
