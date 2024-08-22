@@ -11,7 +11,7 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex h-screen">
+    <main className="flex h-dvh">
       <SideNav></SideNav>
       <RightContainer>
         <TitleHeader></TitleHeader>
