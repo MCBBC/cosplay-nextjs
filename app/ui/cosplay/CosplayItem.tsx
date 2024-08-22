@@ -10,7 +10,15 @@ import PopunderAds from "@/components/exoclick-ads/Popunder";
 export function CosplayItem({ item }: { item: Cosplay }) {
   const handleLinkClick = (url: string) => (event: React.MouseEvent) => {
     event.preventDefault(); // 阻止默认的链接跳转行为
-    document.addEventListener("creativeDisplayed-5393266", console.log, false);
+    // TODO 定义一个数组，存放广告ID，然后随机抽一个处理
+    let zoneIds = ["5393114", "5393266"];
+    const randomIndex = Math.floor(Math.random() * zoneIds.length);
+    let zoneId = zoneIds[randomIndex];
+    document.addEventListener(
+      `creativeDisplayed-${zoneId}`,
+      console.log,
+      false
+    );
     window.open(url, "_blank"); // 在新标签页中打开链接
   };
   return (
