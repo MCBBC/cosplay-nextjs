@@ -4,6 +4,7 @@ import SideNav from "@/app/ui/mainLayout/side-nav";
 import RightContainer from "@/app/ui/mainLayout/right-container";
 
 import ExoclickBanner from "@/components/exoclick-ads/Banner";
+import { AdBanner } from "@/components/google-ads/AdBanner";
 
 export default function Layout({
   children,
@@ -18,6 +19,11 @@ export default function Layout({
         <div className="w-full px-8">
           {children}
           <ExoclickBanner></ExoclickBanner>
+          <AdBanner
+            dataAdFormat="fluid"
+            dataFullWidthResponsive={false}
+            dataAdSlot="1013737103"
+          />
         </div>
       </RightContainer>
     </main>

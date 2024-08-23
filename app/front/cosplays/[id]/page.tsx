@@ -1,6 +1,5 @@
 import { CosplayShowMain } from "@/app/ui/cosplayShow/cosplay-show-main";
-// import AdsterraNativeBannerDom from "@/components/AdsterraNativeBannerDom";
-// import { AdBanner } from "@/components/AdBanner";
+
 import { Metadata } from "next/types";
 
 export function generateMetadata({
@@ -38,12 +37,6 @@ export default async function Page({
         cosplayName={cosplayName}
         coserId={coserId}
       />
-      {/* <AdBanner
-        dataAdFormat="fluid"
-        dataFullWidthResponsive={false}
-        dataAdSlot="6557707820"
-      /> */}
-      {/* <AdsterraNativeBannerDom></AdsterraNativeBannerDom> */}
     </>
   );
 }

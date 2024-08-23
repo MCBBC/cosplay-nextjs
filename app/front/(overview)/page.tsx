@@ -2,7 +2,6 @@ import { CosplayList } from "@/app/ui/cosplay/cosplay-list";
 import { CosplayListSkeleton } from "@/app/ui/skeletons/image-group-skeleton";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Suspense } from "react";
-// import AdsterraNativeBannerDom from "@/components/AdsterraNativeBannerDom";
 import { fetchRandomRecommend } from "@/app/lib/fetchData/fetchCosplayShow";
 import NotificationModal from "@/app/ui/modal";
 import Link from "next/link";
@@ -29,11 +28,6 @@ export default async function Page() {
         <CosplayList dataList={dataList}></CosplayList>
       </Suspense>
       <NotificationModal></NotificationModal>
-      {/* <AdBanner
-        dataAdFormat="fluid"
-        dataFullWidthResponsive={false}
-        dataAdSlot="1013737103"
-      /> */}
     </>
   );
 }

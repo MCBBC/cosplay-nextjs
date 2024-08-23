@@ -36,7 +36,13 @@ const ExoclickBanner = ({ className }: Props) => {
   }, [isClient, router]);
   return (
     <div ref={adRef}>
-      {isClient && <ins className="eas6a97888e2" data-zoneid="5393350"></ins>}
+      {isClient && (
+        <ins
+          className="eas6a97888e2"
+          data-zoneid="5393350"
+          data-keywords="keywords"
+          data-sub="123450000"></ins>
+      )}
     </div>
   );
 };
